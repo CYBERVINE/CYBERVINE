@@ -9,7 +9,7 @@ body {
 
 .siteView{
     
-    margin-left: 100px;
+    margin-left: 10000px;
     display: flex;
     justify-content: center;
 }
@@ -23,7 +23,7 @@ body {
 }
 #takeBack {
 
-    background-color: blue;
+    background-color: black;
     color: azure;
 }
 #watchEngine {
