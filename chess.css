@@ -1,0 +1,372 @@
+* {
+    box-sizing: border-box;
+
+}
+body {
+
+    background-color: rgb(250, 221, 54);
+}
+
+.siteView{
+    display: flex;
+    justify-content: center;
+}
+
+#board{
+
+    margin-left: -10px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px; 
+}
+#takeBack {
+
+    background-color: black;
+    color: azure;
+}
+#watchEngine {
+
+    background-color: black;
+    color: azure;
+    padding-left: 3px;
+}
+#playEngine {
+
+    background-color: black;
+    color: azure;
+    padding-left: 3px;
+}
+#playHuman {
+
+    background-color: black;
+    color: azure;
+    padding-left: 3px;
+}
+#changeTurn {
+
+    background-color: black;
+    color: azure;
+
+}
+#turnBox{
+    background-color: grey;
+    color: white;
+
+}
+#checkBox{
+    background-color: rgb(250, 221, 54);
+    color: red;
+    font-style: bold;
+    font-size: larger;
+
+}
+.square{
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+}
+
+
+#whitePawn1 {
+
+    margin: 5px;
+    position: absolute;
+    top: 300px;
+    left: 0px;
+    height: 40px;
+    width: 40px;
+
+}
+#whitePawn2 {
+
+    margin: 5px;
+    position: absolute;
+    top: 300px;
+    left: 50px;
+    height: 40px;
+    width: 40px;
+
+}
+#whitePawn3 {
+
+    margin: 5px;
+    position: absolute;
+    top: 300px;
+    left: 100px;
+    height: 40px;
+    width: 40px;
+
+}
+#whitePawn4 {
+
+    margin: 5px;
+    position: absolute;
+    top: 300px;
+    left: 150px;
+    height: 40px;
+    width: 40px;
+
+}
+#whitePawn5 {
+
+    margin: 5px;
+    position: absolute;
+    top: 300px;
+    left: 200px;
+    height: 40px;
+    width: 40px;
+
+}
+#whitePawn6 {
+
+    margin: 5px;
+    position: absolute;
+    top: 300px;
+    left: 250px;
+    height: 40px;
+    width: 40px;
+
+}
+#whitePawn7 {
+
+    margin: 5px;
+    position: absolute;
+    top: 300px;
+    left: 300px;
+    height: 40px;
+    width: 40px;
+
+}
+#whitePawn8 {
+
+    margin: 5px;
+    position: absolute;
+    top: 300px;
+    left: 350px;
+    height: 40px;
+    width: 40px;
+
+}
+#whiteLeftRook{
+
+    margin: 5px;
+    position: absolute;
+    top: 350px;
+    left: 0px;
+    height: 40px;
+    width: 40px;
+}
+#whiteLeftKnight{
+
+    margin: 5px;
+    position: absolute;
+    top: 350px;
+    left: 50px;
+    height: 40px;
+    width: 40px;
+}
+#whiteLeftBishop {
+
+    margin: 5px;
+    position: absolute;
+    top: 350px;
+    left: 100px;
+    height: 40px;
+    width: 40px;
+
+}
+#whiteQueen {
+
+    margin: 5px;
+    position: absolute;
+    top: 350px;
+    left: 150px;
+    height: 40px;
+    width: 40px;
+
+}
+#whiteKing {
+
+    margin: 5px;
+    position: absolute;
+    top: 350px;
+    left: 200px;
+    height: 40px;
+    width: 40px;
+
+}
+#whiteRightBishop {
+
+    margin: 5px;
+    position: absolute;
+    top: 350px;
+    left: 250px;
+    height: 40px;
+    width: 40px;
+
+}
+#whiteRightKnight{
+
+    margin: 5px;
+    position: absolute;
+    top: 350px;
+    left: 300px;
+    height: 40px;
+    width: 40px;
+}
+#whiteRightRook{
+
+    margin: 5px;
+    position: absolute;
+    top: 350px;
+    left: 350px;
+    height: 40px;
+    width: 40px;
+}
+
+#blackQueen {
+
+    margin: 5px;
+    position: absolute;
+    top: 0px;
+    left: 150px;
+    height: 40px;
+    width: 40px;
+
+}
+#blackKing {
+
+    margin: 5px;
+    position: absolute;
+    top: 0px;
+    left: 200px;
+    height: 40px;
+    width: 40px;
+
+}
+#blackLeftRook{
+
+    margin: 5px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 40px;
+    width: 40px;
+}
+#blackLeftKnight{
+
+    margin: 5px;
+    position: absolute;
+    top: 0px;
+    left: 50px;
+    height: 40px;
+    width: 40px;
+}
+#blackRightKnight{
+
+    margin: 5px;
+    position: absolute;
+    top: 0px;
+    left: 300px;
+    height: 40px;
+    width: 40px;
+}
+#blackRightRook{
+
+    margin: 5px;
+    position: absolute;
+    top:  0px;
+    left: 350px;
+    height: 40px;
+    width: 40px;
+}
+#blackRightBishop{
+
+    margin: 5px;
+    position: absolute;
+    top: 0px;
+    left: 250px;
+    height: 40px;
+    width: 40px;
+}
+#blackLeftBishop{
+
+    margin: 5px;
+    position: absolute;
+    top: 0px;
+    left: 100px;
+    height: 40px;
+    width: 40px;
+}
+#blackPawn1{
+
+    margin: 5px;
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    height: 40px;
+    width: 40px;
+}
+#blackPawn2{
+
+    margin: 5px;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    height: 40px;
+    width: 40px;
+}
+#blackPawn3{
+
+    margin: 5px;
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    height: 40px;
+    width: 40px;
+}
+#blackPawn4{
+
+    margin: 5px;
+    position: absolute;
+    top: 50px;
+    left: 150px;
+    height: 40px;
+    width: 40px;
+}
+#blackPawn5{
+
+    margin: 5px;
+    position: absolute;
+    top: 50px;
+    left: 200px;
+    height: 40px;
+    width: 40px;
+}
+#blackPawn6{
+
+    margin: 5px;
+    position: absolute;
+    top: 50px;
+    left: 250px;
+    height: 40px;
+    width: 40px;
+}
+#blackPawn7{
+
+    margin: 5px;
+    position: absolute;
+    top: 50px;
+    left: 300px;
+    height: 40px;
+    width: 40px;
+}
+#blackPawn8{
+
+    margin: 5px;
+    position: absolute;
+    top: 50px;
+    left: 350px;
+    height: 40px;
+    width: 40px;
+}

@@ -1,0 +1,8606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="code.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+
+        body {
+            background-color: black;
+            color: lightgreen;
+        }
+    </style>
+
+<a style="color: gold" href="chess.html">chessHome</a>
+<div>
+    
+    const board = document.getElementById('board') <br>
+    const takeBackMove = document.getElementById('takeBack')<br>
+    const changeTurnButton = document.getElementById('changeTurn')<br>
+    const checkBox = document.getElementById('checkBox')<br>
+    const C8 = document.getElementById('C8')<br>
+    const G8 = document.getElementById('G8')<br>
+    const C1 = document.getElementById('C1')<br>
+    const G1 = document.getElementById('G1')<br>
+    const watchEngine = document.getElementById('watchEngine')<br>
+    const playEngine = document.getElementById('playEngine')<br>
+    const playHuman = document.getElementById('playHuman')<br>
+    
+    let playerTurn = "white"<br>
+    
+    
+    let endOfGame = false<br>
+    
+    let currentPieceWhite = undefined<br>
+    let currentPieceBlack = undefined<br>
+    let passantPiece = undefined<br>
+    let passantCord = undefined<br>
+    let previousPassantPiece = undefined<br>
+    let previousPassantCord = undefined<br>
+    
+    
+    let previousPiece = undefined<br>
+    let previousPosition = {<br>
+        x: undefined,<br>
+        y: undefined,<br>
+        letter: undefined,<br>
+        number: undefined,<br>
+        cord: undefined<br>
+    
+    }<br>
+    let capturedPiece = undefined<br>
+    
+    let castledRook = undefined<br>
+    
+    let capturedPieceCord = {<br>
+        x: undefined,<br>
+        y: undefined,<br>
+        letter: undefined,<br>
+        number: undefined,<br>
+        cord: undefined<br>
+    }
+    
+    whiteCapInc = 0<br>
+    blackCapInc = 350<br>
+    
+    // WHITE PIECES HTML //<br>
+    
+    WLK = document.createElement("img");<br>
+    WLK.src = "chessPieces/whiteKnight.png";<br>
+    board.appendChild(WLK)<br>
+    WLK.id = "whiteLeftKnight"<br>
+    
+    WRK = document.createElement("img");<br>
+    WRK.src = "chessPieces/whiteKnight.png";<br>
+    board.appendChild(WRK)<br>
+    WRK.id = "whiteRightKnight"<br>
+    
+    WLR = document.createElement("img");<br>
+    WLR.src = "chessPieces/whiteRook.png";<br>
+    board.appendChild(WLR)<br>
+    WLR.id = "whiteLeftRook"<br>
+    
+    WRR = document.createElement("img");<br>
+    WRR.src = "chessPieces/whiteRook.png";<br>
+    board.appendChild(WRR)<br>
+    WRR.id = "whiteRightRook"<br>
+    
+    WLB = document.createElement("img");<br>
+    WLB.src = "chessPieces/whiteBishop.png";<br>
+    board.appendChild(WLB)<br>
+    WLB.id = "whiteLeftBishop"<br>
+    
+    WRB = document.createElement("img");<br>
+    WRB.src = "chessPieces/whiteBishop.png";<br>
+    board.appendChild(WRB)<br>
+    WRB.id = "whiteRightBishop"<br>
+    
+    WQ = document.createElement("img");<br>
+    WQ.src = "chessPieces/whiteQueen.png";<br>
+    board.appendChild(WQ)<br>
+    WQ.id = "whiteQueen"<br>
+    
+    WK = document.createElement("img");<br>
+    WK.src = "chessPieces/whiteKing.png";<br>
+    board.appendChild(WK)<br>
+    WK.id = "whiteKing"<br>
+    
+    WP1 = document.createElement("img");<br>
+    WP1.src = "chessPieces/whitePawn.png";<br>
+    board.appendChild(WP1)<br>
+    WP1.id = "whitePawn1"<br>
+    
+    WP2 = document.createElement("img");<br>
+    WP2.src = "chessPieces/whitePawn.png";<br>
+    board.appendChild(WP2)<br>
+    WP2.id = "whitePawn2"<br>
+    <br>
+    WP3 = document.createElement("img");<br>
+    WP3.src = "chessPieces/whitePawn.png";<br>
+    board.appendChild(WP3)<br>
+    WP3.id = "whitePawn3"<br>
+    <br>
+    WP4 = document.createElement("img");<br>
+    WP4.src = "chessPieces/whitePawn.png";<br>
+    board.appendChild(WP4)<br>
+    WP4.id = "whitePawn4"<br>
+    <br>
+    WP5 = document.createElement("img");<br>
+    WP5.src = "chessPieces/whitePawn.png";<br>
+    board.appendChild(WP5)<br>
+    WP5.id = "whitePawn5"<br>
+    <br>
+    WP6 = document.createElement("img");<br>
+    WP6.src = "chessPieces/whitePawn.png";<br>
+    board.appendChild(WP6)<br>
+    WP6.id = "whitePawn6"<br>
+    <br>
+    WP7 = document.createElement("img");<br>
+    WP7.src = "chessPieces/whitePawn.png";<br>
+    board.appendChild(WP7)<br>
+    WP7.id = "whitePawn7"<br>
+    <br>
+    WP8 = document.createElement("img");<br>
+    WP8.src = "chessPieces/whitePawn.png";<br>
+    board.appendChild(WP8)<br>
+    WP8.id = "whitePawn8"<br>
+    <br>
+    // BLACK PIECES HTML //<br>
+    <br>
+    BLB = document.createElement("img");<br>
+    BLB.src = "chessPieces/blackBishop.png";<br>
+    board.appendChild(BLB)<br>
+    BLB.id = "blackLeftBishop"<br>
+    <br>
+    BRB = document.createElement("img");<br>
+    BRB.src = "chessPieces/blackBishop.png";<br>
+    board.appendChild(BRB)<br>
+    BRB.id = "blackRightBishop"<br>
+    <br>
+    BLR = document.createElement("img");<br>
+    BLR.src = "chessPieces/blackRook.png";<br>
+    board.appendChild(BLR)<br>
+    BLR.id = "blackLeftRook"<br>
+    <br>
+    BRR = document.createElement("img");<br>
+    BRR.src = "chessPieces/blackRook.png";<br>
+    board.appendChild(BRR)<br>
+    BRR.id = "blackRightRook"<br>
+    <br>
+    BLK = document.createElement("img");<br>
+    BLK.src = "chessPieces/blackKnight.png";<br>
+    board.appendChild(BLK)<br>
+    BLK.id = "blackLeftKnight"<br>
+    <br>
+    BRK = document.createElement("img");<br>
+    BRK.src = "chessPieces/blackKnight.png";<br>
+    board.appendChild(BRK)<br>
+    BRK.id = "blackRightKnight"<br>
+    <br>
+    BQ = document.createElement("img");<br>
+    BQ.src = "chessPieces/blackQueen.png";<br>
+    board.appendChild(BQ)<br>
+    BQ.id = "blackQueen"<br>
+    <br>
+    BK = document.createElement("img");<br>
+    BK.src = "chessPieces/blackKing.png";<br>
+    board.appendChild(BK)<br>
+    BK.id = "blackKing"<br>
+    <br>
+    BP1 = document.createElement("img");<br>
+    BP1.src = "chessPieces/blackPawn.png";<br>
+    board.appendChild(BP1)<br>
+    BP1.id = "blackPawn1"<br>
+    <br>
+    BP2 = document.createElement("img");<br>
+    BP2.src = "chessPieces/blackPawn.png";<br>
+    board.appendChild(BP2)<br>
+    BP2.id = "blackPawn2"<br>
+    <br>
+    BP3 = document.createElement("img");<br>
+    BP3.src = "chessPieces/blackPawn.png";<br>
+    board.appendChild(BP3)<br>
+    BP3.id = "blackPawn3"<br>
+    <br>
+    BP4 = document.createElement("img");<br>
+    BP4.src = "chessPieces/blackPawn.png";<br>
+    board.appendChild(BP4)<br>
+    BP4.id = "blackPawn4"<br>
+    <br>
+    BP5 = document.createElement("img");<br>
+    BP5.src = "chessPieces/blackPawn.png";<br>
+    board.appendChild(BP5)<br>
+    BP5.id = "blackPawn5"<br>
+    <br>
+    BP6 = document.createElement("img");<br>
+    BP6.src = "chessPieces/blackPawn.png";<br>
+    board.appendChild(BP6)<br>
+    BP6.id = "blackPawn6"<br>
+    <br>
+    BP7 = document.createElement("img");<br>
+    BP7.src = "chessPieces/blackPawn.png";<br>
+    board.appendChild(BP7)<br>
+    BP7.id = "blackPawn7"<br>
+    <br>
+    BP8 = document.createElement("img");<br>
+    BP8.src = "chessPieces/blackPawn.png";<br>
+    board.appendChild(BP8)<br>
+    BP8.id = "blackPawn8"<br>
+    <br>
+    // WHITE PIECES JAVASCRIPT //<br>
+    <br>
+    const whiteLeftKnight = {<br>
+        <br>
+            team: "white",<br>
+        element: WLK,<br>
+        x: "50px",<br>
+        y: "350px",<br>
+        letter: "B",<br>
+        number: "1",<br>
+        selected: false,<br>
+        class: "knight",<br>
+        moved: false,<br>
+        value: 3,<br>
+        value: 3<br>
+    }<br>
+    const whiteRightKnight = {<br>
+        <br>
+            team: "white",<br>
+        element: WRK,<br>
+        x: "300px",<br>
+        y: "350px",<br>
+        letter: "G",<br>
+        number: "1",<br>
+        selected: false,<br>
+        class: "knight",<br>
+        moved: false,<br>
+        value: 3<br>
+    }<br>
+    const whiteLeftRook = {<br>
+        <br>
+            team: "white",<br>
+        element: WLR,<br>
+        x: "0px",<br>
+        y: "350px",<br>
+        letter: "A",<br>
+        number: "1",<br>
+        selected: false,<br>
+        class: "rook",<br>
+        moved: false,<br>
+        value: 5<br>
+    }   <br>
+    const whiteRightRook = {<br>
+        <br>
+            team: "white",<br>
+        element: WRR,<br>
+        x: "350px",<br>
+        y: "350px",<br>
+        letter: "H",<br>
+        number: "1",<br>
+        selected: false,<br>
+        class: "rook",<br>
+        moved: false,<br>
+        value: 5<br>
+    }<br>
+    const whiteLeftBishop = {<br>
+        <br>
+            team: "white",<br>
+        element: WLB,<br>
+        x: "100px",<br>
+        y: "350px",<br>
+        letter: "C",<br>
+        number: "1",<br>
+        selected: false,<br>
+        class: "bishop",<br>
+        moved: false,<br>
+        value: 3<br>
+    }<br>
+    const whiteRightBishop = {<br>
+        <br>
+            team: "white",<br>
+        element: WRB,<br>
+        x: "250px",<br>
+        y: "350px",<br>
+        letter: "F",<br>
+        number: "1",<br>
+        selected: false,<br>
+        class: "bishop",<br>
+        moved: false,<br>
+        value: 3<br>
+    }<br>
+    const whiteKing = {<br>
+        <br>
+            team: "white",<br>
+        element: WK,<br>
+        x: "200px",<br>
+        y: "350px",<br>
+        letter: "E",<br>
+        number: "1",<br>
+        selected: false,<br>
+        class: "king",<br>
+        moved: false,<br>
+        value: 10,<br>
+    <br>
+    }   <br>
+    const whiteQueen = {<br>
+        <br>
+            team: "white",<br>
+        element: WQ,<br>
+        x: "150px",<br>
+        y: "350px",<br>
+        letter: "D",<br>
+        number: "1",<br>
+        selected: false,<br>
+        class: "queen",<br>
+        moved: false,<br>
+        value: 9,<br>
+        checking: false<br>
+    <br>
+    }<br>
+    const whitePawn1 = {<br>
+        <br>
+            team: "white",<br>
+        element: WP1,<br>
+        x: "0px",<br>
+        y: "300px",<br>
+        letter: "A",<br>
+        number: "2",<br>
+        selected: false,<br>
+        class: "pawn",<br>
+        moved: false,<br>
+        value: 1<br>
+    }<br>
+    const whitePawn2 = {<br>
+        <br>
+            team: "white",<br>
+        element: WP2,<br>
+        x: "50px",<br>
+        y: "300px",<br>
+        letter: "B",<br>
+        number: "2",<br>
+        selected: false,<br>
+        class: "pawn",<br>
+        moved: false,<br>
+        value: 1<br>
+    }<br>
+    const whitePawn3 = {<br>
+        <br>
+            team: "white",<br>
+        element: WP3,<br>
+        x: "100px",<br>
+        y: "300px",<br>
+        letter: "C",<br>
+        number: "2",<br>
+        selected: false,<br>
+        class: "pawn",<br>
+        moved: false,<br>
+        value: 1,<br>
+        <br>
+    }<br>
+    const whitePawn4 = {<br>
+        <br>
+            team: "white",<br>
+        element: WP4,<br>
+        x: "150px",<br>
+        y: "300px",<br>
+        letter: "D",<br>
+        number: "2",<br>
+        selected: false,<br>
+        class: "pawn",<br>
+        moved: false,<br>
+        value: 1<br>
+    }<br>
+    const whitePawn5 = {<br>
+        <br>
+            team: "white",<br>
+        element: WP5,<br>
+        x: "200px",<br>
+        y: "300px",<br>
+        letter: "E",<br>
+        number: "2",<br>
+        selected: false,<br>
+        class: "pawn",<br>
+        moved: false,<br>
+        value: 1<br>
+    }<br>
+    const whitePawn6 = {<br>
+        <br>
+            team: "white",<br>
+        element: WP6,<br>
+        x: "250px",<br>
+        y: "300px",<br>
+        letter: "F",<br>
+        number: "2",<br>
+        selected: false,<br>
+        class: "pawn",<br>
+        moved: false,<br>
+        value: 1<br>
+    }<br>
+    const whitePawn7 = {<br>
+        <br>
+            team: "white",<br>
+        element: WP7,<br>
+        x: "300px",<br>
+        y: "300px",<br>
+        letter: "G",<br>
+        number: "2",<br>
+        selected: false,<br>
+        class: "pawn",<br>
+        moved: false,<br>
+        value: 1<br>
+    }<br>
+    const whitePawn8 = {<br>
+        <br>
+            team: "white",<br>
+        element: WP8,<br>
+        x: "350px",<br>
+        y: "300px",<br>
+        letter: "H",<br>
+        number: "2",<br>
+        selected: false,<br>
+        class: "pawn",<br>
+        moved: false,<br>
+        value: 1<br>
+    <br>
+    }<br>
+    <br>
+    // BLACK PIECES JAVASCRIPT //<br>
+    <br>
+    const blackLeftBishop = {<br>
+        <br>
+            team: "black",<br>
+        element: BLB,<br>
+        x: "100px",<br>
+        y: "0px",<br>
+        letter: "C",<br>
+        number: "8",<br>
+        selected: false,<br>
+        class: "bishop",<br>
+        moved: false,<br>
+        value: 3<br>
+    <br>
+    }<br>
+    const blackRightBishop = {<br>
+        <br>
+            team: "black",<br>
+        element: BRB,<br>
+        x: "250px",<br>
+        y: "0px",<br>
+        letter: "F",<br>
+        number: "8",<br>
+        selected: false,<br>
+        class: "bishop",<br>
+        moved: false,<br>
+        value: 3<br>
+    <br>
+    }<br>
+    const blackLeftRook = {<br>
+        <br>
+            team: "black",<br>
+        element: BLR,<br>
+        x: "0px",<br>
+        y: "0px",<br>
+        letter: "A",<br>
+        number: "8",<br>
+        selected: false,<br>
+        class: "rook",<br>
+        moved: false,<br>
+        value: 5<br>
+    <br>
+    }<br>
+    const blackRightRook = {<br>
+        <br>
+            team: "black",<br>
+        element: BRR,<br>
+        x: "350px",<br>
+        y: "0px",<br>
+        letter: "H",<br>
+        number: "8",<br>
+        selected: false,<br>
+        class: "rook",<br>
+        moved: false,<br>
+        value: 5<br>
+    <br>
+    }<br>
+    const blackLeftKnight = {<br>
+        <br>
+            team: "black",<br>
+        element: BLK,<br>
+        x: "50px",<br>
+        y: "0px",<br>
+        letter: "B",<br>
+        number: "8",<br>
+        selected: false,<br>
+        class: "knight",<br>
+        moved: false,<br>
+        value: 3<br>
+    <br>
+    }<br>
+    const blackRightKnight = {<br>
+        <br>
+            team: "black",<br>
+        element: BRK,<br>
+        x: "300px",<br>
+        y: "0px",<br>
+        letter: "G",<br>
+        number: "8",<br>
+        selected: false,<br>
+        class: "knight",<br>
+        moved: false,<br>
+        value: 3<br>
+    <br>
+    }<br>
+    const blackQueen = {<br>
+        <br>
+            team: "black",<br>
+        element: BQ,<br>
+        x: "150px",<br>
+        y: "0px",<br>
+        letter: "D",<br>
+        number: "8",<br>
+        selected: false,<br>
+        class: "queen",<br>
+        moved: false,<br>
+        value: 9<br>
+    <br>
+    }<br>
+    const blackKing = {<br>
+        <br>
+            team: "black",<br>
+        element: BK,<br>
+        x: "200px",<br>
+        y: "0px",<br>
+        letter: "E",<br>
+        number: "8",<br>
+        selected: false,<br>
+        class: "king",<br>
+        moved: false,<br>
+        value: 10<br>
+    <br>
+    }<br>
+    const blackPawn1 = {<br>
+        <br>
+            team: "black",<br>
+        element: BP1,<br>
+        x: "0px",<br>
+        y: "50px",   <br>
+        letter: "A",<br>
+        number: "7",<br>
+        selected: false,<br>
+        class: "pawn",<br>
+        moved: false,<br>
+        value: 1<br>
+    <br>
+    }<br>
+    const blackPawn2 = {<br>
+        <br>
+            team: "black",<br>
+        element: BP2,<br>
+        x: "50px",<br>
+        y: "50px",   <br>
+        letter: "B",<br>
+        number: "7",<br>
+        selected: false,<br>
+        class: "pawn",<br>
+        moved: false,<br>
+        value: 1,<br>
+        id: "blackPawn2"<br>
+    <br>
+    }<br>
+    const blackPawn3 = {<br>
+        <br>
+            team: "black",<br>
+        element: BP3,<br>
+        x: "100px",<br>
+        y: "50px",   <br>
+        letter: "C",<br>
+        number: "7",<br>
+        selected: false,<br>
+        class: "pawn",<br>
+        moved: false,<br>
+        value: 1<br>
+    <br>
+    }<br>
+    const blackPawn4 = {<br>
+        <br>
+            team: "black",<br>
+        element: BP4,<br>
+        x: "150px",<br>
+        y: "50px",   <br>
+        letter: "D",<br>
+        number: "7",<br>
+        selected: false,<br>
+        class: "pawn",<br>
+        moved: false,<br>
+        value: 1<br>
+    <br>
+    }<br>
+    const blackPawn5 = {<br>
+        <br>
+            team: "black",<br>
+        element: BP5,<br>
+        x: "200px",<br>
+        y: "50px",   <br>
+        letter: "E",<br>
+        number: "7",<br>
+        selected: false,<br>
+        class: "pawn",<br>
+        moved: false,<br>
+        value: 1<br>
+    <br>
+    }<br>
+    const blackPawn6 = {<br>
+        <br>
+            team: "black",<br>
+        element: BP6,
+<br>
+        x: "250px",
+<br>
+        y: "50px",   
+<br>
+        letter: "F",
+<br>
+        number: "7",
+<br>
+        selected: false,
+<br>
+        class: "pawn",
+<br>
+        moved: false,
+<br>
+        value: 1
+<br>
+
+<br>
+    }
+<br>
+    const blackPawn7 = {
+<br>
+
+<br>
+        team: "black",
+<br>
+        element: BP7,
+<br>
+        x: "300px",
+<br>
+        y: "50px",   
+<br>
+        letter: "G",
+<br>
+        number: "7",
+<br>
+        selected: false,
+<br>
+        class: "pawn",
+<br>
+        moved: false,
+<br>
+        value: 1
+<br>
+
+<br>
+    }
+<br>
+    const blackPawn8 = {
+<br>
+
+<br>
+        team: "black",
+<br>
+        element: BP8,
+<br>
+        x: "350px",
+<br>
+        y: "50px",   
+<br>
+        letter: "H",
+<br>
+        number: "7",
+<br>
+        selected: false,
+<br>
+        class: "pawn",
+<br>
+        moved: false,
+<br>
+        value: 1
+<br>
+
+<br>
+    }
+<br>
+
+<br>
+    // PIECES ARRAYS //
+<br>
+
+<br>
+    let whitePieces = []
+<br>
+
+<br>
+    let blackPieces = []
+<br>
+
+<br>
+    let allPieces = [whitePieces, blackPieces]
+<br>
+
+<br>
+    let piece
+<br>
+
+<br>
+    let pieces
+<br>
+
+<br>
+    let capturedPieces = []
+<br>
+
+<br>
+    whitePieces.push(whiteRightKnight,whiteLeftKnight,whitePawn3,whitePawn4,whitePawn5,whiteLeftBishop,whiteRightBishop,whiteLeftRook,whiteRightRook,
+<br>
+        whitePawn1,whitePawn2,whitePawn6,whitePawn7,whitePawn8,whiteKing,whiteQueen)
+<br>
+
+<br>
+    blackPieces.push(blackRightKnight,blackLeftKnight,blackPawn3,blackPawn4,blackPawn5,blackLeftBishop,blackRightBishop,blackLeftRook,blackRightRook,
+<br>
+        blackPawn1,blackPawn2,blackPawn6,blackPawn7,blackPawn8,blackKing,blackQueen)
+<br>
+
+<br>
+    // MOVEMENT AND CAPTURE FUNCTIONALITY //
+<br>
+
+<br>
+
+<br>
+    function togglePieceSelection (piece) {
+<br>
+
+<br>
+        piece.selected === true ? piece.selected = false : piece.selected = true
+<br>
+    }
+<br>
+    function moveToPiece (piece) {
+<br>
+
+<br>
+
+<br>
+        currentPiece = playerTurn === "black" ? currentPieceBlack : currentPieceWhite
+<br>
+
+<br>
+
+<br>
+        if (checkPieceIsOnLegalSquare(piece)){
+<br>
+
+<br>
+            previousPosition.x = currentPiece.x
+<br>
+            previousPosition.y = currentPiece.y
+<br>
+            previousPosition.letter = currentPiece.letter
+<br>
+            previousPosition.number = currentPiece.number
+<br>
+            previousPosition.cord = currentPiece.cord
+<br>
+            previousPosition.moved = currentPiece.moved
+<br>
+            currentPiece.moved = true
+<br>
+            previousPiece = currentPiece
+<br>
+            currentPiece.x = piece.x
+<br>
+            currentPiece.y = piece.y
+<br>
+            currentPiece.letter = piece.letter
+<br>
+            currentPiece.number = piece.number
+<br>
+            currentPiece.cord = piece.cord
+<br>
+            currentPiece.element.style.left = piece.x
+<br>
+            currentPiece.element.style.top = piece.y
+<br>
+            capturedPieces.push(piece)
+<br>
+
+<br>
+            piece.moved = true
+<br>
+
+<br>
+
+<br>
+            changeTurn()
+<br>
+            clearPassant ()
+<br>
+            currentPieceWhite = undefined
+<br>
+            currentPieceBlack = undefined
+<br>
+
+<br>
+
+<br>
+        }
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    function checkCaptureBlackPiece(piece){
+<br>
+
+<br>
+            for ( j = 0 ; j < whitePieces.length ; j++)
+<br>
+
+<br>
+
+<br>
+
+<br>
+            if (whitePieces[j].x == piece.x && whitePieces[j].y == piece.y) {
+<br>
+
+<br>
+                capturedPieceCord.x = piece.x
+<br>
+                capturedPieceCord.y = piece.y
+<br>
+                capturedPieceCord.letter = piece.letter
+<br>
+                capturedPieceCord.number = piece.number
+<br>
+                capturedPieceCord.moved = piece.moved
+<br>
+                capturedPiece = piece
+<br>
+
+<br>
+
+<br>
+                piece.x = piece.x + Math.random()
+<br>
+                piece.y = piece.y + Math.random()
+<br>
+                piece.letter = undefined
+<br>
+                piece.number = undefined
+<br>
+                piece.cord = undefined
+<br>
+
+<br>
+                occupiedCheck()
+<br>
+
+<br>
+                piece.element.style.top = blackCapInc + "px"
+<br>
+                piece.element.style.left = "400px"
+<br>
+
+<br>
+                blackCapInc -= 25
+<br>
+
+<br>
+                setSelectedToFalse()
+<br>
+
+<br>
+            }
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    function checkCaptureWhitePiece(piece){
+<br>
+
+<br>
+
+<br>
+            for ( j = 0 ; j < blackPieces.length ; j++)
+<br>
+
+<br>
+
+<br>
+            if (blackPieces[j].x == piece.x && blackPieces[j].y == piece.y ) {
+<br>
+
+<br>
+
+<br>
+                capturedPieceCord.x = piece.x
+<br>
+                capturedPieceCord.y = piece.y
+<br>
+                capturedPieceCord.letter = piece.letter
+<br>
+                capturedPieceCord.number = piece.number
+<br>
+                capturedPieceCord.moved = piece.moved
+<br>
+                capturedPiece = piece
+<br>
+
+<br>
+
+<br>
+                piece.x = piece.x + Math.random()
+<br>
+                piece.y = piece.y + Math.random()
+<br>
+                piece.letter = undefined
+<br>
+                piece.number = undefined
+<br>
+                piece.cord = undefined
+<br>
+
+<br>
+                occupiedCheck()
+<br>
+
+<br>
+                piece.element.style.top = whiteCapInc + "px"
+<br>
+                piece.element.style.left = "-50px"
+<br>
+
+<br>
+                whiteCapInc += 25
+<br>
+
+<br>
+                setSelectedToFalse()
+<br>
+
+<br>
+            }
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    function checkPieceIsOnLegalSquare(piece) {
+<br>
+
+<br>
+        for ( i = 0 ; i < legalSquares.length ; i++){
+<br>
+            if (piece.cord === legalSquares[i]){
+<br>
+                return true
+<br>
+            }}
+<br>
+    }
+<br>
+    function capturePassantWhite () {
+<br>
+
+<br>
+        if (currentPieceWhite.cord === passantCord && currentPieceWhite.class === "pawn"){
+<br>
+
+<br>
+                    capturedPieceCord.x = passantPiece.x
+<br>
+                    capturedPieceCord.y = passantPiece.y
+<br>
+                    capturedPieceCord.letter = passantPiece.letter
+<br>
+                    capturedPieceCord.number = passantPiece.number
+<br>
+                    capturedPiece = passantPiece
+<br>
+                    previousPassantPiece = passantPiece
+<br>
+                    previousPassantCord = passantCord
+<br>
+
+<br>
+                    passantPiece.x = passantPiece.x + Math.random()
+<br>
+                    passantPiece.y = passantPiece.y + Math.random()
+<br>
+                    passantPiece.letter = undefined
+<br>
+                    passantPiece.number = undefined
+<br>
+                    passantPiece.cord = undefined
+<br>
+
+<br>
+                    passantPiece.element.style.top = blackCapInc + "px"
+<br>
+                    passantPiece.element.style.left = "400px"
+<br>
+
+<br>
+                    blackCapInc -= 25
+<br>
+                    clearPassant ()
+<br>
+        }
+<br>
+    }
+<br>
+    function capturePassantBlack (){
+<br>
+
+<br>
+         if (currentPieceBlack.cord === passantCord && currentPieceBlack.class === "pawn") {
+<br>
+
+<br>
+                    capturedPieceCord.x = passantPiece.x
+<br>
+                    capturedPieceCord.y = passantPiece.y
+<br>
+                    capturedPieceCord.letter = passantPiece.letter
+<br>
+                    capturedPieceCord.number = passantPiece.number
+<br>
+                    capturedPiece = passantPiece
+<br>
+                    previousPassantPiece = passantPiece
+<br>
+                    previousPassantCord = passantCord
+<br>
+
+<br>
+                    passantPiece.x = passantPiece.x + Math.random()
+<br>
+                    passantPiece.y = passantPiece.y + Math.random()
+<br>
+                    passantPiece.letter = undefined
+<br>
+                    passantPiece.number = undefined
+<br>
+                    passantPiece.cord = undefined
+<br>
+
+<br>
+                    passantPiece.element.style.top = whiteCapInc + "px"
+<br>
+                    passantPiece.element.style.left = "-50px"
+<br>
+
+<br>
+                    whiteCapInc += 25
+<br>
+                    clearPassant ()
+<br>
+        }
+<br>
+    }
+<br>
+    function setPreviousPiece(piece){
+<br>
+
+<br>
+        previousPiece = piece
+<br>
+        previousPosition.x = piece.x
+<br>
+        previousPosition.y = piece.y
+<br>
+        previousPosition.letter = piece.letter
+<br>
+        previousPosition.number = piece.number
+<br>
+        previousPosition.cord = piece.cord
+<br>
+    }
+<br>
+    function occupiedCheck(){ 
+<br>
+
+<br>
+        squares.forEach(square => {
+<br>
+            square.occupied = false
+<br>
+            square.class = undefined
+<br>
+            square.checking = false
+<br>
+            square.pinning = false
+<br>
+            square.value = false
+<br>
+        })
+<br>
+
+<br>
+
+<br>
+        squares.forEach(square => {
+<br>
+
+<br>
+
+<br>
+        for ( i = 0 ; i < 16 ; i++){
+<br>
+
+<br>
+            if (whitePieces[i].x == square.x && whitePieces[i].y == square.y){
+<br>
+
+<br>
+                square.class = whitePieces[i].class
+<br>
+                square.value = whitePieces[i].value
+<br>
+                square.occupied = "white" 
+<br>
+                whitePieces[i].cord = square.cord
+<br>
+                whitePieces[i].pinned = false
+<br>
+
+<br>
+
+<br>
+            }
+<br>
+
+<br>
+
+<br>
+
+<br>
+            if (blackPieces[i].x == square.x && blackPieces[i].y == square.y){
+<br>
+
+<br>
+                square.class = blackPieces[i].class
+<br>
+                square.value = blackPieces[i].value
+<br>
+                square.occupied = "black"
+<br>
+                blackPieces[i].cord = square.cord
+<br>
+                blackPieces[i].pinned = false
+<br>
+
+<br>
+            }
+<br>
+    }})
+<br>
+    }
+<br>
+
+<br>
+    // BUTTONS //
+<br>
+    let moveHistory = []
+<br>
+    let captureHistory = []
+<br>
+
+<br>
+    takeBackMove.addEventListener("click", () => {
+<br>
+
+<br>
+        previousPiece.element.style.left = previousPosition.x
+<br>
+        previousPiece.element.style.top = previousPosition.y
+<br>
+        previousPiece.x = previousPosition.x
+<br>
+        previousPiece.y = previousPosition.y
+<br>
+        previousPiece.letter = previousPosition.letter
+<br>
+        previousPiece.number = previousPosition.number
+<br>
+        previousPiece.cord = previousPosition.cord
+<br>
+        previousPiece.moved = previousPosition.moved
+<br>
+        passantPiece = previousPassantPiece
+<br>
+        passantCord = previousPassantCord
+<br>
+
+<br>
+
+<br>
+        if (castledRook !== undefined) {returnCastledRook()}
+<br>
+
+<br>
+        if(capturedPiece !== undefined) {
+<br>
+        capturedPiece.element.style.left = capturedPieceCord.x
+<br>
+        capturedPiece.element.style.top = capturedPieceCord.y
+<br>
+        capturedPiece.x = capturedPieceCord.x
+<br>
+        capturedPiece.y = capturedPieceCord.y
+<br>
+        capturedPiece.letter = capturedPieceCord.letter
+<br>
+        capturedPiece.number = capturedPieceCord.number
+<br>
+        capturedPiece.cord = capturedPieceCord.cord
+<br>
+        capturedPiece.moved = capturedPieceCord.moved
+<br>
+
+<br>
+
+<br>
+
+<br>
+        clearCapturedPiece()
+<br>
+        }
+<br>
+
+<br>
+        if ((playerTurn === "black" && currentPieceBlack === undefined) ||
+<br>
+        (playerTurn === "white" && currentPieceWhite === undefined) || castledRook !== undefined)
+<br>
+
+<br>
+        {
+<br>
+        changeTurn()}
+<br>
+
+<br>
+        clearPreviousPosition()
+<br>
+        clearLegalSquares()
+<br>
+        setSelectedToFalse()
+<br>
+    }
+<br>
+    )
+<br>
+    changeTurnButton.addEventListener('click', () =>{
+<br>
+
+<br>
+        changeTurn()
+<br>
+        clearCurrentPiece()
+<br>
+    }
+<br>
+    )
+<br>
+    document.addEventListener('keydown', () => {
+<br>
+
+<br>
+        changeTurn()
+<br>
+        clearCurrentPiece()
+<br>
+
+<br>
+    })
+<br>
+    watchEngine.addEventListener('click', () =>{
+<br>
+
+<br>
+        gameMode = "watchEngine"
+<br>
+        setTimeout(() => {makeIntelligentMoves()}, 400)
+<br>
+
+<br>
+    })
+<br>
+    playEngine.addEventListener('click', () =>{
+<br>
+
+<br>
+        gameMode = "playEngine"
+<br>
+    })
+<br>
+    playHuman.addEventListener('click', () =>{
+<br>
+
+<br>
+        gameMode = "playHuman"
+<br>
+    })
+<br>
+
+<br>
+    // CLEAR FUNCTIONS //
+<br>
+
+<br>
+
+<br>
+    function clear(piece){
+<br>
+
+<br>
+        if (playerTurn === piece.team)
+<br>
+
+<br>
+        {clearLegalSquares()}
+<br>
+
+<br>
+        clearCapturedPiece()
+<br>
+        castledRook = undefined
+<br>
+
+<br>
+    }
+<br>
+    function clearPassant(){
+<br>
+        passantCord = undefined
+<br>
+        passantPiece = undefined
+<br>
+    }
+<br>
+    function clearLegalSquares(){
+<br>
+
+<br>
+        legalSquares = []
+<br>
+
+<br>
+        squares.forEach(square =>{
+<br>
+            square.legal = false
+<br>
+            square.element.style.opacity = "1"
+<br>
+        })
+<br>
+
+<br>
+    }
+<br>
+    function clearCurrentPiece(){
+<br>
+        currentPieceBlack = undefined
+<br>
+        currentPieceWhite = undefined
+<br>
+    }
+<br>
+    function clearPreviousPosition(){
+<br>
+
+<br>
+        previousPiece = undefined
+<br>
+        previousPosition.x = undefined
+<br>
+        previousPosition.y = undefined
+<br>
+        previousPosition.letter = undefined
+<br>
+        previousPosition.number = undefined
+<br>
+        previousPosition.cord = undefined
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    function clearCapturedPiece(){
+<br>
+
+<br>
+        capturedPiece = undefined
+<br>
+        capturedPieceCord.x = undefined
+<br>
+        capturedPieceCord.y = undefined
+<br>
+        capturedPieceCord.letter = undefined
+<br>
+        capturedPieceCord.number = undefined
+<br>
+        capturedPieceCord.cord = undefined
+<br>
+    }
+<br>
+    function setSelectedToFalse(){
+<br>
+        allPieces[0].forEach(piece => {
+<br>
+            piece.selected = false
+<br>
+
+<br>
+        })
+<br>
+        allPieces[1].forEach(piece => {
+<br>
+            piece.selected = false
+<br>
+
+<br>
+        })
+<br>
+    }
+<br>
+    function clearChecking(){
+<br>
+
+<br>
+        checks = playerTurn === "white" ? whitePieces : blackPieces
+<br>
+
+<br>
+        checks.forEach(checks => {
+<br>
+            checks.checking = false
+<br>
+
+<br>
+        })
+<br>
+    }
+<br>
+
+<br>
+    // MOVEMENT LOGIC //
+<br>
+
+<br>
+    // PIECE CLASS PROPERTIES //
+<br>
+
+<br>
+    let knightMovement = {
+<br>
+
+<br>
+        possibleLetters: [2,2,1,1,-1,-1,-2,-2],
+<br>
+        possibleNumbers: [1,-1,2,-2,-2,2,-1,1],
+<br>
+        possibleMoves: 8
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    let bishopMovement = {
+<br>
+
+<br>
+        possibleLetters: [1,1,-1,-1],
+<br>
+        possibleNumbers: [1,-1,-1,1],
+<br>
+        possibleMoves: 4
+<br>
+    }
+<br>
+    let blackPawnMovement = {
+<br>
+
+<br>
+        possibleLettersAdvance: [0,0],
+<br>
+        possibleNumbersAdvance: [-1,-2],
+<br>
+        possibleLettersCapture: [-1,1],
+<br>
+        possibleNumbersCapture: [-1,-1]
+<br>
+
+<br>
+    }
+<br>
+    let whitePawnMovement = {
+<br>
+
+<br>
+        possibleLettersAdvance: [0,0],
+<br>
+        possibleNumbersAdvance: [1,2],
+<br>
+        possibleLettersCapture: [-1,1],
+<br>
+        possibleNumbersCapture: [1,1]
+<br>
+
+<br>
+    }
+<br>
+    let rookMovement = {
+<br>
+
+<br>
+        possibleLetters: [0,1,0,-1],
+<br>
+        possibleNumbers: [1,0,-1,0],
+<br>
+        possibleMoves: 4
+<br>
+
+<br>
+    }
+<br>
+    let queenMovement = {
+<br>
+
+<br>
+        possibleLetters: [0,1,1,1,0,-1,-1,-1],
+<br>
+        possibleNumbers: [1,1,0,-1,-1,-1,0,1],
+<br>
+        possibleMoves: 8
+<br>
+
+<br>
+    }
+<br>
+    let kingMovement = {
+<br>
+
+<br>
+        possibleLetters: [1,-1,1,-1,1,0,0,-1],
+<br>
+        possibleNumbers: [-1,1,1,-1,0,-1,1,0],
+<br>
+        possibleMoves: 8
+<br>
+
+<br>
+    }
+<br>
+
+<br>
+    let letterArray = ["A","B","C","D","E","F","G","H"]
+<br>
+    let numberArray = ["1","2","3","4","5","6","7","8"]
+<br>
+
+<br>
+    // LEGAL SQUARES // 
+<br>
+
+<br>
+    let legalSquares = []
+<br>
+
+<br>
+    function teamCollisionCheck ()  { 
+<br>
+
+<br>
+        squares.forEach(square =>{
+<br>
+        if (possibleCord === square.cord && square.occupied === currentTeam){
+<br>
+            j = 8
+<br>
+        }})
+<br>
+    }
+<br>
+    function basicTeamCollisionCheck ()  {  
+<br>
+
+<br>
+        squares.forEach(square =>{
+<br>
+
+<br>
+                if (possibleCord === square.cord && square.occupied === currentTeam){
+<br>
+                    skip = true
+<br>
+                }})
+<br>
+
+<br>
+    }
+<br>
+    function enenmyCollisionCheck ()  {  
+<br>
+
+<br>
+
+<br>
+
+<br>
+        squares.forEach(square =>{
+<br>
+
+<br>
+            if (possibleCord === square.cord && square.occupied === oppositeTeam)
+<br>
+               { j = 8 }
+<br>
+            })
+<br>
+
+<br>
+    }
+<br>
+    function pawnAttackCheck(){  
+<br>
+
+<br>
+        squares.forEach(square =>{
+<br>
+                if ((possibleCord === square.cord && square.occupied !== oppositeTeam)){
+<br>
+                    skip = true
+<br>
+                }})
+<br>
+
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    function firstMoveBlocked() {
+<br>
+
+<br>
+            squares.forEach(square =>{
+<br>
+
+<br>
+                if (currentTeam === "black" && square.cord === (currentLetter + "6") && (square.occupied === "white" || square.occupied === "black"))           
+<br>
+                    {iteration = 1}  
+<br>
+
+<br>
+                if (currentTeam === "white" && square.cord === (currentLetter + "3") && (square.occupied === "white" || square.occupied === "black"))           
+<br>
+                    {iteration = 1}             
+<br>
+
+<br>
+                })
+<br>
+
+<br>
+    }
+<br>
+
+<br>
+    /////////////////////////
+<br>
+
+<br>
+
+<br>
+    function goodCordTest (cord) {
+<br>
+
+<br>
+        let goodLetter
+<br>
+        let goodNumber
+<br>
+
+<br>
+
+<br>
+
+<br>
+            letterArray.forEach(letter => {
+<br>
+
+<br>
+            if (cord[0] === letter) {
+<br>
+                goodLetter = true
+<br>
+            }
+<br>
+
+<br>
+        })
+<br>
+        numberArray.forEach(number => {
+<br>
+
+<br>
+            if (cord[1] === number) 
+<br>
+                {goodNumber = true}
+<br>
+        })
+<br>
+
+<br>
+         if (goodLetter === true && goodNumber === true) {goodCord = true}
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    function setPiece (piece){
+<br>
+        currentTeam = piece.team
+<br>
+        oppositeTeam = currentTeam === "white" ? "black" : "white"
+<br>
+        currentLetter = piece.letter
+<br>
+        currentNumber = piece.number
+<br>
+        currentCord = piece.cord
+<br>
+        currentClass = piece.class
+<br>
+    }
+<br>
+    function findLegalKingMoves(movement, piece){
+<br>
+
+<br>
+        if(piece.team === playerTurn) {
+<br>
+
+<br>
+            setPiece (piece)
+<br>
+            attack = currentTeam === "white" ? 
+<br>
+                currentBlackAttackPotential : currentWhiteAttackPotential
+<br>
+
+<br>
+        skip = false
+<br>
+
+<br>
+        if (currentLetter !== undefined && currentNumber !== undefined) {
+<br>
+
+<br>
+        for ( k = 0 ; k < movement.possibleMoves ; k++){
+<br>
+
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+            possibleCord =  letterArray[currentLetterIndex + movement.possibleLetters[k]] +
+<br>
+                            numberArray[currentNumberIndex + movement.possibleNumbers[k]]
+<br>
+
+<br>
+
+<br>
+        basicTeamCollisionCheck()
+<br>
+
+<br>
+        safe = true
+<br>
+
+<br>
+        attack.forEach(attack => {
+<br>
+            if (attack === possibleCord){ safe = false} 
+<br>
+        })
+<br>
+
+<br>
+        goodCord = false
+<br>
+        goodCordTest(possibleCord)
+<br>
+
+<br>
+        setPiece(piece)
+<br>
+
+<br>
+        if (skip === false && safe === true && goodCord === true) { legalSquares.push(possibleCord) }
+<br>
+
+<br>
+        skip = false
+<br>
+        }
+<br>
+        updateLegalSquares()}}
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    function findLegalMovesExtension(movement, piece) {
+<br>
+
+<br>
+        if(piece.team === playerTurn) {
+<br>
+
+<br>
+            setPiece (piece)
+<br>
+
+<br>
+        if (currentLetter !== undefined && currentNumber !== undefined) { // prevents a -1 return
+<br>
+
+<br>
+            for ( e = 0 ; e < movement.possibleMoves ; e ++ ){
+<br>
+
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+            for (j = 0 ; j < 7 ; j++) {
+<br>
+
+<br>
+                possibleCord =  letterArray[currentLetterIndex + movement.possibleLetters[e]] +
+<br>
+                                numberArray[currentNumberIndex + movement.possibleNumbers[e]] 
+<br>
+
+<br>
+                teamCollisionCheck () 
+<br>
+                goodCord = false
+<br>
+                goodCordTest(possibleCord)
+<br>
+                safeKing = true
+<br>
+                safeKingCheck(piece)
+<br>
+                pinCheck(piece)
+<br>
+
+<br>
+                    if(j < 7 && goodCord === true && safeKing === true){legalSquares.push(possibleCord)}
+<br>
+
+<br>
+
+<br>
+                enenmyCollisionCheck ()
+<br>
+
+<br>
+            currentLetterIndex = currentLetterIndex + movement.possibleLetters[e]
+<br>
+            currentNumberIndex = currentNumberIndex + movement.possibleNumbers[e]    
+<br>
+
+<br>
+            }}
+<br>
+
+<br>
+
+<br>
+        updateLegalSquares()}} 
+<br>
+    }
+<br>
+    function findLegalKnightMoves(movement, piece){
+<br>
+
+<br>
+        if(piece.team === playerTurn) {
+<br>
+
+<br>
+            setPiece (piece)
+<br>
+        skip = false
+<br>
+
+<br>
+        if (currentLetter !== undefined && currentNumber !== undefined){    
+<br>
+
+<br>
+            for ( kn = 0 ; kn < movement.possibleMoves ; kn++){
+<br>
+
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+            possibleCord =  letterArray[currentLetterIndex + movement.possibleLetters[kn]] +
+<br>
+                            numberArray[currentNumberIndex + movement.possibleNumbers[kn]]
+<br>
+
+<br>
+        basicTeamCollisionCheck()
+<br>
+        goodCord = false
+<br>
+        goodCordTest(possibleCord)
+<br>
+        safeKing = true
+<br>
+        safeKingCheck(piece)
+<br>
+
+<br>
+            if (skip === false && goodCord === true && 
+<br>
+                safeKing === true && piece.pinned === false)
+<br>
+                  {legalSquares.push(possibleCord)}
+<br>
+
+<br>
+        skip = false
+<br>
+
+<br>
+        }
+<br>
+        updateLegalSquares()}
+<br>
+
+<br>
+    }
+<br>
+
+<br>
+    }
+<br>
+    function findLegalMovesPawn (movement, piece) {
+<br>
+
+<br>
+        setPiece (piece)
+<br>
+
+<br>
+            iteration = 2
+<br>
+
+<br>
+        if ( piece.moved === true ) { iteration = 1 }
+<br>
+
+<br>
+            firstMoveBlocked()
+<br>
+
+<br>
+            proceed = false
+<br>
+
+<br>
+            piece.selected === true ? clearLegalSquares() : proceed = true 
+<br>
+
+<br>
+        if(piece.team === playerTurn && proceed === true) {
+<br>
+
+<br>
+        skip = false
+<br>
+        passant = false
+<br>
+
+<br>
+        if (currentLetter !== undefined && currentNumber !== undefined) {
+<br>
+
+<br>
+        for ( p = 0 ; p < iteration ; p++){
+<br>
+
+<br>
+
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+            possibleCord =  letterArray[currentLetterIndex + movement.possibleLettersAdvance[p]] +
+<br>
+                            numberArray[currentNumberIndex + movement.possibleNumbersAdvance[p]]
+<br>
+
+<br>
+        basicTeamCollisionCheck()
+<br>
+        enenmyCollisionCheck()
+<br>
+
+<br>
+        goodCord = false
+<br>
+        goodCordTest(possibleCord)
+<br>
+        pawnNotPinned = true
+<br>
+        safeKing = true
+<br>
+        safeKingCheck(piece)
+<br>
+
+<br>
+        king = currentTeam === "white" ? whiteKing : blackKing
+<br>
+
+<br>
+        if (piece.pinned === true && piece.letter === king.letter){piece.pinned = false, pawnNotPinned = false}
+<br>
+
+<br>
+        if (skip === false && j !== 8 && goodCord === true 
+<br>
+            && safeKing === true && piece.pinned === false) 
+<br>
+            { legalSquares.push(possibleCord)}
+<br>
+
+<br>
+            skip = false
+<br>
+        }
+<br>
+
+<br>
+        for ( p2 = 0 ; p2 < 2 ; p2++){
+<br>
+
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+            possibleCord =  letterArray[currentLetterIndex + movement.possibleLettersCapture[p2]] +
+<br>
+                            numberArray[currentNumberIndex + movement.possibleNumbersCapture[p2]]
+<br>
+
+<br>
+        basicTeamCollisionCheck()
+<br>
+        pawnAttackCheck(piece)
+<br>
+
+<br>
+        goodCord = false
+<br>
+        goodCordTest(possibleCord)
+<br>
+
+<br>
+        safeKing = true
+<br>
+        safeKingCheck(piece)
+<br>
+        pinCheck (piece)
+<br>
+
+<br>
+        if (skip === false && goodCord === true 
+<br>
+            && safeKing === true && pawnNotPinned === true) 
+<br>
+                { legalSquares.push(possibleCord) }
+<br>
+
+<br>
+            skip = false
+<br>
+
+<br>
+         if (passantCord === possibleCord && goodCord === true 
+<br>
+            && safeKing === true && pawnNotPinned === true)  
+<br>
+                { legalSquares.push(possibleCord) }   
+<br>
+        }
+<br>
+        updateLegalSquares()
+<br>
+
+<br>
+    }}
+<br>
+    }
+<br>
+
+<br>
+    // CURRENT ATTACK POTENTIALS //
+<br>
+
+<br>
+    let currentBlackAttackPotential = []
+<br>
+    let currentWhiteAttackPotential = []
+<br>
+
+<br>
+
+<br>
+
+<br>
+    function findCurrentBlackAttackPotential(){
+<br>
+
+<br>
+        currentBlackAttackPotential = []
+<br>
+
+<br>
+        blackPieces.forEach(piece => {
+<br>
+
+<br>
+            switch (piece.class){
+<br>
+
+<br>
+                case "bishop" : movement = bishopMovement; break
+<br>
+                case "rook" : movement = rookMovement; break
+<br>
+                case "queen" : movement = queenMovement; break
+<br>
+                case "knight" : movement = knightMovement; break
+<br>
+                case "king" : movement = kingMovement; break
+<br>
+                case "pawn" : movement = blackPawnMovement; break
+<br>
+            }
+<br>
+
+<br>
+            if (piece.class === "bishop" || piece.class === "rook" 
+<br>
+                || piece.class === "queen" ){
+<br>
+                findLegalAttacksExtension(movement, piece)
+<br>
+            }
+<br>
+
+<br>
+            if (piece.class === "king" || piece.class === "knight"){
+<br>
+                findLegalAttacks(movement, piece)
+<br>
+            }
+<br>
+
+<br>
+            if (piece.class === "pawn") {
+<br>
+                findLegalAttacksPawn(movement, piece)
+<br>
+            }
+<br>
+        })
+<br>
+
+<br>
+    }
+<br>
+    function findCurrentWhiteAttackPotential(){
+<br>
+
+<br>
+        currentWhiteAttackPotential = []
+<br>
+
+<br>
+        whitePieces.forEach(piece => {
+<br>
+
+<br>
+            switch (piece.class){
+<br>
+
+<br>
+                case "bishop" : movement = bishopMovement; break
+<br>
+                case "rook" : movement = rookMovement; break
+<br>
+                case "queen" : movement = queenMovement; break
+<br>
+                case "knight" : movement = knightMovement; break
+<br>
+                case "king" : movement = kingMovement; break
+<br>
+                case "pawn" : movement = whitePawnMovement; break
+<br>
+            }
+<br>
+
+<br>
+            if (piece.class === "bishop" || piece.class === "rook"
+<br>
+                 || piece.class === "queen" ){
+<br>
+                findLegalAttacksExtension(movement, piece)
+<br>
+            }
+<br>
+
+<br>
+            if (piece.class === "king" || piece.class === "knight"){
+<br>
+                findLegalAttacks(movement, piece)
+<br>
+            }
+<br>
+
+<br>
+            if (piece.class === "pawn") {
+<br>
+               findLegalAttacksPawn(movement, piece)
+<br>
+            }
+<br>
+        })
+<br>
+
+<br>
+    }
+<br>
+    function findLegalAttacksExtension(movement, piece){
+<br>
+
+<br>
+        setPiece (piece)
+<br>
+
+<br>
+            if (currentLetter !== undefined && currentNumber !== undefined) {
+<br>
+
+<br>
+                for ( i = 0 ; i < movement.possibleMoves ; i ++ ){
+<br>
+
+<br>
+
+<br>
+                currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+                currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+
+<br>
+                for (j = 0 ; j < 7 ; j++) {
+<br>
+
+<br>
+                    possibleCord =  letterArray[currentLetterIndex + movement.possibleLetters[i]] +
+<br>
+                                    numberArray[currentNumberIndex + movement.possibleNumbers[i]] 
+<br>
+
+<br>
+                    goodCord = false
+<br>
+
+<br>
+
+<br>
+                    goodCordTest(possibleCord)
+<br>
+
+<br>
+
+<br>
+
+<br>
+                    if( j < 7 && goodCord === true && currentTeam === "white")
+<br>
+                        {currentWhiteAttackPotential.push(possibleCord), setChecking(piece)}
+<br>
+                    else if( j < 7 && goodCord === true && currentTeam === "black")
+<br>
+                        {currentBlackAttackPotential.push(possibleCord), setChecking(piece)}
+<br>
+
+<br>
+                    teamCollisionCheck () 
+<br>
+                    if( possibleCord !== oppositeKing.cord){enenmyCollisionCheck ()}
+<br>
+
+<br>
+
+<br>
+
+<br>
+                currentLetterIndex = currentLetterIndex + movement.possibleLetters[i]
+<br>
+                currentNumberIndex = currentNumberIndex + movement.possibleNumbers[i]    
+<br>
+
+<br>
+                }}}
+<br>
+
+<br>
+    }
+<br>
+    function findLegalAttacks(movement, piece){
+<br>
+
+<br>
+        setPiece (piece)
+<br>
+
+<br>
+            if (currentLetter !== undefined && currentNumber !== undefined){    
+<br>
+
+<br>
+
+<br>
+                for ( i = 0 ; i < movement.possibleMoves ; i++){
+<br>
+
+<br>
+                currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+                currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+                possibleCord =  letterArray[currentLetterIndex + movement.possibleLetters[i]] +
+<br>
+                                numberArray[currentNumberIndex + movement.possibleNumbers[i]]
+<br>
+
+<br>
+            goodCord = false
+<br>
+
+<br>
+            goodCordTest(possibleCord)
+<br>
+
+<br>
+
+<br>
+
+<br>
+            if( goodCord === true && currentTeam === "white" && piece.pinned === false){currentWhiteAttackPotential.push(possibleCord), setChecking(piece)}
+<br>
+            if( goodCord === true && currentTeam === "black" && piece.pinned === false){currentBlackAttackPotential.push(possibleCord), setChecking(piece)}
+<br>
+
+<br>
+
+<br>
+            }}
+<br>
+
+<br>
+    }
+<br>
+    function findLegalAttacksPawn(movement, piece){
+<br>
+
+<br>
+        setPiece (piece)
+<br>
+
+<br>
+        passant = false
+<br>
+
+<br>
+        if (currentLetter !== undefined && currentNumber !== undefined) {
+<br>
+
+<br>
+        for ( i = 0 ; i < 2 ; i++){
+<br>
+
+<br>
+
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+            possibleCord =  letterArray[currentLetterIndex + movement.possibleLettersCapture[i]] +
+<br>
+                            numberArray[currentNumberIndex + movement.possibleNumbersCapture[i]]
+<br>
+
+<br>
+        basicTeamCollisionCheck()
+<br>
+
+<br>
+        goodCord = false
+<br>
+        goodCordTest(possibleCord)
+<br>
+
+<br>
+
+<br>
+        if( goodCord === true && currentTeam === "white")
+<br>
+            {currentWhiteAttackPotential.push(possibleCord), setChecking(piece)}
+<br>
+        else if( goodCord === true && currentTeam === "black")
+<br>
+            {currentBlackAttackPotential.push(possibleCord), setChecking(piece)}
+<br>
+
+<br>
+
+<br>
+        if( passantCord === possibleCord && goodCord === true && currentTeam === "white")
+<br>
+            {currentWhiteAttackPotential.push(possibleCord), setChecking(piece)}
+<br>
+        if( passantCord === possibleCord && goodCord === true && currentTeam === "black")
+<br>
+            {currentBlackAttackPotential.push(possibleCord), setChecking(piece)} 
+<br>
+
+<br>
+
+<br>
+        }}
+<br>
+    }
+<br>
+
+<br>
+    // CHECK LOGIC //
+<br>
+
+<br>
+    let futureSquares = []
+<br>
+    let allFuturePositions = []
+<br>
+    let safeKingArray = []
+<br>
+    let potentialMoves = []
+<br>
+
+<br>
+    function findPotential(){
+<br>
+
+<br>
+        pieces = playerTurn === "white" ? whitePieces : blackPieces
+<br>
+        pawnMovement = playerTurn === "white" ? whitePawnMovement : blackPawnMovement
+<br>
+
+<br>
+        pieces.forEach(piece => {
+<br>
+
+<br>
+            switch (piece.class){
+<br>
+
+<br>
+                case "bishop" : movement = bishopMovement; break
+<br>
+                case "rook" : movement = rookMovement; break
+<br>
+                case "queen" : movement = queenMovement; break
+<br>
+                case "knight" : movement = knightMovement; break
+<br>
+                case "king" : movement = kingMovement; break
+<br>
+                case "pawn" : movement = pawnMovement; break
+<br>
+            }
+<br>
+
+<br>
+            if (piece.class === "bishop" || piece.class === "rook" 
+<br>
+                || piece.class === "queen" ){
+<br>
+                findLegalPositionsExtension(movement, piece)
+<br>
+            }
+<br>
+
+<br>
+            if (piece.class === "knight"){
+<br>
+                findLegalPositionsKnight(movement, piece)
+<br>
+            }
+<br>
+            if (piece.class === "king"){
+<br>
+                findLegalPositionsKing(movement, piece)
+<br>
+            }
+<br>
+
+<br>
+            if (piece.class === "pawn") {
+<br>
+                findLegalPositionsPawn (movement, piece)
+<br>
+
+<br>
+            }
+<br>
+        })
+<br>
+
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    function findLegalPositionsExtension(movement, piece) {
+<br>
+
+<br>
+        if(piece.team === playerTurn) {
+<br>
+            setPiece (piece)
+<br>
+
+<br>
+        if (currentLetter !== undefined && currentNumber !== undefined) { // prevents a -1 return
+<br>
+
+<br>
+            for ( e = 0 ; e < movement.possibleMoves ; e ++ ){
+<br>
+
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+            for (j = 0 ; j < 7 ; j++) {
+<br>
+
+<br>
+                possibleCord =  letterArray[currentLetterIndex + movement.possibleLetters[e]] +
+<br>
+                                numberArray[currentNumberIndex + movement.possibleNumbers[e]] 
+<br>
+
+<br>
+                teamCollisionCheck () 
+<br>
+                goodCord = false
+<br>
+                goodCordTest(possibleCord)
+<br>
+               // addCaptureToSafeKingArray ()
+<br>
+                //might need to add pinning in here
+<br>
+
+<br>
+
+<br>
+                    if(j < 7 && goodCord === true){potentialMoves.push([possibleCord,piece.team,piece.class,piece.cord])}
+<br>
+
+<br>
+
+<br>
+                enenmyCollisionCheck ()
+<br>
+
+<br>
+            currentLetterIndex = currentLetterIndex + movement.possibleLetters[e]
+<br>
+            currentNumberIndex = currentNumberIndex + movement.possibleNumbers[e]    
+<br>
+
+<br>
+            }}}} 
+<br>
+    }
+<br>
+    function findLegalPositionsKnight(movement, piece){
+<br>
+
+<br>
+
+<br>
+        if(piece.team === playerTurn) {
+<br>
+
+<br>
+            setPiece (piece)
+<br>
+        skip = false
+<br>
+
+<br>
+        if (currentLetter !== undefined && currentNumber !== undefined){    
+<br>
+
+<br>
+
+<br>
+            for ( kn = 0 ; kn < movement.possibleMoves ; kn++){
+<br>
+
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+            possibleCord =  letterArray[currentLetterIndex + movement.possibleLetters[kn]] +
+<br>
+                            numberArray[currentNumberIndex + movement.possibleNumbers[kn]]
+<br>
+
+<br>
+
+<br>
+        basicTeamCollisionCheck()
+<br>
+        goodCord = false
+<br>
+        goodCordTest(possibleCord)
+<br>
+        //addCaptureToSafeKingArray ()
+<br>
+
+<br>
+
+<br>
+            if (skip === false && goodCord === true && piece.pinned === false) 
+<br>
+                {potentialMoves.push([possibleCord,piece.team,piece.class,piece.cord])}
+<br>
+
+<br>
+        skip = false
+<br>
+
+<br>
+        }}
+<br>
+
+<br>
+    }
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    function findLegalPositionsPawn (movement, piece) {
+<br>
+
+<br>
+        setPiece (piece)
+<br>
+
+<br>
+            iteration = 2
+<br>
+
+<br>
+        if ( piece.moved === true ) { iteration = 1 }
+<br>
+
+<br>
+            firstMoveBlocked()
+<br>
+
+<br>
+            proceed = false
+<br>
+
+<br>
+            piece.selected === true ? clearLegalSquares() : proceed = true 
+<br>
+
+<br>
+        if(piece.team === playerTurn && proceed === true) {
+<br>
+
+<br>
+        skip = false
+<br>
+        passant = false
+<br>
+
+<br>
+        if (currentLetter !== undefined && currentNumber !== undefined) {
+<br>
+
+<br>
+        for ( p = 0 ; p < iteration ; p++){
+<br>
+
+<br>
+
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+            possibleCord =  letterArray[currentLetterIndex + movement.possibleLettersAdvance[p]] +
+<br>
+                            numberArray[currentNumberIndex + movement.possibleNumbersAdvance[p]]
+<br>
+
+<br>
+
+<br>
+        basicTeamCollisionCheck()
+<br>
+        enenmyCollisionCheck()
+<br>
+
+<br>
+        goodCord = false
+<br>
+        goodCordTest(possibleCord)
+<br>
+
+<br>
+
+<br>
+
+<br>
+        if (skip === false && j !== 8 && goodCord === true && piece.pinned === false) 
+<br>
+        {potentialMoves.push([possibleCord,piece.team,piece.class,piece.cord])}
+<br>
+
+<br>
+            skip = false
+<br>
+        }
+<br>
+
+<br>
+
+<br>
+        for ( p2 = 0 ; p2 < 2 ; p2++){
+<br>
+
+<br>
+
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+            possibleCord =  letterArray[currentLetterIndex + movement.possibleLettersCapture[p2]] +
+<br>
+                            numberArray[currentNumberIndex + movement.possibleNumbersCapture[p2]]
+<br>
+
+<br>
+        basicTeamCollisionCheck()
+<br>
+        pawnAttackCheck()
+<br>
+
+<br>
+        goodCord = false
+<br>
+        goodCordTest(possibleCord)
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+        if (skip === false && goodCord === true ) 
+<br>
+                {potentialMoves.push([possibleCord,piece.team,piece.class,piece.cord])}
+<br>
+
+<br>
+            skip = false
+<br>
+
+<br>
+         if (passantCord === possibleCord && goodCord === true )  
+<br>
+                {potentialMoves.push([possibleCord,piece.team,piece.class,piece.cord])}   
+<br>
+
+<br>
+        }}}
+<br>
+    }
+<br>
+    function findLegalPositionsKing(movement, piece){
+<br>
+
+<br>
+        if(piece.team === playerTurn) {
+<br>
+
+<br>
+            setPiece (piece)
+<br>
+            attack = currentTeam === "white" ? 
+<br>
+                currentBlackAttackPotential : currentWhiteAttackPotential
+<br>
+
+<br>
+        skip = false
+<br>
+
+<br>
+        if (currentLetter !== undefined && currentNumber !== undefined) {
+<br>
+
+<br>
+        for ( k = 0 ; k < movement.possibleMoves ; k++){
+<br>
+
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+            possibleCord =  letterArray[currentLetterIndex + movement.possibleLetters[k]] +
+<br>
+                            numberArray[currentNumberIndex + movement.possibleNumbers[k]]
+<br>
+
+<br>
+
+<br>
+        basicTeamCollisionCheck()
+<br>
+
+<br>
+        safe = true
+<br>
+
+<br>
+        attack.forEach(attack => {
+<br>
+            if (attack === possibleCord){ safe = false} 
+<br>
+        })
+<br>
+
+<br>
+        goodCord = false
+<br>
+        goodCordTest(possibleCord)
+<br>
+
+<br>
+
+<br>
+
+<br>
+        if (skip === false && safe === true && goodCord === true) {potentialMoves.push([possibleCord,piece.team,piece.class,piece.cord,piece])}
+<br>
+
+<br>
+        skip = false
+<br>
+        }}}
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    function generatefutureSquares () {
+<br>
+
+<br>
+        allFuturePositions = []
+<br>
+
+<br>
+            potentialMoves.forEach(potential => {
+<br>
+
+<br>
+                futureSquares = []
+<br>
+
+<br>
+
+<br>
+                squares.forEach(square => {
+<br>
+
+<br>
+                    if (square.occupied !== false && square.cord !== potential[3] && square.cord !== potential[0])
+<br>
+                    {futureSquares.push([square.cord,square.occupied,square.class])}
+<br>
+
+<br>
+                })
+<br>
+
+<br>
+                futureSquares.push(potential)
+<br>
+
+<br>
+                allFuturePositions.push(futureSquares)
+<br>
+
+<br>
+            //    console.log(allFuturePositions)
+<br>
+
+<br>
+    })
+<br>
+    }
+<br>
+    function safeKingCordArrayCreation (){
+<br>
+
+<br>
+        king = playerTurn === "white" ? whiteKing : blackKing
+<br>
+        safeKingArray = []
+<br>
+
+<br>
+
+<br>
+        if (king.check === true){
+<br>
+
+<br>
+            findPotential()
+<br>
+            generatefutureSquares ()
+<br>
+
+<br>
+            if ( playerTurn === "white") {
+<br>
+
+<br>
+                allFuturePositions.forEach(futureSquares =>{
+<br>
+                    push = true
+<br>
+                    findFutureBlackAttackPotential(futureSquares)
+<br>
+
+<br>
+                    futureBlackAttackPotential.forEach(attack => {
+<br>
+
+<br>
+                    if(attack === king.cord){
+<br>
+                        push = false
+<br>
+                    }})
+<br>
+                if (push === true) { safeKingArray.push(futureSquares)}})
+<br>
+            }
+<br>
+            else if (playerTurn === "black"){
+<br>
+
+<br>
+                allFuturePositions.forEach(futureSquares =>{
+<br>
+
+<br>
+                    push = true
+<br>
+                    findFutureWhiteAttackPotential(futureSquares)
+<br>
+
+<br>
+                    futureWhiteAttackPotential.forEach(attack => {
+<br>
+
+<br>
+                     if(attack === king.cord){
+<br>
+
+<br>
+
+<br>
+                         push = false
+<br>
+                     }
+<br>
+
+<br>
+                     //safeking array doesn't populate becuase the attacking piece is 
+<br>
+                     //still registered in the attack potential
+<br>
+                     //the future squares only show if the attack is blocked,
+<br>
+                     //not removed
+<br>
+                 })
+<br>
+
+<br>
+                 if (push === true) { safeKingArray.push(futureSquares)}})
+<br>
+
+<br>
+            }}
+<br>
+
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    function setChecking(piece){
+<br>
+        oppositeKing = currentTeam === "white" ? blackKing : whiteKing
+<br>
+        if(possibleCord === oppositeKing.cord){piece.checking = true}
+<br>
+
+<br>
+        squares.forEach(square => { 
+<br>
+            if(square.cord === piece.cord && piece.checking === true)
+<br>
+            {square.checking=true}})
+<br>
+    }
+<br>
+    function check(){
+<br>
+
+<br>
+        attackPotential = playerTurn === "white" ? currentBlackAttackPotential : currentWhiteAttackPotential
+<br>
+        king = playerTurn === "white" ? whiteKing : blackKing
+<br>
+
+<br>
+        attackPotential.forEach(attack => {
+<br>
+            if(attack === king.cord){
+<br>
+                king.check = true
+<br>
+                checkBox.innerHTML = "CHECK! CHECK! CHECK!"
+<br>
+            console.log("///////////////CHECK////////////////")}})
+<br>
+
+<br>
+    }
+<br>
+    function safeKingCheck (piece) {
+<br>
+
+<br>
+
+<br>
+        king = piece.team === "white" ? whiteKing : blackKing
+<br>
+
+<br>
+        if (king.check === true){
+<br>
+
+<br>
+        enenmy = piece.team === "white" ? blackPieces : whitePieces
+<br>
+
+<br>
+        safeKing = false
+<br>
+
+<br>
+        safeKingArray.forEach(futureSquares =>{
+<br>
+            futureSquares.forEach(futureSquare => {
+<br>
+
+<br>
+
+<br>
+                if(futureSquare[0] === possibleCord){
+<br>
+                    safeKing = true
+<br>
+                }
+<br>
+
+<br>
+                })
+<br>
+
+<br>
+
+<br>
+                squares.forEach(square => { 
+<br>
+
+<br>
+                    if (square.occupied !== false && square.checking !== true && square.cord === possibleCord){
+<br>
+
+<br>
+                        safeKing = false
+<br>
+                    }
+<br>
+                })
+<br>
+
+<br>
+            }) 
+<br>
+
+<br>
+        enenmy.forEach(enenmy => {
+<br>
+
+<br>
+            if (enenmy.cord === possibleCord && enenmy.checking === true){
+<br>
+                safeKing = true
+<br>
+            }
+<br>
+        })
+<br>
+
+<br>
+    }
+<br>
+    }
+<br>
+    function pinCheck (piece) {
+<br>
+
+<br>
+        goodCordTest(possibleCord)
+<br>
+
+<br>
+        if (goodCord === true){
+<br>
+
+<br>
+        pinArray = piece.team === "white" ? pinArrayBlack : pinArrayWhite
+<br>
+        king = piece.team === "white" ? whiteKing : blackKing
+<br>
+
+<br>
+        pinArray.forEach(attackLine =>{
+<br>
+
+<br>
+            for (i = 0 ; i < attackLine.length ; i++){
+<br>
+
+<br>
+                if(attackLine[i] === currentCord){
+<br>
+
+<br>
+                    safeKing = false
+<br>
+
+<br>
+                    for (l = 0 ; l < attackLine.length ; l++){
+<br>
+
+<br>
+                        if(possibleCord === attackLine[l] && possibleCord !== king.cord){
+<br>
+                            safeKing = true
+<br>
+                        }}}}})}
+<br>
+    }
+<br>
+
+<br>
+    let pinArrayWhite = []
+<br>
+    let pinArrayBlack = []
+<br>
+
+<br>
+
+<br>
+    function enenmyPinCheck (enenmy)  {  
+<br>
+
+<br>
+            inAttackLine = []
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+            attackLine.forEach(attack =>{
+<br>
+                enenmy.forEach(enenmy =>{
+<br>
+                    if (enenmy.cord === attack){
+<br>
+                            inAttackLine.push(enenmy)
+<br>
+                    }
+<br>
+                })
+<br>
+            })
+<br>
+            // if(attackLine[attackLine.length - 1] === king.cord)
+<br>
+            // {console.log(enenmy,inAttackLine)}
+<br>
+
+<br>
+        if(inAttackLine.length === 2 && inAttackLine[1] === king){
+<br>
+
+<br>
+         //   console.log(inAttackLine[0])
+<br>
+            inAttackLine[0].pinned = true
+<br>
+            pin = true
+<br>
+
+<br>
+        }
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    function findWhitePins(){
+<br>
+
+<br>
+        pinArrayWhite = []
+<br>
+
+<br>
+        whitePieces.forEach(piece => {
+<br>
+
+<br>
+        switch (piece.class){
+<br>
+
+<br>
+                case "bishop" : movement = bishopMovement; break
+<br>
+                case "rook" : movement = rookMovement; break
+<br>
+                case "queen" : movement = queenMovement; break
+<br>
+            }
+<br>
+
+<br>
+            if (piece.class === "bishop" || piece.class === "rook"
+<br>
+                 || piece.class === "queen"){
+<br>
+                findPinCords(movement, piece)
+<br>
+            }})
+<br>
+
+<br>
+    }
+<br>
+    function findBlackPins(){
+<br>
+
+<br>
+        pinArrayBlack = []
+<br>
+
+<br>
+        blackPieces.forEach(piece => {
+<br>
+
+<br>
+        switch (piece.class){
+<br>
+
+<br>
+                case "bishop" : movement = bishopMovement; break
+<br>
+                case "rook" : movement = rookMovement; break
+<br>
+                case "queen" : movement = queenMovement; break
+<br>
+            }
+<br>
+
+<br>
+            if (piece.class === "bishop" || piece.class === "rook"
+<br>
+                 || piece.class === "queen"){
+<br>
+                findPinCords(movement, piece)
+<br>
+            }})
+<br>
+
+<br>
+    }
+<br>
+    function findPinCords(movement, piece){
+<br>
+
+<br>
+        setPiece (piece)
+<br>
+
+<br>
+        king = currentTeam === "white" ? blackKing : whiteKing
+<br>
+        pinArray = currentTeam === "white" ? pinArrayWhite : pinArrayBlack
+<br>
+        oppositeTeam = currentTeam === "white" ? "black" : "white"
+<br>
+        enenmy = currentTeam === "white" ? blackPieces : whitePieces
+<br>
+
+<br>
+
+<br>
+            if (currentLetter !== undefined && currentNumber !== undefined) {
+<br>
+
+<br>
+                for ( i = 0 ; i < movement.possibleMoves ; i ++ ){
+<br>
+
+<br>
+                currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+                currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+                attackLine = [piece.cord]
+<br>
+
+<br>
+                for (j = 0 ; j < 7 ; j++) {
+<br>
+
+<br>
+                    possibleCord =  letterArray[currentLetterIndex + movement.possibleLetters[i]] +
+<br>
+                                    numberArray[currentNumberIndex + movement.possibleNumbers[i]] 
+<br>
+                    goodCord = false
+<br>
+                    goodCordTest(possibleCord)
+<br>
+
+<br>
+                    teamCollisionCheck ()
+<br>
+
+<br>
+                    if( j < 7 && goodCord === true){attackLine.push(possibleCord)}
+<br>
+
+<br>
+                    if(possibleCord === king.cord){j = 8}
+<br>
+
+<br>
+                    currentLetterIndex = currentLetterIndex + movement.possibleLetters[i]
+<br>
+                    currentNumberIndex = currentNumberIndex + movement.possibleNumbers[i]  
+<br>
+
+<br>
+                    pin = false
+<br>
+                    enenmyPinCheck (enenmy)
+<br>
+
+<br>
+                  //  if(attackLine[attackLine.length - 1] === king.cord){console.log(attackLine)}
+<br>
+
+<br>
+
+<br>
+                    if (attackLine[attackLine.length - 1] === king.cord && pin === true){
+<br>
+                        pinArray.push(attackLine)
+<br>
+
+<br>
+
+<br>
+                        squares.forEach(square => {
+<br>
+                            if (square.cord === attackLine[0]){
+<br>
+                                square.pinning = true
+<br>
+                            }
+<br>
+                        })
+<br>
+
+<br>
+                    }
+<br>
+        }}}
+<br>
+    }
+<br>
+    function kingLegalMovesCheck(movement, piece){
+<br>
+
+<br>
+            setPiece (piece)
+<br>
+            attack = currentTeam === "white" ? 
+<br>
+                currentBlackAttackPotential : currentWhiteAttackPotential
+<br>
+
+<br>
+        skip = false
+<br>
+
+<br>
+        if (currentLetter !== undefined && currentNumber !== undefined) {
+<br>
+
+<br>
+        for ( k = 0 ; k < movement.possibleMoves ; k++){
+<br>
+
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+            possibleCord =  letterArray[currentLetterIndex + movement.possibleLetters[k]] +
+<br>
+                            numberArray[currentNumberIndex + movement.possibleNumbers[k]]
+<br>
+
+<br>
+
+<br>
+        basicTeamCollisionCheck()
+<br>
+
+<br>
+        safe = true
+<br>
+
+<br>
+        attack.forEach(attack => {
+<br>
+            if (attack === possibleCord){ safe = false} 
+<br>
+        })
+<br>
+
+<br>
+        goodCord = false
+<br>
+        goodCordTest(possibleCord)
+<br>
+
+<br>
+        setPiece(piece)
+<br>
+
+<br>
+        if (skip === false && safe === true && goodCord === true) { kingSquares.push(possibleCord)}
+<br>
+
+<br>
+        skip = false
+<br>
+        }
+<br>
+    }
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    function checkMate () {
+<br>
+
+<br>
+        king = playerTurn === "white" ? whiteKing : blackKing
+<br>
+
+<br>
+        kingCanMove = true
+<br>
+        captureCheckingPiece = false
+<br>
+
+<br>
+        kingSquares = []
+<br>
+
+<br>
+        kingLegalMovesCheck(kingMovement, king)
+<br>
+
+<br>
+        enenmy = playerTurn === "white" ? blackPieces : whitePieces
+<br>
+        attackPotential = playerTurn === "white" ? currentWhiteAttackPotential : currentBlackAttackPotential
+<br>
+
+<br>
+        attackPotential.forEach(attack => {
+<br>
+
+<br>
+        enenmy.forEach(enenmy => {
+<br>
+
+<br>
+            if (enenmy.cord === attack && enenmy.checking === true){
+<br>
+                captureCheckingPiece = true
+<br>
+            } // make sure the piece is not pinned????? how?????
+<br>
+        })
+<br>
+
+<br>
+        // ADD piece TO ATTACK attack[1] and then access in this loop to see if its pinned
+<br>
+
+<br>
+        // amend all other current attack refeneces to be attack [0]
+<br>
+
+<br>
+        })
+<br>
+
+<br>
+
+<br>
+        if ( kingSquares.length === 0){
+<br>
+            kingCanMove = false
+<br>
+        }
+<br>
+
+<br>
+        if (king.check === true && safeKingArray.length === 0
+<br>
+            && kingCanMove === false && captureCheckingPiece === false){
+<br>
+                checkBox.innerHTML = "CHECK!MATE! CHECK!MATE! CHECK!MATE!"
+<br>
+                endOfGame = true
+<br>
+        }
+<br>
+
+<br>
+    }
+<br>
+
+<br>
+    let futureBlackAttackPotential = []
+<br>
+    let futureWhiteAttackPotential = []
+<br>
+
+<br>
+    // FUTURE ATTACK POTENTIALS //
+<br>
+
+<br>
+    function findFutureBlackAttackPotential(futureSquares){
+<br>
+
+<br>
+        futureBlackAttackPotential = []
+<br>
+
+<br>
+        blackPieces.forEach(piece => {
+<br>
+
+<br>
+            switch (piece.class){
+<br>
+
+<br>
+                case "bishop" : movement = bishopMovement; break
+<br>
+                case "rook" : movement = rookMovement; break
+<br>
+                case "queen" : movement = queenMovement; break
+<br>
+                case "knight" : movement = knightMovement; break
+<br>
+                case "king" : movement = kingMovement; break
+<br>
+                case "pawn" : movement = blackPawnMovement; break
+<br>
+            }
+<br>
+
+<br>
+
+<br>
+            // futureSquares.forEach(future => {
+<br>
+
+<br>
+
+<br>
+            //     if ( future[0] === piece.cord && future[1] === piece.team){
+<br>
+
+<br>
+
+<br>
+                    if (piece.class === "bishop" || piece.class === "rook"
+<br>
+                        || piece.class === "queen"){
+<br>
+                        findFutureLegalAttacksExtension(movement, piece, futureSquares)
+<br>
+                    }
+<br>
+
+<br>
+                    if (piece.class === "king" || piece.class === "knight"){
+<br>
+                        findFutureLegalAttacks(movement, piece)
+<br>
+                    }
+<br>
+
+<br>
+                    if (piece.class === "pawn") {
+<br>
+                    findFutureLegalAttacksPawn(movement, piece)
+<br>
+                    }
+<br>
+
+<br>
+
+<br>
+
+<br>
+        })
+<br>
+
+<br>
+    } // forEach to remove potentially captured piece from enenmy attack implemented but commented out
+<br>
+    function findFutureWhiteAttackPotential(futureSquares){
+<br>
+
+<br>
+        futureWhiteAttackPotential = []
+<br>
+        // if (futureSquares.length === 30 ){console.log(futureSquares)}
+<br>
+
+<br>
+        whitePieces.forEach(piece => {
+<br>
+
+<br>
+        switch (piece.class){
+<br>
+
+<br>
+                case "bishop" : movement = bishopMovement; break
+<br>
+                case "rook" : movement = rookMovement; break
+<br>
+                case "queen" : movement = queenMovement; break
+<br>
+                case "knight" : movement = knightMovement; break
+<br>
+                case "king" : movement = kingMovement; break
+<br>
+                case "pawn" : movement = whitePawnMovement; break
+<br>
+            }
+<br>
+
+<br>
+
+<br>
+
+<br>
+         //           if (futureSquares.length === 30 ){console.log(piece)}
+<br>
+
+<br>
+                if (piece.class === "bishop" || piece.class === "rook"
+<br>
+                    || piece.class === "queen"){
+<br>
+                    findFutureLegalAttacksExtension(movement, piece, futureSquares)
+<br>
+                }
+<br>
+
+<br>
+                if (piece.class === "king" || piece.class === "knight"){
+<br>
+                    findFutureLegalAttacks(movement, piece)
+<br>
+                }
+<br>
+
+<br>
+                if (piece.class === "pawn") {
+<br>
+                findFutureLegalAttacksPawn(movement, piece)
+<br>
+                }
+<br>
+
+<br>
+
+<br>
+
+<br>
+        })
+<br>
+
+<br>
+    }
+<br>
+    function futureTeamCollisionCheck (futureSquares)  { 
+<br>
+
+<br>
+        futureSquares.forEach(square =>{
+<br>
+        if (futureAttack === square[0] && square[1] === currentTeam){
+<br>
+            f = 8
+<br>
+        }})
+<br>
+    }
+<br>
+    function futureCollisionCheck (futureSquares)  { 
+<br>
+
+<br>
+
+<br>
+
+<br>
+        futureSquares.forEach(square =>{
+<br>
+
+<br>
+        if (futureAttack === square[0]){
+<br>
+            f = 8
+<br>
+        }})
+<br>
+    }
+<br>
+    function findFutureLegalAttacksExtension(movement, piece, futureSquares){
+<br>
+
+<br>
+        setPiece(piece)
+<br>
+
+<br>
+        oppositeKing = currentTeam === "white" ? blackKing : whiteKing
+<br>
+
+<br>
+        if (currentLetter !== undefined && currentNumber !== undefined) {
+<br>
+
+<br>
+            for ( i = 0 ; i < movement.possibleMoves ; i ++ ){
+<br>
+
+<br>
+
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+            for (f = 0 ; f < 7 ; f++) {
+<br>
+
+<br>
+                futureAttack =  letterArray[currentLetterIndex + movement.possibleLetters[i]] +
+<br>
+                                numberArray[currentNumberIndex + movement.possibleNumbers[i]] 
+<br>
+
+<br>
+
+<br>
+                goodCord = false
+<br>
+
+<br>
+                goodCordTest(futureAttack)
+<br>
+
+<br>
+
+<br>
+
+<br>
+                if( f < 7 && goodCord === true && currentTeam === "white"){futureWhiteAttackPotential.push(futureAttack)}
+<br>
+                 else if( f < 7 && goodCord === true && currentTeam === "black"){futureBlackAttackPotential.push(futureAttack)}
+<br>
+
+<br>
+                if (futureAttack !== oppositeKing.cord && goodCord === true) {futureCollisionCheck (futureSquares)}
+<br>
+
+<br>
+
+<br>
+
+<br>
+            currentLetterIndex = currentLetterIndex + movement.possibleLetters[i]
+<br>
+            currentNumberIndex = currentNumberIndex + movement.possibleNumbers[i]    
+<br>
+
+<br>
+            }}}
+<br>
+
+<br>
+    }
+<br>
+    function findFutureLegalAttacks(movement, piece){
+<br>
+
+<br>
+        setPiece(piece)
+<br>
+
+<br>
+
+<br>
+        if (currentLetter !== undefined && currentNumber !== undefined){     
+<br>
+
+<br>
+            for ( i = 0 ; i < movement.possibleMoves ; i++){
+<br>
+
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+            futureAttack =  letterArray[currentLetterIndex + movement.possibleLetters[i]] +
+<br>
+                            numberArray[currentNumberIndex + movement.possibleNumbers[i]]
+<br>
+
+<br>
+        goodCord = false
+<br>
+
+<br>
+
+<br>
+        goodCordTest(futureAttack)
+<br>
+
+<br>
+        if( currentTeam === "white" && goodCord === true){futureWhiteAttackPotential.push(futureAttack)}
+<br>
+        if( currentTeam === "black" && goodCord === true){futureBlackAttackPotential.push(futureAttack)}
+<br>
+
+<br>
+        }}
+<br>
+
+<br>
+    }
+<br>
+    function findFutureLegalAttacksPawn(movement, piece){
+<br>
+
+<br>
+    setPiece(piece)
+<br>
+
+<br>
+
+<br>
+    passant = false
+<br>
+
+<br>
+    if (currentLetter !== undefined && currentNumber !== undefined) {
+<br>
+
+<br>
+    for ( i = 0 ; i < 2 ; i++){
+<br>
+
+<br>
+        currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+        currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+
+<br>
+        futureAttack =  letterArray[currentLetterIndex + movement.possibleLettersCapture[i]] +
+<br>
+                        numberArray[currentNumberIndex + movement.possibleNumbersCapture[i]]
+<br>
+
+<br>
+
+<br>
+    goodCordTest(futureAttack)
+<br>
+
+<br>
+    if( goodCord === true && currentTeam === "white"){futureWhiteAttackPotential.push(futureAttack)}
+<br>
+    else if( goodCord === true && currentTeam === "black"){futureBlackAttackPotential.push(futureAttack)}
+<br>
+
+<br>
+
+<br>
+
+<br>
+    if( passantCord === futureAttack && goodCord === true && currentTeam === "white"){futureWhiteAttackPotential.push(futureAttack)}
+<br>
+    if( passantCord === futureAttack && goodCord === true && currentTeam === "black"){futureBlackAttackPotential.push(futureAttack)} 
+<br>
+
+<br>
+    }}
+<br>
+    }
+<br>
+
+<br>
+    // CASTLE LOGIC //
+<br>
+
+<br>
+    function castleLegalityCheck (left,right) {
+<br>
+
+<br>
+        let path = "safe"
+<br>
+        let queenSideClear = false
+<br>
+
+<br>
+        switch (left)
+<br>
+
+<br>
+        {
+<br>
+            case 2:  rook = blackLeftRook
+<br>
+                     king = blackKing
+<br>
+                     attackPotential = currentWhiteAttackPotential
+<br>
+                     queenSideClear = squares[1].occupied; break
+<br>
+            case 5:  rook = blackRightRook
+<br>
+                     king = blackKing
+<br>
+                     attackPotential = currentWhiteAttackPotential; break
+<br>
+            case 58: rook = whiteLeftRook
+<br>
+                     king = whiteKing
+<br>
+                     attackPotential = currentBlackAttackPotential
+<br>
+                     queenSideClear = squares[57].occupied; break
+<br>
+            case 61: rook = whiteRightRook
+<br>
+                     king = whiteKing
+<br>
+                     attackPotential = currentBlackAttackPotential; break
+<br>
+        }
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+        attackPotential.forEach(cord => {
+<br>
+            if(squares[left].cord === cord || squares[right].cord === cord)    
+<br>
+                {path = "attacked"}})
+<br>
+
+<br>
+        if (path === "safe" && squares[left].occupied === false && squares[right].occupied === false &&
+<br>
+            rook.moved === false && rook.letter !== undefined && king.moved === false && king.check != true && queenSideClear === false) 
+<br>
+            return true
+<br>
+
+<br>
+    }
+<br>
+    function kingCastleToggle(king,left,right){
+<br>
+
+<br>
+
+<br>
+    if (castleLegalityCheck(left,right) && king.team === playerTurn){
+<br>
+
+<br>
+        squares[left].element.style.opacity = ".3"
+<br>
+        squares[right].element.style.opacity = ".3"
+<br>
+    }
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    function blackQueensideCastle () {
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+    if (castleLegalityCheck(2,3)){
+<br>
+
+<br>
+            castledRook = blackLeftRook
+<br>
+            blackKing.element.style.left = squares[2].x
+<br>
+            blackKing.element.style.top = squares[2].y
+<br>
+            blackKing.x = squares[2].x
+<br>
+            blackKing.y = squares[2].y
+<br>
+            blackKing.letter = squares[2].letter
+<br>
+            blackKing.number = squares[2].number
+<br>
+            blackKing.moved = true
+<br>
+            blackLeftRook.element.style.left = squares[3].x
+<br>
+            blackLeftRook.element.style.top = squares[3].y
+<br>
+            blackLeftRook.x = squares[3].x
+<br>
+            blackLeftRook.y = squares[3].y
+<br>
+            blackLeftRook.letter = squares[3].letter
+<br>
+            blackLeftRook.number = squares[3].number
+<br>
+            blackLeftRook.moved = true
+<br>
+            clearLegalSquares()
+<br>
+            occupiedCheck()
+<br>
+
+<br>
+
+<br>
+
+<br>
+            changeTurn()
+<br>
+
+<br>
+
+<br>
+
+<br>
+        }
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    function blackKingsideCastle () {
+<br>
+
+<br>
+
+<br>
+        if (castleLegalityCheck(5,6)){
+<br>
+                castledRook = blackRightRook
+<br>
+                blackKing.element.style.left = squares[6].x
+<br>
+                blackKing.element.style.top = squares[6].y
+<br>
+                blackKing.x = squares[6].x
+<br>
+                blackKing.y = squares[6].y
+<br>
+                blackKing.letter = squares[6].letter
+<br>
+                blackKing.number = squares[6].number
+<br>
+                blackKing.moved = true
+<br>
+                blackRightRook.element.style.left = squares[5].x
+<br>
+                blackRightRook.element.style.top = squares[5].y
+<br>
+                blackRightRook.x = squares[5].x
+<br>
+                blackRightRook.y = squares[5].y
+<br>
+                blackRightRook.letter = squares[5].letter
+<br>
+                blackRightRook.moved = true
+<br>
+                clearLegalSquares()
+<br>
+                occupiedCheck()
+<br>
+
+<br>
+
+<br>
+                changeTurn()
+<br>
+
+<br>
+            }
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+    function whiteQueensideCastle () {
+<br>
+
+<br>
+
+<br>
+        if (castleLegalityCheck(58,59)){
+<br>
+
+<br>
+                castledRook = whiteLeftRook
+<br>
+                whiteKing.element.style.left = squares[58].x
+<br>
+                whiteKing.element.style.top = squares[58].y
+<br>
+                whiteKing.x = squares[58].x
+<br>
+                whiteKing.y = squares[58].y
+<br>
+                whiteKing.letter = squares[58].letter
+<br>
+                whiteKing.number = squares[58].number
+<br>
+                whiteKing.moved = true
+<br>
+                whiteLeftRook.element.style.left = squares[59].x
+<br>
+                whiteLeftRook.element.style.top = squares[59].y
+<br>
+                whiteLeftRook.x = squares[59].x
+<br>
+                whiteLeftRook.y = squares[59].y
+<br>
+                whiteLeftRook.letter = squares[59].letter
+<br>
+                whiteLeftRook.number = squares[59].number
+<br>
+                whiteLeftRook.moved = true
+<br>
+                clearLegalSquares()
+<br>
+                occupiedCheck()
+<br>
+
+<br>
+
+<br>
+                changeTurn()
+<br>
+
+<br>
+
+<br>
+            }
+<br>
+
+<br>
+    }
+<br>
+    function whiteKingsideCastle () {
+<br>
+
+<br>
+
+<br>
+        if (castleLegalityCheck(61,62)){
+<br>
+
+<br>
+            castledRook = whiteRightRook
+<br>
+            whiteKing.element.style.left = squares[62].x
+<br>
+            whiteKing.element.style.top = squares[62].y
+<br>
+            whiteKing.x = squares[62].x
+<br>
+            whiteKing.y = squares[62].y
+<br>
+            whiteKing.letter = squares[62].letter
+<br>
+            whiteKing.number = squares[62].number
+<br>
+            whiteKing.moved = true
+<br>
+            whiteRightRook.element.style.left = squares[61].x
+<br>
+            whiteRightRook.element.style.top = squares[61].y
+<br>
+            whiteRightRook.x = squares[61].x
+<br>
+            whiteRightRook.y = squares[61].y
+<br>
+            whiteRightRook.letter = squares[61].letter
+<br>
+            whiteRightRook.number = squares[61].number
+<br>
+            whiteRightRook.moved = true
+<br>
+            clearLegalSquares()
+<br>
+            occupiedCheck()
+<br>
+
+<br>
+            changeTurn()
+<br>
+
+<br>
+
+<br>
+
+<br>
+        }
+<br>
+
+<br>
+    }
+<br>
+    function returnCastledRook () {
+<br>
+
+<br>
+
+<br>
+        switch(castledRook){
+<br>
+        case whiteRightRook: number = 63; break
+<br>
+        case whiteLeftRook: number = 56; break
+<br>
+        case blackLeftRook: number = 0; break
+<br>
+        case blackRightRook: number = 7; break
+<br>
+
+<br>
+    }
+<br>
+
+<br>
+        castledRook.element.style.left = squares[number].x
+<br>
+        castledRook.element.style.top = squares[number].y
+<br>
+        castledRook.x = squares[number].x
+<br>
+        castledRook.y = squares[number].y
+<br>
+        castledRook.letter = squares[number].letter
+<br>
+        castledRook.number = squares[number].number
+<br>
+        castledRook.moved = false
+<br>
+
+<br>
+        castledRook.team === "white" ? whiteKing.moved = false : blackKing.moved = false
+<br>
+
+<br>
+
+<br>
+    }
+<br>
+
+<br>
+    // QUEENING PAWN //
+<br>
+
+<br>
+    function queeningPawn (){
+<br>
+
+<br>
+        whitePieces.forEach(piece =>{
+<br>
+            if(piece.class === "pawn" && piece.number === "8"){
+<br>
+
+<br>
+                if (gameMode === "watchEngine") {piece.class = "queen"}
+<br>
+                    else
+<br>
+                {piece.class = prompt("please type your promotion request in all lower case")}
+<br>
+
+<br>
+                switch (piece.class){
+<br>
+
+<br>
+                case "queen" : piece.element.src = "whiteQueen.png", piece.value = 9; break
+<br>
+                case "rook" : piece.element.src = "whiteRook.png", piece.value = 5; break
+<br>
+                case "knight" : piece.element.src = "whiteKnight.png", piece.value = 3; break
+<br>
+                case "bishop" : piece.element.src = "whiteBishop.png", piece.value = 3; break
+<br>
+
+<br>
+                }}})
+<br>
+        blackPieces.forEach(piece =>{
+<br>
+            if(piece.class === "pawn" && piece.number === "1"){
+<br>
+
+<br>
+                if (gameMode === "watchEngine" || gameMode === "playEngine") {piece.class = "queen"}
+<br>
+                    else
+<br>
+                {piece.class = prompt("please type your promotion request in all lower case")}
+<br>
+
+<br>
+                switch (piece.class){
+<br>
+
+<br>
+                case "queen" : piece.element.src = "blackQueen.png", piece.value = 9; break
+<br>
+                case "rook" : piece.element.src = "blackRook.png", piece.value = 5; break
+<br>
+                case "knight" : piece.element.src = "blackKnight.png", piece.value = 3; break
+<br>
+                case "bishop" : piece.element.src = "blackBishop.png", piece.value = 3; break
+<br>
+
+<br>
+                }}})
+<br>
+    }
+<br>
+
+<br>
+    // HIGHLIGHT AND ACTIVATE MOVES //
+<br>
+
+<br>
+    function highlightLegalSqaures () {
+<br>
+
+<br>
+        squares.forEach(square => {
+<br>
+
+<br>
+            if (square.legal === true){
+<br>
+                square.element.style.opacity = ".3"
+<br>
+            }})
+<br>
+    }
+<br>
+    function activateLegalKnightMoves (piece, movement) {
+<br>
+        piece.selected === false ? 
+<br>
+        findLegalKnightMoves(movement, piece) : clearLegalSquares()
+<br>
+        togglePieceSelection(piece)
+<br>
+    }
+<br>
+    function activateLegalKingMoves (piece, movement) {
+<br>
+        piece.selected === false ? 
+<br>
+        findLegalKingMoves(movement, piece) : clearLegalSquares()
+<br>
+        togglePieceSelection(piece)
+<br>
+    }
+<br>
+    function activateLegalMovesPawn (piece, movement) {
+<br>
+        piece.selected === false ? 
+<br>
+        findLegalMovesPawn(movement, piece) : clearLegalSquares()
+<br>
+        togglePieceSelection(piece)
+<br>
+    }
+<br>
+    function activateLegalMovesExtension (piece, movement) {
+<br>
+        piece.selected === false  ? 
+<br>
+        findLegalMovesExtension(movement, piece) : clearLegalSquares()
+<br>
+        togglePieceSelection(piece)
+<br>
+    }
+<br>
+    function updateLegalSquares () {
+<br>
+
+<br>
+            for ( l = 0 ; l < legalSquares.length ; l++ ){
+<br>
+
+<br>
+                squares.forEach( square => {
+<br>
+
+<br>
+                    if (legalSquares[l] === square.cord){
+<br>
+
+<br>
+                        square.legal = true
+<br>
+
+<br>
+                    }})}
+<br>
+
+<br>
+            highlightLegalSqaures ()
+<br>
+    }
+<br>
+
+<br>
+
+<br>
+    // BOARD CREATION //
+<br>
+
+<br>
+    let letter
+<br>
+    let number
+<br>
+
+<br>
+    class Square {
+<br>
+        constructor (cord, x, y, letter, number){
+<br>
+
+<br>
+            this.cord = cord
+<br>
+            this.element = document.getElementById(cord)
+<br>
+            this.x = x + "px"
+<br>
+            this.y = y + "px"
+<br>
+            this.letter = letter
+<br>
+            this.number = number
+<br>
+            this.selectedByBlack = false
+<br>
+            this.selectedByWhite = false
+<br>
+            this.occupied = false
+<br>
+            this.legal = false
+<br>
+
+<br>
+            this.element.addEventListener('click', () =>{
+<br>
+
+<br>
+                if ( playerTurn == "white") {
+<br>
+
+<br>
+                    for ( i = 0 ; i < whitePieces.length ; i++ ){
+<br>
+
+<br>
+                        if (whitePieces[i].x == this.x && whitePieces[i].y == this.y){
+<br>
+
+<br>
+                            this.selectedByWhite = true
+<br>
+                        }
+<br>
+                        }
+<br>
+
+<br>
+
+<br>
+                for ( i = 0 ; i < whitePieces.length ; i++ ){
+<br>
+
+<br>
+                        if (currentPieceWhite == whitePieces[i] && this.selectedByWhite == false && this.legal == true){
+<br>
+
+<br>
+
+<br>
+
+<br>
+                            previousPosition.x = whitePieces[i].x
+<br>
+                            previousPosition.y = whitePieces[i].y
+<br>
+                            previousPosition.letter = whitePieces[i].letter
+<br>
+                            previousPosition.number = whitePieces[i].number
+<br>
+                            previousPosition.moved = whitePieces[i].moved
+<br>
+
+<br>
+
+<br>
+                            currentPieceWhite.cord = this.cord
+<br>
+
+<br>
+
+<br>
+                            whitePieces[i].element.style.left = this.x
+<br>
+                            whitePieces[i].element.style.top = this.y
+<br>
+                            whitePieces[i].x = this.x
+<br>
+                            whitePieces[i].y = this.y
+<br>
+                            whitePieces[i].letter = this.letter
+<br>
+                            whitePieces[i].number = this.number
+<br>
+
+<br>
+                           capturePassantWhite()
+<br>
+                           clearLegalSquares()
+<br>
+                           clearPassant ()
+<br>
+
+<br>
+
+<br>
+                            if (whitePieces[i].moved === false && whitePieces[i].class === "pawn")
+<br>
+                            {passantPiece = whitePieces[i]}       
+<br>
+
+<br>
+                            if (whitePieces[i].class === "pawn" && whitePieces[i].moved === false
+<br>
+                                && whitePieces[i].number === "4"){
+<br>
+                                passantCord =  this.letter + "3"
+<br>
+                            }
+<br>
+                        
+<br>
+                            if (whitePieces[i].class === "pawn" || whitePieces[i].class === "rook" || 
+<br>
+                            whitePieces[i].class === "king") {whitePieces[i].moved = true}
+<br>
+    
+<br>
+                            blackPieces.forEach(piece => {checkCaptureBlackPiece(piece)})
+<br>
+    
+<br>
+                            currentPieceWhite = undefined
+<br>
+    
+<br>
+                            changeTurn()
+<br>
+    
+<br>
+    
+<br>
+                for ( i = 0 ; i < squares.length ; i++){
+<br>
+    
+<br>
+                    squares[i].selected = false
+<br>
+                    
+<br>
+                    }}}
+<br>
+                }
+<br>
+    
+<br>
+    
+<br>
+                else if (playerTurn = "black") {
+<br>
+    
+<br>
+    
+<br>
+                    for ( i = 0 ; i < blackPieces.length ; i++ ){
+<br>
+    
+<br>
+                        if (blackPieces[i].x == this.x && blackPieces[i].y == this.y){
+<br>
+        
+<br>
+                            this.selectedByBlack = true
+<br>
+                        }
+<br>
+                        }
+<br>
+    
+<br>
+                for ( i  = 0 ; i < blackPieces.length ; i++ ){
+<br>
+                
+<br>
+                        if (currentPieceBlack == blackPieces[i] && this.selectedByBlack == false && this.legal == true){
+<br>
+                
+<br>
+    
+<br>
+    
+<br>
+                            previousPosition.x = blackPieces[i].x
+<br>
+                            previousPosition.y = blackPieces[i].y
+<br>
+                            previousPosition.letter = blackPieces[i].letter
+<br>
+                            previousPosition.number = blackPieces[i].number
+<br>
+                            previousPosition.moved = blackPieces[i].moved
+<br>
+    
+<br>
+    
+<br>
+                            currentPieceBlack.cord = this.cord
+<br>
+                            blackPieces[i].element.style.left = this.x
+<br>
+                            blackPieces[i].element.style.top = this.y
+<br>
+                            blackPieces[i].x = this.x
+<br>
+                            blackPieces[i].y = this.y
+<br>
+                            blackPieces[i].letter = this.letter
+<br>
+                            blackPieces[i].number = this.number
+<br>
+    
+<br>
+                            capturePassantBlack()
+<br>
+                            clearLegalSquares()
+<br>
+                            
+<br>
+                            clearPassant()
+<br>
+                            
+<br>
+                            
+<br>
+    
+<br>
+                            
+<br>
+                            if (blackPieces[i].moved === false && blackPieces[i].class === "pawn") 
+<br>
+                            {passantPiece = blackPieces[i]}
+<br>
+    
+<br>
+                            if (blackPieces[i].class === "pawn" && blackPieces[i].moved === false
+<br>
+                                && blackPieces[i].number === "5"){
+<br>
+                                passantCord = this.letter + "6"
+<br>
+                            }
+<br>
+                            
+<br>
+                            if (blackPieces[i].class === "pawn" || blackPieces[i].class === "rook" || 
+<br>
+                            blackPieces[i].class === "king") {blackPieces[i].moved = true}
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+        
+<br>
+                            whitePieces.forEach(piece => {checkCaptureWhitePiece(piece)})
+<br>
+    
+<br>
+                            currentPieceBlack = undefined
+<br>
+                            changeTurn()
+<br>
+    
+<br>
+    
+<br>
+                for ( i = 0 ; i < squares.length ; i++){
+<br>
+    
+<br>
+                    squares[i].selected = false
+<br>
+                    
+<br>
+                    }
+<br>
+                
+<br>
+                }}  
+<br>
+            
+<br>
+                }
+<br>
+                    
+<br>
+            })
+<br>
+    
+<br>
+            this.engineMove = function (enginePiece) {
+<br>
+    
+<br>
+                let pieceArray = playerTurn === "white" ? whitePieces : blackPieces
+<br>
+                let passantCordNumber = playerTurn === "white" ? "3" : "6"
+<br>
+                let passantPieceNumber = playerTurn === "white" ? "4" : "5"
+<br>
+            
+<br>
+                for ( i = 0 ; i < pieceArray.length ; i++ ){
+<br>
+                
+<br>
+                    if (enginePiece === pieceArray[i]){
+<br>
+            
+<br>
+    
+<br>
+            
+<br>
+                        previousPosition.x = pieceArray[i].x
+<br>
+                        previousPosition.y = pieceArray[i].y
+<br>
+                        previousPosition.letter = pieceArray[i].letter
+<br>
+                        previousPosition.number = pieceArray[i].number
+<br>
+                        previousPosition.moved = pieceArray[i].moved
+<br>
+                        
+<br>
+            
+<br>
+                        enginePiece.cord = this.cord
+<br>
+                        enginePiece.moved = true
+<br>
+                        enginePiece.turnCount = turnCount
+<br>
+            
+<br>
+                        
+<br>
+                        pieceArray[i].element.style.left = this.x
+<br>
+                        pieceArray[i].element.style.top = this.y
+<br>
+                        pieceArray[i].x = this.x
+<br>
+                        pieceArray[i].y = this.y
+<br>
+                        pieceArray[i].letter = this.letter
+<br>
+                        pieceArray[i].number = this.number
+<br>
+            
+<br>
+            
+<br>
+    
+<br>
+                        if (playerTurn === "black"){capturePassantBlack()}
+<br>
+                        else if (playerTurn === "white"){capturePassantWhite()}
+<br>
+                        
+<br>
+                        clearLegalSquares()
+<br>
+                        clearPassant ()
+<br>
+            
+<br>
+                            
+<br>
+                        if (pieceArray[i].moved === false && pieceArray[i].class === "pawn")
+<br>
+                        
+<br>
+                        {passantPiece = pieceArray[i]}       
+<br>
+            
+<br>
+                        if (pieceArray[i].class === "pawn" && pieceArray[i].moved === false
+<br>
+                            && pieceArray[i].number === passantPieceNumber){
+<br>
+                            passantCord =  this.letter + passantCordNumber 
+<br>
+                        }
+<br>
+                    
+<br>
+                        if (pieceArray[i].class === "pawn" || pieceArray[i].class === "rook" || 
+<br>
+                        pieceArray[i].class === "king") {pieceArray[i].moved = true}
+<br>
+            
+<br>
+                        if (playerTurn === "black"){whitePieces.forEach(piece => {checkCaptureWhitePiece(piece)})}
+<br>
+                        else if (playerTurn === "white"){blackPieces.forEach(piece => {checkCaptureBlackPiece(piece)})}
+<br>
+            
+<br>
+                        enginePiece = undefined
+<br>
+            
+<br>
+                        if (playerTurn === "white") {currentPieceWhite = undefined}
+<br>
+                        else if (playerTurn === "black") {currentPieceBlack = undefined}
+<br>
+            
+<br>
+                        changeTurn()
+<br>
+            
+<br>
+            
+<br>
+                    }}
+<br>
+            }
+<br>
+    
+<br>
+        
+<br>
+    
+<br>
+        }
+<br>
+    
+<br>
+    }
+<br>
+    
+<br>
+    let squares = []
+<br>
+    
+<br>
+    let x = 0
+<br>
+    let y = 0
+<br>
+    let cord
+<br>
+    
+<br>
+    for (i = 0 ; i < 8 ; i++){
+<br>
+    
+<br>
+    
+<br>
+        for (j = 0 ; j < 8 ; j++){
+<br>
+    
+<br>
+            x = x
+<br>
+            y = y 
+<br>
+     
+<br>
+     
+<br>
+    
+<br>
+                switch (x)
+<br>
+                {
+<br>
+                case 0 : letter = "A" ; break
+<br>
+                case 50 : letter = "B" ; break
+<br>
+                case 100 : letter = "C" ; break
+<br>
+                case 150 : letter = "D" ; break
+<br>
+                case 200 : letter = "E" ; break
+<br>
+                case 250 : letter = "F" ; break
+<br>
+                case 300 : letter = "G" ; break
+<br>
+                case 350 : letter = "H" 
+<br>
+                }
+<br>
+    
+<br>
+                switch (y)
+<br>
+                {
+<br>
+                case 0 : number = "8" ; break
+<br>
+                case 50 : number = "7" ; break
+<br>
+                case 100 : number = "6" ; break
+<br>
+                case 150 : number = "5" ; break
+<br>
+                case 200 : number = "4" ; break
+<br>
+                case 250 : number = "3" ; break
+<br>
+                case 300 : number = "2" ; break
+<br>
+                case 350 : number = "1" 
+<br>
+                }
+<br>
+    
+<br>
+            letter = letter
+<br>
+            number = number
+<br>
+    
+<br>
+            cord = letter + number
+<br>
+    
+<br>
+            element = document.getElementById(cord)
+<br>
+     
+<br>
+    
+<br>
+            squares.push(new Square(cord, x, y, letter, number))
+<br>
+            
+<br>
+            x += 50
+<br>
+        }
+<br>
+    
+<br>
+        x = 0
+<br>
+        y += 50
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+    }
+<br>
+    
+<br>
+    
+<br>
+    function colorSquares(){
+<br>
+    color = "green"
+<br>
+    for ( i = 0 ; i < 64 ; i++){
+<br>
+    
+<br>
+        color = color === "green" ? "brown" : "green"
+<br>
+    
+<br>
+    if ( i % 8 === 0){
+<br>
+    
+<br>
+       color = color === "green" ? "brown" : "green" 
+<br>
+    }
+<br>
+        squares[i].element.style.background = color
+<br>
+    
+<br>
+    }
+<br>
+    
+<br>
+    }
+<br>
+    
+<br>
+    colorSquares()
+<br>
+    
+<br>
+    let humanDelay = "done"
+<br>
+    
+<br>
+    // PIECE EVENT LISTENERS //
+<br>
+    
+<br>
+    // WHITE PIECES //
+<br>
+    
+<br>
+    if (humanDelay === "done"){
+<br>
+    
+<br>
+    whiteLeftKnight.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        
+<br>
+        clear(whiteLeftKnight)
+<br>
+        currentPieceWhite = whiteLeftKnight
+<br>
+    
+<br>
+        setPreviousPiece(whiteLeftKnight)
+<br>
+        moveToPiece(whiteLeftKnight)
+<br>
+        checkCaptureWhitePiece(whiteLeftKnight)
+<br>
+    
+<br>
+        activateLegalKnightMoves (whiteLeftKnight, knightMovement) 
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+    })
+<br>
+    whiteRightKnight.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(whiteRightKnight)
+<br>
+        currentPieceWhite = whiteRightKnight
+<br>
+    
+<br>
+        setPreviousPiece(whiteRightKnight)
+<br>
+        moveToPiece(whiteRightKnight)
+<br>
+        checkCaptureWhitePiece(whiteRightKnight)
+<br>
+        
+<br>
+        activateLegalKnightMoves (whiteRightKnight, knightMovement) 
+<br>
+        
+<br>
+    
+<br>
+        
+<br>
+    
+<br>
+    })
+<br>
+    whiteLeftRook.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(whiteLeftRook)
+<br>
+        currentPieceWhite = whiteLeftRook
+<br>
+    
+<br>
+        setPreviousPiece(whiteLeftRook)
+<br>
+        moveToPiece(whiteLeftRook)
+<br>
+        checkCaptureWhitePiece(whiteLeftRook)
+<br>
+        
+<br>
+    
+<br>
+        activateLegalMovesExtension (whiteLeftRook, rookMovement) 
+<br>
+        
+<br>
+    
+<br>
+    })
+<br>
+    whiteRightRook.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(whiteRightRook)
+<br>
+        currentPieceWhite = whiteRightRook
+<br>
+    
+<br>
+        setPreviousPiece(whiteRightRook)
+<br>
+        moveToPiece(whiteRightRook)
+<br>
+        checkCaptureWhitePiece(whiteRightRook)
+<br>
+    
+<br>
+        activateLegalMovesExtension (whiteRightRook, rookMovement) 
+<br>
+    
+<br>
+    })
+<br>
+    whiteRightBishop.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(whiteRightBishop)
+<br>
+        currentPieceWhite = whiteRightBishop
+<br>
+    
+<br>
+        setPreviousPiece(whiteRightBishop)
+<br>
+        moveToPiece(whiteRightBishop)
+<br>
+        checkCaptureWhitePiece(whiteRightBishop)
+<br>
+    
+<br>
+        activateLegalMovesExtension (whiteRightBishop, bishopMovement) 
+<br>
+    
+<br>
+    })
+<br>
+    whiteLeftBishop.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(whiteLeftBishop)
+<br>
+        currentPieceWhite = whiteLeftBishop
+<br>
+    
+<br>
+        setPreviousPiece(whiteLeftBishop)
+<br>
+        moveToPiece(whiteLeftBishop)
+<br>
+        checkCaptureWhitePiece(whiteLeftBishop)
+<br>
+    
+<br>
+        activateLegalMovesExtension (whiteLeftBishop, bishopMovement) 
+<br>
+    
+<br>
+    })
+<br>
+    whiteKing.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(whiteKing)
+<br>
+        currentPieceWhite = whiteKing
+<br>
+    
+<br>
+        setPreviousPiece(whiteKing)
+<br>
+        moveToPiece(whiteKing)
+<br>
+        checkCaptureWhitePiece(whiteKing)
+<br>
+    
+<br>
+    
+<br>
+        kingCastleToggle(whiteKing,58,59)
+<br>
+        kingCastleToggle(whiteKing,61,62)
+<br>
+        activateLegalKingMoves (whiteKing, kingMovement)
+<br>
+    
+<br>
+    
+<br>
+    })
+<br>
+    whiteQueen.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(whiteQueen)
+<br>
+        currentPieceWhite = whiteQueen
+<br>
+    
+<br>
+        setPreviousPiece(whiteQueen)
+<br>
+        moveToPiece(whiteQueen)
+<br>
+        checkCaptureWhitePiece(whiteQueen)
+<br>
+    
+<br>
+        activateLegalMovesExtension (whiteQueen, queenMovement) 
+<br>
+    
+<br>
+    })
+<br>
+    whitePawn1.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(whitePawn1)
+<br>
+        currentPieceWhite = whitePawn1
+<br>
+    
+<br>
+        setPreviousPiece(whitePawn1)
+<br>
+        moveToPiece(whitePawn1)
+<br>
+        checkCaptureWhitePiece(whitePawn1)
+<br>
+    
+<br>
+        switch (whitePawn1.class){
+<br>
+    
+<br>
+            case "pawn" : activateLegalMovesPawn (whitePawn1, whitePawnMovement); break
+<br>
+            case "queen" : activateLegalMovesExtension(whitePawn1, queenMovement); break
+<br>
+            case "knight" : activateLegalKnightMoves(whitePawn1, knightMovement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(whitePawn1, bishopMovement); break
+<br>
+            case "rook" : activateLegalMovesExtension(whitePawn1, rookMovement); break
+<br>
+    
+<br>
+        } 
+<br>
+    
+<br>
+    })
+<br>
+    whitePawn2.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(whitePawn2)
+<br>
+        currentPieceWhite = whitePawn2
+<br>
+    
+<br>
+        setPreviousPiece(whitePawn2)
+<br>
+        moveToPiece(whitePawn2)
+<br>
+        checkCaptureWhitePiece(whitePawn2)
+<br>
+    
+<br>
+        switch (whitePawn2.class){
+<br>
+    
+<br>
+            case "pawn" : activateLegalMovesPawn (whitePawn2, whitePawnMovement); break
+<br>
+            case "queen" : activateLegalMovesExtension(whitePawn2, queenMovement); break
+<br>
+            case "knight" : activateLegalKnightMoves(whitePawn2, knightMovement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(whitePawn2, bishopMovement); break
+<br>
+            case "rook" : activateLegalMovesExtension(whitePawn2, rookMovement); break
+<br>
+    
+<br>
+        }
+<br>
+    
+<br>
+    })
+<br>
+    whitePawn3.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(whitePawn3)
+<br>
+        currentPieceWhite = whitePawn3
+<br>
+    
+<br>
+        setPreviousPiece(whitePawn3)
+<br>
+        moveToPiece(whitePawn3)
+<br>
+        checkCaptureWhitePiece(whitePawn3)
+<br>
+    
+<br>
+        switch (whitePawn3.class){
+<br>
+    
+<br>
+            case "pawn" : activateLegalMovesPawn (whitePawn3, whitePawnMovement); break
+<br>
+            case "queen" : activateLegalMovesExtension(whitePawn3, queenMovement); break
+<br>
+            case "knight" : activateLegalKnightMoves(whitePawn3, knightMovement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(whitePawn3, bishopMovement); break
+<br>
+            case "rook" : activateLegalMovesExtension(whitePawn3, rookMovement); break
+<br>
+    
+<br>
+        } 
+<br>
+    
+<br>
+    })
+<br>
+    whitePawn4.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(whitePawn4)
+<br>
+        currentPieceWhite = whitePawn4
+<br>
+    
+<br>
+        setPreviousPiece(whitePawn4)
+<br>
+        moveToPiece(whitePawn4)
+<br>
+        checkCaptureWhitePiece(whitePawn4)
+<br>
+    
+<br>
+        switch (whitePawn4.class){
+<br>
+    
+<br>
+            case "pawn" : activateLegalMovesPawn (whitePawn4, whitePawnMovement); break
+<br>
+            case "queen" : activateLegalMovesExtension(whitePawn4, queenMovement); break
+<br>
+            case "knight" : activateLegalKnightMoves(whitePawn4, knightMovement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(whitePawn4, bishopMovement); break
+<br>
+            case "rook" : activateLegalMovesExtension(whitePawn4, rookMovement); break
+<br>
+    
+<br>
+        }
+<br>
+    
+<br>
+    })
+<br>
+    whitePawn5.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(whitePawn5)
+<br>
+        currentPieceWhite = whitePawn5
+<br>
+    
+<br>
+        setPreviousPiece(whitePawn5)
+<br>
+        moveToPiece(whitePawn5)
+<br>
+        checkCaptureWhitePiece(whitePawn5)
+<br>
+        
+<br>
+        
+<br>
+        switch (whitePawn5.class){
+<br>
+    
+<br>
+            case "pawn" : activateLegalMovesPawn (whitePawn5, whitePawnMovement); break
+<br>
+            case "queen" : activateLegalMovesExtension(whitePawn5, queenMovement); break
+<br>
+            case "knight" : activateLegalKnightMoves(whitePawn5, knightMovement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(whitePawn5, bishopMovement); break
+<br>
+            case "rook" : activateLegalMovesExtension(whitePawn5, rookMovement); break
+<br>
+    
+<br>
+        }
+<br>
+    
+<br>
+    })
+<br>
+    whitePawn6.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(whitePawn6)
+<br>
+        currentPieceWhite = whitePawn6
+<br>
+    
+<br>
+        setPreviousPiece(whitePawn6)
+<br>
+        moveToPiece(whitePawn6)
+<br>
+        checkCaptureWhitePiece(whitePawn6)
+<br>
+    
+<br>
+        switch (whitePawn6.class){
+<br>
+    
+<br>
+            case "pawn" : activateLegalMovesPawn (whitePawn6, whitePawnMovement); break
+<br>
+            case "queen" : activateLegalMovesExtension(whitePawn6, queenMovement); break
+<br>
+            case "knight" : activateLegalKnightMoves(whitePawn6, knightMovement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(whitePawn6, bishopMovement); break
+<br>
+            case "rook" : activateLegalMovesExtension(whitePawn6, rookMovement); break
+<br>
+    
+<br>
+        }
+<br>
+    
+<br>
+    })
+<br>
+    whitePawn7.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(whitePawn7)
+<br>
+        currentPieceWhite = whitePawn7
+<br>
+    
+<br>
+        setPreviousPiece(whitePawn7)
+<br>
+        moveToPiece(whitePawn7)
+<br>
+        checkCaptureWhitePiece(whitePawn7)
+<br>
+    
+<br>
+        switch (whitePawn7.class){
+<br>
+    
+<br>
+            case "pawn" : activateLegalMovesPawn (whitePawn7, whitePawnMovement); break
+<br>
+            case "queen" : activateLegalMovesExtension(whitePawn7, queenMovement); break
+<br>
+            case "knight" : activateLegalKnightMoves(whitePawn7, knightMovement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(whitePawn7, bishopMovement); break
+<br>
+            case "rook" : activateLegalMovesExtension(whitePawn7, rookMovement); break
+<br>
+    
+<br>
+        }
+<br>
+    
+<br>
+    })
+<br>
+    whitePawn8.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(whitePawn8)
+<br>
+        currentPieceWhite = whitePawn8
+<br>
+    
+<br>
+        setPreviousPiece(whitePawn8)
+<br>
+        moveToPiece(whitePawn8)
+<br>
+        checkCaptureWhitePiece(whitePawn8)
+<br>
+    
+<br>
+        switch (whitePawn8.class){
+<br>
+    
+<br>
+            case "pawn" : activateLegalMovesPawn (whitePawn8, whitePawnMovement); break
+<br>
+            case "queen" : activateLegalMovesExtension(whitePawn8, queenMovement); break
+<br>
+            case "knight" : activateLegalKnightMoves(whitePawn8, knightMovement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(whitePawn8, bishopMovement); break
+<br>
+            case "rook" : activateLegalMovesExtension(whitePawn8, rookMovement); break
+<br>
+    
+<br>
+        }
+<br>
+    
+<br>
+    })
+<br>
+    
+<br>
+    // BLACK PIECES //
+<br>
+    
+<br>
+    blackLeftKnight.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+        clear(blackLeftKnight)
+<br>
+        currentPieceBlack = blackLeftKnight
+<br>
+    
+<br>
+        setPreviousPiece(blackLeftKnight)
+<br>
+        moveToPiece(blackLeftKnight)
+<br>
+        checkCaptureBlackPiece(blackLeftKnight)
+<br>
+        
+<br>
+    
+<br>
+     
+<br>
+        activateLegalKnightMoves (blackLeftKnight, knightMovement) 
+<br>
+    
+<br>
+    
+<br>
+    })
+<br>
+    blackRightKnight.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+        clear(blackRightKnight)
+<br>
+        currentPieceBlack = blackRightKnight
+<br>
+    
+<br>
+        setPreviousPiece(blackRightKnight)
+<br>
+        moveToPiece(blackRightKnight)
+<br>
+        checkCaptureBlackPiece(blackRightKnight)
+<br>
+        
+<br>
+    
+<br>
+     
+<br>
+        activateLegalKnightMoves (blackRightKnight, knightMovement) 
+<br>
+    
+<br>
+    
+<br>
+    })
+<br>
+    blackRightRook.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+        clear(blackRightRook)
+<br>
+        currentPieceBlack = blackRightRook
+<br>
+    
+<br>
+        setPreviousPiece(blackRightRook)
+<br>
+        moveToPiece(blackRightRook)
+<br>
+        checkCaptureBlackPiece(blackRightRook)
+<br>
+        
+<br>
+    
+<br>
+     
+<br>
+        activateLegalMovesExtension (blackRightRook, rookMovement) 
+<br>
+    
+<br>
+    
+<br>
+    })
+<br>
+    blackLeftRook.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+        clear(blackLeftRook)
+<br>
+        currentPieceBlack = blackLeftRook
+<br>
+    
+<br>
+        setPreviousPiece(blackLeftRook)
+<br>
+        moveToPiece(blackLeftRook)
+<br>
+        checkCaptureBlackPiece(blackLeftRook)
+<br>
+        
+<br>
+    
+<br>
+     
+<br>
+        activateLegalMovesExtension (blackLeftRook, rookMovement) 
+<br>
+    
+<br>
+    
+<br>
+    })
+<br>
+    blackLeftBishop.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+        clear(blackLeftBishop)
+<br>
+        currentPieceBlack = blackLeftBishop
+<br>
+    
+<br>
+        setPreviousPiece(blackLeftBishop)
+<br>
+        moveToPiece(blackLeftBishop)
+<br>
+        checkCaptureBlackPiece(blackLeftBishop)
+<br>
+        
+<br>
+    
+<br>
+     
+<br>
+        activateLegalMovesExtension (blackLeftBishop, bishopMovement) 
+<br>
+    
+<br>
+    
+<br>
+    })
+<br>
+    blackRightBishop.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(blackRightBishop)
+<br>
+        currentPieceBlack = blackRightBishop
+<br>
+    
+<br>
+        setPreviousPiece(blackRightBishop)
+<br>
+        moveToPiece(blackRightBishop)
+<br>
+        checkCaptureBlackPiece(blackRightBishop)
+<br>
+        
+<br>
+    
+<br>
+        activateLegalMovesExtension (blackRightBishop, bishopMovement) 
+<br>
+        
+<br>
+    
+<br>
+    
+<br>
+    })
+<br>
+    blackKing.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(blackKing)
+<br>
+        currentPieceBlack = blackKing
+<br>
+    
+<br>
+        setPreviousPiece(blackKing)
+<br>
+        moveToPiece(blackKing)
+<br>
+        checkCaptureBlackPiece(blackKing)
+<br>
+        
+<br>
+        kingCastleToggle(blackKing,2,3)
+<br>
+        kingCastleToggle(blackKing,5,6)
+<br>
+        activateLegalKingMoves(blackKing, kingMovement) 
+<br>
+        
+<br>
+    
+<br>
+    
+<br>
+    })
+<br>
+    blackQueen.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(blackQueen)
+<br>
+        currentPieceBlack = blackQueen
+<br>
+    
+<br>
+        setPreviousPiece(blackQueen)
+<br>
+        moveToPiece(blackQueen)
+<br>
+        checkCaptureBlackPiece(blackQueen)
+<br>
+        
+<br>
+    
+<br>
+        activateLegalMovesExtension (blackQueen, queenMovement) 
+<br>
+        
+<br>
+    
+<br>
+    
+<br>
+    })
+<br>
+    blackPawn1.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(blackPawn1)
+<br>
+        currentPieceBlack = blackPawn1
+<br>
+    
+<br>
+        setPreviousPiece(blackPawn1)
+<br>
+        moveToPiece(blackPawn1)
+<br>
+        checkCaptureBlackPiece(blackPawn1)
+<br>
+    
+<br>
+        switch (blackPawn1.class){
+<br>
+    
+<br>
+            case "pawn" : activateLegalMovesPawn (blackPawn1, blackPawnMovement); break
+<br>
+            case "queen" : activateLegalMovesExtension(blackPawn1, queenMovement); break
+<br>
+            case "knight" : activateLegalKnightMoves(blackPawn1, knightMovement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(blackPawn1, bishopMovement); break
+<br>
+            case "rook" : activateLegalMovesExtension(blackPawn1, rookMovement); break
+<br>
+    
+<br>
+        } 
+<br>
+    
+<br>
+    })
+<br>
+    blackPawn2.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(blackPawn2)
+<br>
+        currentPieceBlack = blackPawn2
+<br>
+    
+<br>
+        setPreviousPiece(blackPawn2)
+<br>
+        moveToPiece(blackPawn2)
+<br>
+        checkCaptureBlackPiece(blackPawn2)
+<br>
+    
+<br>
+        switch (blackPawn2.class){
+<br>
+    
+<br>
+            case "pawn" : activateLegalMovesPawn (blackPawn2, blackPawnMovement); break
+<br>
+            case "queen" : activateLegalMovesExtension(blackPawn2, queenMovement); break
+<br>
+            case "knight" : activateLegalKnightMoves(blackPawn2, knightMovement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(blackPawn2, bishopMovement); break
+<br>
+            case "rook" : activateLegalMovesExtension(blackPawn2, rookMovement); break
+<br>
+    
+<br>
+        } 
+<br>
+        
+<br>
+    })
+<br>
+    blackPawn3.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(blackPawn3)
+<br>
+        currentPieceBlack = blackPawn3
+<br>
+        
+<br>
+        setPreviousPiece(blackPawn3)
+<br>
+        moveToPiece(blackPawn3)
+<br>
+        checkCaptureBlackPiece(blackPawn3)
+<br>
+    
+<br>
+        switch (blackPawn3.class){
+<br>
+    
+<br>
+            case "pawn" : activateLegalMovesPawn (blackPawn3, blackPawnMovement); break
+<br>
+            case "queen" : activateLegalMovesExtension(blackPawn3, queenMovement); break
+<br>
+            case "knight" : activateLegalKnightMoves(blackPawn3, knightMovement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(blackPawn3, bishopMovement); break
+<br>
+            case "rook" : activateLegalMovesExtension(blackPawn3, rookMovement); break
+<br>
+    
+<br>
+        } 
+<br>
+    
+<br>
+    })
+<br>
+    blackPawn4.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(blackPawn4)
+<br>
+        currentPieceBlack = blackPawn4
+<br>
+    
+<br>
+        setPreviousPiece(blackPawn4)
+<br>
+        moveToPiece(blackPawn4)
+<br>
+        checkCaptureBlackPiece(blackPawn4)
+<br>
+    
+<br>
+        switch (blackPawn4.class){
+<br>
+    
+<br>
+            case "pawn" : activateLegalMovesPawn (blackPawn4, blackPawnMovement); break
+<br>
+            case "queen" : activateLegalMovesExtension(blackPawn4, queenMovement); break
+<br>
+            case "knight" : activateLegalKnightMoves(blackPawn4, knightMovement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(blackPawn4, bishopMovement); break
+<br>
+            case "rook" : activateLegalMovesExtension(blackPawn4, rookMovement); break
+<br>
+    
+<br>
+        } 
+<br>
+    
+<br>
+    })
+<br>
+    blackPawn5.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(blackPawn5)
+<br>
+        currentPieceBlack = blackPawn5
+<br>
+    
+<br>
+        setPreviousPiece(blackPawn5)
+<br>
+        moveToPiece(blackPawn5)
+<br>
+        checkCaptureBlackPiece(blackPawn5)
+<br>
+    
+<br>
+        switch (blackPawn5.class){
+<br>
+    
+<br>
+            case "pawn" : activateLegalMovesPawn (blackPawn5, blackPawnMovement); break
+<br>
+            case "queen" : activateLegalMovesExtension(blackPawn5, queenMovement); break
+<br>
+            case "knight" : activateLegalKnightMoves(blackPawn5, knightMovement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(blackPawn5, bishopMovement); break
+<br>
+            case "rook" : activateLegalMovesExtension(blackPawn5, rookMovement); break
+<br>
+    
+<br>
+        } 
+<br>
+        
+<br>
+    })
+<br>
+    blackPawn6.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(blackPawn6)
+<br>
+        currentPieceBlack = blackPawn6
+<br>
+    
+<br>
+        setPreviousPiece(blackPawn6)
+<br>
+        moveToPiece(blackPawn6)
+<br>
+        checkCaptureBlackPiece(blackPawn6)
+<br>
+    
+<br>
+        switch (blackPawn6.class){
+<br>
+    
+<br>
+            case "pawn" : activateLegalMovesPawn (blackPawn6, blackPawnMovement); break
+<br>
+            case "queen" : activateLegalMovesExtension(blackPawn6, queenMovement); break
+<br>
+            case "knight" : activateLegalKnightMoves(blackPawn6, knightMovement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(blackPawn6, bishopMovement); break
+<br>
+            case "rook" : activateLegalMovesExtension(blackPawn6, rookMovement); break
+<br>
+    
+<br>
+        } 
+<br>
+    
+<br>
+    })
+<br>
+    blackPawn7.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(blackPawn7)
+<br>
+        currentPieceBlack = blackPawn7
+<br>
+    
+<br>
+        setPreviousPiece(blackPawn7)
+<br>
+        moveToPiece(blackPawn7)
+<br>
+        checkCaptureBlackPiece(blackPawn7)
+<br>
+    
+<br>
+        switch (blackPawn7.class){
+<br>
+    
+<br>
+            case "pawn" : activateLegalMovesPawn (blackPawn7, blackPawnMovement); break
+<br>
+            case "queen" : activateLegalMovesExtension(blackPawn7, queenMovement); break
+<br>
+            case "knight" : activateLegalKnightMoves(blackPawn7, knightMovement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(blackPawn7, bishopMovement); break
+<br>
+            case "rook" : activateLegalMovesExtension(blackPawn7, rookMovement); break
+<br>
+    
+<br>
+        } 
+<br>
+        
+<br>
+    })
+<br>
+    blackPawn8.element.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        clear(blackPawn8)
+<br>
+        currentPieceBlack = blackPawn8
+<br>
+    
+<br>
+        setPreviousPiece(blackPawn8)
+<br>
+        moveToPiece(blackPawn8)
+<br>
+        checkCaptureBlackPiece(blackPawn8)
+<br>
+    
+<br>
+        switch (blackPawn8.class){
+<br>
+    
+<br>
+            case "pawn" : activateLegalMovesPawn (blackPawn8, blackPawnMovement); break
+<br>
+            case "queen" : activateLegalMovesExtension(blackPawn8, queenMovement); break
+<br>
+            case "knight" : activateLegalKnightMoves(blackPawn8, knightMovement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(blackPawn8, bishopMovement); break
+<br>
+            case "rook" : activateLegalMovesExtension(blackPawn8, rookMovement); break
+<br>
+    
+<br>
+        } 
+<br>
+        
+<br>
+    })
+<br>
+    
+<br>
+    
+<br>
+    // CASTLE SQUARES //
+<br>
+    
+<br>
+    C8.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        blackQueensideCastle()
+<br>
+    })
+<br>
+    G8.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        blackKingsideCastle()
+<br>
+    })
+<br>
+    C1.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        whiteQueensideCastle()
+<br>
+    })
+<br>
+    G1.addEventListener("click", ()=>{
+<br>
+    
+<br>
+        whiteKingsideCastle()
+<br>
+    })
+<br>
+    
+<br>
+    }
+<br>
+    
+<br>
+    occupiedCheck()
+<br>
+    findCurrentBlackAttackPotential()
+<br>
+    findCurrentWhiteAttackPotential()
+<br>
+    
+<br>
+    
+<br>
+    function changeTurn() {
+<br>
+    
+<br>
+        humanDelay = "inProcess"
+<br>
+    
+<br>
+        playerTurn = playerTurn === "white" ? "black" : "white"
+<br>
+        document.getElementById("turnBox").innerHTML = `It is ${playerTurn}'s turn!`
+<br>
+        checkBox.innerHTML = ""
+<br>
+        occupiedCheck()
+<br>
+        whiteKing.check = false
+<br>
+        blackKing.check = false
+<br>
+    
+<br>
+        console.log("///////////////////////turnchange",playerTurn)
+<br>
+    
+<br>
+        findCurrentBlackAttackPotential()
+<br>
+        findCurrentWhiteAttackPotential()
+<br>
+        pinArrayBlack = []
+<br>
+        pinArrayWhite = []
+<br>
+    
+<br>
+        setTimeout(() => { // needs a millisecond else is registers capture pieces
+<br>
+                findWhitePins()
+<br>
+                findBlackPins()
+<br>
+        }, 1);
+<br>
+    
+<br>
+        updateRealm(whiteKing)
+<br>
+        updateRealm(blackKing)
+<br>
+        updateOpenFiles ()
+<br>
+        check()
+<br>
+        safeKingCordArrayCreation()
+<br>
+    
+<br>
+            checkMate()
+<br>
+    
+<br>
+        clearLegalSquares()
+<br>
+        setSelectedToFalse()
+<br>
+        clearChecking()
+<br>
+        allFutureSquares = []
+<br>
+        queeningPawn ()
+<br>
+    
+<br>
+        if (endOfGame === false){
+<br>
+    
+<br>
+        if (gameMode === "watchEngine"){
+<br>
+        {setTimeout(() => {makeIntelligentMoves()}, waitTime)}
+<br>
+        } else if (gameMode === "playEngine"){
+<br>
+            if (playerTurn === "black")
+<br>
+            {setTimeout(() => {makeIntelligentMoves()}, waitTime)}
+<br>
+        }
+<br>
+    }
+<br>
+    
+<br>
+    setTimeout(() => {
+<br>
+        humanDelay = "done"
+<br>
+        
+<br>
+    }, 400);
+<br>
+    }
+<br>
+    
+<br>
+    /////////////////////////////////////////////////////////////////
+<br>
+    
+<br>
+    // ENGINE LOGIC //
+<br>
+    
+<br>
+    let turnCount = 0
+<br>
+    let gameMode = "playEngine"
+<br>
+    let waitTime = 1200
+<br>
+    let evaluation = []
+<br>
+    let maxValue = -100
+<br>
+    let bestMoves = []
+<br>
+    let potentialEngineMoves = []
+<br>
+    let currentPiece = undefined
+<br>
+    
+<br>
+    ///////////////////////////////////////////////
+<br>
+    
+<br>
+    function enginePotential(){
+<br>
+    
+<br>
+        pieces = playerTurn === "white" ? whitePieces : blackPieces
+<br>
+        pawnMovement = playerTurn === "white" ? whitePawnMovement : blackPawnMovement
+<br>
+    
+<br>
+        pieces.forEach(piece => {
+<br>
+    
+<br>
+            switch (piece.class){
+<br>
+    
+<br>
+                case "bishop" : movement = bishopMovement; break
+<br>
+                case "rook" : movement = rookMovement; break
+<br>
+                case "queen" : movement = queenMovement; break
+<br>
+                case "knight" : movement = knightMovement; break
+<br>
+                case "king" : movement = kingMovement; break
+<br>
+                case "pawn" : movement = pawnMovement; break
+<br>
+            }
+<br>
+    
+<br>
+            if (piece.class === "bishop" || piece.class === "rook" 
+<br>
+                || piece.class === "queen" ){
+<br>
+                engineLegalPositionsExtension(movement, piece)
+<br>
+            }
+<br>
+    
+<br>
+            if (piece.class === "knight"){
+<br>
+                engineLegalPositionsKnight(movement, piece)
+<br>
+            }
+<br>
+            if (piece.class === "king"){
+<br>
+                engineLegalPositionsKing(movement, piece)
+<br>
+            }
+<br>
+    
+<br>
+            if (piece.class === "pawn") {
+<br>
+                engineLegalPositionsPawn (movement, piece)
+<br>
+    
+<br>
+            }
+<br>
+        })
+<br>
+    
+<br>
+        console.log("potentialEngineMoves",potentialEngineMoves)
+<br>
+    
+<br>
+    
+<br>
+        legalSquares.push("exitEngineLoop")
+<br>
+    
+<br>
+    }
+<br>
+    function engineLegalPositionsExtension(movement, piece) {
+<br>
+    
+<br>
+            setPiece (piece)
+<br>
+    
+<br>
+        if (currentLetter !== undefined && currentNumber !== undefined) { // prevents a -1 return
+<br>
+            
+<br>
+            for ( e = 0 ; e < movement.possibleMoves ; e ++ ){
+<br>
+    
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+    
+<br>
+            for (j = 0 ; j < 7 ; j++) {
+<br>
+    
+<br>
+                possibleCord =  letterArray[currentLetterIndex + movement.possibleLetters[e]] +
+<br>
+                                numberArray[currentNumberIndex + movement.possibleNumbers[e]] 
+<br>
+                
+<br>
+                teamCollisionCheck () 
+<br>
+                goodCord = false
+<br>
+                goodCordTest(possibleCord)
+<br>
+                safeKing = true
+<br>
+                safeKingCheck(piece)
+<br>
+                pinCheck(piece)
+<br>
+    
+<br>
+                    if(j < 7 && goodCord === true && safeKing === true){potentialEngineMoves.push([possibleCord,piece,0])}
+<br>
+    
+<br>
+    
+<br>
+                enenmyCollisionCheck ()
+<br>
+    
+<br>
+            currentLetterIndex = currentLetterIndex + movement.possibleLetters[e]
+<br>
+            currentNumberIndex = currentNumberIndex + movement.possibleNumbers[e]    
+<br>
+        
+<br>
+            }}
+<br>
+    
+<br>
+            
+<br>
+    
+<br>
+    }}
+<br>
+    function engineLegalPositionsKnight(movement, piece){
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+            setPiece (piece)
+<br>
+        skip = false
+<br>
+    
+<br>
+        if (currentLetter !== undefined && currentNumber !== undefined){    
+<br>
+            
+<br>
+            
+<br>
+            for ( kn = 0 ; kn < movement.possibleMoves ; kn++){
+<br>
+    
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+            
+<br>
+            possibleCord =  letterArray[currentLetterIndex + movement.possibleLetters[kn]] +
+<br>
+                            numberArray[currentNumberIndex + movement.possibleNumbers[kn]]
+<br>
+    
+<br>
+    
+<br>
+        basicTeamCollisionCheck()
+<br>
+        goodCord = false
+<br>
+        goodCordTest(possibleCord)
+<br>
+        safeKing = true
+<br>
+        safeKingCheck(piece)
+<br>
+    
+<br>
+            if (skip === false && goodCord === true && 
+<br>
+                safeKing === true && piece.pinned === false)
+<br>
+                {potentialEngineMoves.push([possibleCord,piece,0])}
+<br>
+    
+<br>
+        skip = false
+<br>
+    
+<br>
+        }
+<br>
+    
+<br>
+    }
+<br>
+    
+<br>
+    }
+<br>
+    function engineLegalPositionsPawn (movement, piece) {
+<br>
+    
+<br>
+        setPiece (piece)
+<br>
+    
+<br>
+            iteration = 2
+<br>
+            
+<br>
+        if ( piece.moved === true ) { iteration = 1 }
+<br>
+        
+<br>
+            firstMoveBlocked()
+<br>
+        
+<br>
+            proceed = false
+<br>
+    
+<br>
+            piece.selected === true ? clearLegalSquares() : proceed = true 
+<br>
+    
+<br>
+        if(piece.team === playerTurn && proceed === true) {
+<br>
+    
+<br>
+        skip = false
+<br>
+        passant = false
+<br>
+    
+<br>
+        if (currentLetter !== undefined && currentNumber !== undefined) {
+<br>
+    
+<br>
+        for ( p = 0 ; p < iteration ; p++){
+<br>
+    
+<br>
+    
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+            
+<br>
+            possibleCord =  letterArray[currentLetterIndex + movement.possibleLettersAdvance[p]] +
+<br>
+                            numberArray[currentNumberIndex + movement.possibleNumbersAdvance[p]]
+<br>
+    
+<br>
+    
+<br>
+        basicTeamCollisionCheck()
+<br>
+        enenmyCollisionCheck()
+<br>
+    
+<br>
+        goodCord = false
+<br>
+        goodCordTest(possibleCord)
+<br>
+        pawnNotPinned = true
+<br>
+        safeKing = true
+<br>
+        safeKingCheck(piece)
+<br>
+    
+<br>
+        king = currentTeam === "white" ? whiteKing : blackKing
+<br>
+    
+<br>
+        if (piece.pinned === true && piece.letter === king.letter){piece.pinned = false, pawnNotPinned === false}
+<br>
+    
+<br>
+    
+<br>
+        if (skip === false && j !== 8 && goodCord === true 
+<br>
+            && safeKing === true && piece.pinned === false) 
+<br>
+        {potentialEngineMoves.push([possibleCord,piece,0])}
+<br>
+    
+<br>
+            skip = false
+<br>
+        }
+<br>
+    
+<br>
+        
+<br>
+        for ( p2 = 0 ; p2 < 2 ; p2++){
+<br>
+    
+<br>
+    
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+            
+<br>
+            possibleCord =  letterArray[currentLetterIndex + movement.possibleLettersCapture[p2]] +
+<br>
+                            numberArray[currentNumberIndex + movement.possibleNumbersCapture[p2]]
+<br>
+    
+<br>
+        basicTeamCollisionCheck()
+<br>
+        pawnAttackCheck()
+<br>
+    
+<br>
+        goodCord = false
+<br>
+        goodCordTest(possibleCord)
+<br>
+    
+<br>
+        safeKing = true
+<br>
+        safeKingCheck(piece)
+<br>
+        pinCheck (piece)
+<br>
+    
+<br>
+        if (skip === false && goodCord === true 
+<br>
+            && safeKing === true && pawnNotPinned === true) 
+<br>
+                {potentialEngineMoves.push([possibleCord,piece,0])}
+<br>
+    
+<br>
+            skip = false
+<br>
+    
+<br>
+         if (passantCord === possibleCord && goodCord === true 
+<br>
+            && safeKing === true && pawnNotPinned === true)  
+<br>
+                {potentialEngineMoves.push([possibleCord,piece,0])}   
+<br>
+        
+<br>
+        }
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+    }}
+<br>
+    }
+<br>
+    function engineLegalPositionsKing(movement, piece){
+<br>
+    
+<br>
+    
+<br>
+            setPiece (piece)
+<br>
+            attack = currentTeam === "white" ? 
+<br>
+                currentBlackAttackPotential : currentWhiteAttackPotential
+<br>
+    
+<br>
+        skip = false
+<br>
+    
+<br>
+        if (currentLetter !== undefined && currentNumber !== undefined) {
+<br>
+    
+<br>
+        for ( k = 0 ; k < movement.possibleMoves ; k++){
+<br>
+    
+<br>
+            currentLetterIndex = letterArray.indexOf(currentLetter)
+<br>
+            currentNumberIndex = numberArray.indexOf(currentNumber)
+<br>
+            
+<br>
+            possibleCord =  letterArray[currentLetterIndex + movement.possibleLetters[k]] +
+<br>
+                            numberArray[currentNumberIndex + movement.possibleNumbers[k]]
+<br>
+    
+<br>
+    
+<br>
+        basicTeamCollisionCheck()
+<br>
+    
+<br>
+        safe = true
+<br>
+    
+<br>
+        attack.forEach(attack => {
+<br>
+            if (attack === possibleCord){ safe = false} 
+<br>
+        })
+<br>
+    
+<br>
+        goodCord = false
+<br>
+        goodCordTest(possibleCord)
+<br>
+    
+<br>
+        
+<br>
+    
+<br>
+        if (skip === false && safe === true && goodCord === true) {potentialEngineMoves.push([possibleCord,piece,0])}
+<br>
+    
+<br>
+        skip = false
+<br>
+        }
+<br>
+    
+<br>
+    }}
+<br>
+    
+<br>
+    //////////////////////////////////////////////////
+<br>
+    
+<br>
+    let blackKingRealm = []
+<br>
+    let whiteKingRealm = []
+<br>
+    let blackKingZone = []
+<br>
+    let whiteKingZone = []
+<br>
+    
+<br>
+    function updateRealm (king) {
+<br>
+    
+<br>
+        realm = king === whiteKing ? whiteKingRealm : blackKingRealm
+<br>
+        realm = []
+<br>
+    
+<br>
+        letterIndex = letterArray.indexOf(king.letter)
+<br>
+        numberIndex = numberArray.indexOf(king.number)
+<br>
+    
+<br>
+        realmLetter = []
+<br>
+        realmNumber = []
+<br>
+        let yesLetter = undefined
+<br>
+        let yesNumber = undefined
+<br>
+    
+<br>
+        for ( i = 1 ; i < 4 ; i++){
+<br>
+    
+<br>
+            realmLetter.push(letterArray[letterIndex + i],letterArray[letterIndex - i])
+<br>
+            realmLetter.push(letterArray[letterIndex])
+<br>
+            realmNumber.push(numberArray[numberIndex + i],numberArray[numberIndex - i])
+<br>
+            realmNumber.push(numberArray[numberIndex])
+<br>
+    
+<br>
+        }
+<br>
+    
+<br>
+        squares.forEach(square => {
+<br>
+    
+<br>
+            yesLetter = false
+<br>
+            yesNumber = false
+<br>
+    
+<br>
+    
+<br>
+            realmLetter.forEach(letter =>{
+<br>
+                if (letter === square.cord[0]){
+<br>
+                    yesLetter = true
+<br>
+    
+<br>
+    
+<br>
+                }
+<br>
+            })
+<br>
+            realmNumber.forEach(number =>{
+<br>
+                if (number === square.cord[1]){
+<br>
+                    yesNumber = true
+<br>
+    
+<br>
+    
+<br>
+                }
+<br>
+            })
+<br>
+    
+<br>
+            if(yesLetter === true && yesNumber === true){
+<br>
+                realm.push(square.cord)
+<br>
+    
+<br>
+            }
+<br>
+        })
+<br>
+    }
+<br>
+    function updateZone (king) {
+<br>
+    
+<br>
+        zone = king === whiteKing ? whiteKingZone : blackKingZone
+<br>
+        zone = []
+<br>
+    
+<br>
+        letterIndex = letterArray.indexOf(king.letter)
+<br>
+        numberIndex = numberArray.indexOf(king.number)
+<br>
+    
+<br>
+        zoneLetter = []
+<br>
+        zoneNumber = []
+<br>
+        let yesLetter = undefined
+<br>
+        let yesNumber = undefined
+<br>
+    
+<br>
+        for ( i = 1 ; i < 2 ; i++){
+<br>
+    
+<br>
+            zoneLetter.push(letterArray[letterIndex + i],letterArray[letterIndex - i])
+<br>
+            zoneLetter.push(letterArray[letterIndex])
+<br>
+            zoneNumber.push(numberArray[numberIndex + i],numberArray[numberIndex - i])
+<br>
+            zoneNumber.push(numberArray[numberIndex])
+<br>
+    
+<br>
+        }
+<br>
+    
+<br>
+        squares.forEach(square => {
+<br>
+    
+<br>
+            yesLetter = false
+<br>
+            yesNumber = false
+<br>
+    
+<br>
+    
+<br>
+            zoneLetter.forEach(letter =>{
+<br>
+                if (letter === square.cord[0]){
+<br>
+                    yesLetter = true
+<br>
+    
+<br>
+    
+<br>
+                }
+<br>
+            })
+<br>
+            zoneNumber.forEach(number =>{
+<br>
+                if (number === square.cord[1]){
+<br>
+                    yesNumber = true
+<br>
+    
+<br>
+    
+<br>
+                }
+<br>
+            })
+<br>
+    
+<br>
+            if(yesLetter === true && yesNumber === true){
+<br>
+                zone.push(square.cord)
+<br>
+    
+<br>
+            }
+<br>
+        })
+<br>
+    }
+<br>
+    let openFiles = []
+<br>
+    
+<br>
+    function updateOpenFiles (){
+<br>
+    
+<br>
+        openFiles = ["A","B","C","D","E","F","G","H"]
+<br>
+        pawnSquares = []
+<br>
+    
+<br>
+        squares.forEach(square => {
+<br>
+            if (square.class === "pawn"){
+<br>
+                pawnSquares.push(square.cord[0])
+<br>
+            }
+<br>
+        })
+<br>
+    
+<br>
+        pawnSquares.forEach(square =>{
+<br>
+            openFiles[openFiles.indexOf(square)] = []
+<br>
+    
+<br>
+        })
+<br>
+    
+<br>
+    
+<br>
+    }
+<br>
+    
+<br>
+    function autoMove (enginePiece){
+<br>
+    
+<br>
+        clear(enginePiece)
+<br>
+        currentPiece = enginePiece
+<br>
+        
+<br>
+        if (enginePiece.team === "white") {currentPieceWhite = currentPiece}
+<br>
+        else {currentPieceBlack = currentPiece}
+<br>
+        
+<br>
+        setPreviousPiece(enginePiece)
+<br>
+        
+<br>
+        switch (enginePiece.class){
+<br>
+        
+<br>
+            case "king" : movement = kingMovement; break
+<br>
+            case "queen" : movement = queenMovement; break
+<br>
+            case "bishop" : movement = bishopMovement; break
+<br>
+            case "knight" : movement = knightMovement; break
+<br>
+            case "rook" : movement = rookMovement; break
+<br>
+            case "pawn" : movement = enginePiece.team === "white" ? whitePawnMovement : blackPawnMovement; break
+<br>
+        
+<br>
+        }
+<br>
+        
+<br>
+        switch (enginePiece.class){
+<br>
+        
+<br>
+            case "king" : activateLegalKingMoves(enginePiece, movement); break
+<br>
+            case "queen" : activateLegalMovesExtension(enginePiece, movement); break
+<br>
+            case "bishop" : activateLegalMovesExtension(enginePiece, movement); break
+<br>
+            case "knight" : activateLegalKnightMoves(enginePiece, movement); break
+<br>
+            case "rook" : activateLegalMovesExtension(enginePiece, movement); break
+<br>
+            case "pawn" : activateLegalMovesPawn(enginePiece, movement); break
+<br>
+        
+<br>
+        }
+<br>
+    
+<br>
+    
+<br>
+    }   
+<br>
+    function engineCastle () {
+<br>
+        if (castleLegalityCheck(61,62) && playerTurn === "white"){
+<br>
+    
+<br>
+        castle = true
+<br>
+    
+<br>
+        whiteKingsideCastle()
+<br>
+    
+<br>
+    } 
+<br>
+    else if (castleLegalityCheck(5,6) && playerTurn === "black"){
+<br>
+    
+<br>
+        castle = true
+<br>
+    
+<br>
+        blackKingsideCastle()
+<br>
+    
+<br>
+    } 
+<br>
+    else if (castleLegalityCheck(58,59) && playerTurn === "white"){
+<br>
+    
+<br>
+        castle = true
+<br>
+    
+<br>
+        whiteQueensideCastle()
+<br>
+    
+<br>
+    } 
+<br>
+    else if (castleLegalityCheck(2,3) && playerTurn === "black"){
+<br>
+    
+<br>
+        castle = true
+<br>
+    
+<br>
+        blackQueensideCastle()
+<br>
+    
+<br>
+    } else {castle === false}// && make random move
+<br>
+    
+<br>
+    }
+<br>
+    function firstMoves (){
+<br>
+    
+<br>
+        if ((
+<br>
+            (
+<br>
+            pieces[pieceIndex].class === "knight" || pieces[pieceIndex].class === "bishop" ||
+<br>
+            (pieces[pieceIndex].class === "pawn" && (pieces[pieceIndex].letter === "E" || pieces[pieceIndex].letter === "D" || pieces[pieceIndex].letter === "C") ||
+<br>
+            (pieces[pieceIndex].class === "king" && pieces[pieceIndex].check !== true) )
+<br>
+            
+<br>
+            ) && 
+<br>
+            
+<br>
+            pieces[pieceIndex].moved === false && pieces[pieceIndex].pinned === false
+<br>
+    
+<br>
+    
+<br>
+        
+<br>
+        ) === true) return true
+<br>
+    }
+<br>
+    function secondMoves (){
+<br>
+    
+<br>
+        if ((
+<br>
+            (
+<br>
+            pieces[pieceIndex].class === "knight" || pieces[pieceIndex].class === "bishop" || pieces[pieceIndex].class === "queen" ||
+<br>
+            (pieces[pieceIndex].class === "pawn" && (pieces[pieceIndex].letter !== "F" || pieces[pieceIndex].letter !== "G")) ||
+<br>
+            (pieces[pieceIndex].class === "king" && pieces[pieceIndex].check !== true)
+<br>
+            
+<br>
+            ) && 
+<br>
+            
+<br>
+            pieces[pieceIndex].pinned === false 
+<br>
+        
+<br>
+        ) === true) return true
+<br>
+    }
+<br>
+    function evaluateAttackPotential (){
+<br>
+    
+<br>
+        evaluation = []
+<br>
+    
+<br>
+        teamAttackPotential.forEach(attack => {
+<br>
+            evaluation.push([attack,0])
+<br>
+        })
+<br>
+    
+<br>
+    for( i = 0 ; i < evaluation.length ; i++){
+<br>
+    
+<br>
+    
+<br>
+    enenmyAttackPotential.forEach(attack => {
+<br>
+        if (attack === evaluation[i][0]){
+<br>
+            evaluation[i][1] -= 2
+<br>
+    
+<br>
+        }
+<br>
+    })
+<br>
+    teamAttackPotential.forEach(attack => {
+<br>
+        if (attack === evaluation[i][0]){
+<br>
+            evaluation[i][1] += 2
+<br>
+    
+<br>
+        }
+<br>
+    })
+<br>
+    squares.forEach(square => {
+<br>
+        if (square.cord === evaluation[i][0] && square.occupied === enenmy){
+<br>
+            evaluation[i][1] += 2
+<br>
+    
+<br>
+                if(square.value > evaluation[i][1]){
+<br>
+                    evaluation[i][1] += 3
+<br>
+                } else if (square.value < evaluation[i][1]){
+<br>
+                    evaluation[i][1] -= 2
+<br>
+                } else { 
+<br>
+                    evaluation[i][1] += 1 
+<br>
+                }
+<br>
+    
+<br>
+    
+<br>
+        }
+<br>
+    })}
+<br>
+    
+<br>
+    
+<br>
+    for( i = 0 ; i < evaluation.length ; i++){
+<br>
+    
+<br>
+        evaluation.forEach(value => {
+<br>
+    
+<br>
+            if (evaluation[i][1] >= value[1]){
+<br>
+    
+<br>
+                highValueMove = evaluation[i][0]
+<br>
+            }
+<br>
+        })
+<br>
+    
+<br>
+    }
+<br>
+    
+<br>
+    }
+<br>
+    
+<br>
+    ///////////////////////
+<br>
+    
+<br>
+    function makeRandomMoves(){
+<br>
+    
+<br>
+    pieces = playerTurn === "white" ? whitePieces : blackPieces
+<br>
+    
+<br>
+    pieceIndex = Math.floor((Math.random() * pieces.length))
+<br>
+    
+<br>
+    do {
+<br>
+        pieceIndex = Math.floor((Math.random() * pieces.length))
+<br>
+    
+<br>
+        autoMove(pieces[pieceIndex])
+<br>
+    
+<br>
+    } while (legalSquares.length === 0)
+<br>
+    
+<br>
+    legalMoveIndex = Math.floor((Math.random() * legalSquares.length))
+<br>
+    
+<br>
+    squares.forEach(square => {
+<br>
+        if (square.cord === legalSquares[legalMoveIndex]){
+<br>
+            square.engineMove(pieces[pieceIndex])
+<br>
+        }})
+<br>
+    }
+<br>
+    function openingsIncluded(){
+<br>
+    
+<br>
+        // console.log("////////////////////ENGINE/////////////////")
+<br>
+    
+<br>
+            ////////////////////////////////////////////////////////////////////////////////////////////// variables
+<br>
+    
+<br>
+    pieces = playerTurn === "white" ? whitePieces : blackPieces
+<br>
+    enenmy = playerTurn === "white" ? "black" : "white"
+<br>
+    king = playerTurn === "white" ? whiteKing : blackKing
+<br>
+    realm = playerTurn === "white" ? blackKingRealm : whiteKingRealm
+<br>
+    zone = playerTurn === "white" ? blackKingZone : whiteKingZone
+<br>
+    
+<br>
+    teamAttackPotential = playerTurn === "white" ? 
+<br>
+        currentWhiteAttackPotential : currentBlackAttackPotential
+<br>
+    enenmyAttackPotential = playerTurn === "white" ? 
+<br>
+        currentBlackAttackPotential : currentWhiteAttackPotential
+<br>
+    
+<br>
+    castle = false
+<br>
+    opening = false
+<br>
+    potentialEngineMoves = []
+<br>
+    evaluation = []
+<br>
+    maxValue = 0
+<br>
+    bestMoves = []
+<br>
+    currentPiece = undefined
+<br>
+    
+<br>
+        /////////////////////////////////////////////////////////////////////////////////////////////////// find piece / potential
+<br>
+    
+<br>
+        do {
+<br>
+    
+<br>
+            // stage = turnCount < 16 ? 7 : pieces.length
+<br>
+        
+<br>
+            // pieceIndex = Math.floor((Math.random() * stage))
+<br>
+        
+<br>
+            // if (turnCount < 10 && firstMoves()) 
+<br>
+            // {(autoMove(pieces[pieceIndex])), opening = true}
+<br>
+            // else if (turnCount < 16 && firstMoves()) 
+<br>
+            // {(autoMove(pieces[pieceIndex])), opening = true}
+<br>
+            // else if (turnCount > 16 && secondMoves()) 
+<br>
+            // {(autoMove(pieces[pieceIndex])), opening = true}
+<br>
+            // else 
+<br>
+            {enginePotential()}
+<br>
+            // console.log("doLoop")
+<br>
+        
+<br>
+        } while (legalSquares.length === 0)
+<br>
+        
+<br>
+            evaluation = []
+<br>
+    
+<br>
+        if (opening === true && legalSquares != "exitEngineLoop"){ 
+<br>
+        
+<br>
+            legalSquares.forEach(square => { // opening piece
+<br>
+                evaluation.push([square,pieces[pieceIndex],0]) // possibleCord, piece, moveValue
+<br>
+            })
+<br>
+        
+<br>
+        } else {
+<br>
+    
+<br>
+            potentialEngineMoves.forEach(move => { // all pieces
+<br>
+        
+<br>
+    
+<br>
+                evaluation.push(move)
+<br>
+            })
+<br>
+        
+<br>
+        }
+<br>
+        
+<br>
+        /////////////////////////////////////////////////////////////////////////////////////////////////// evaluate
+<br>
+    
+<br>
+    
+<br>
+    for( i = 0 ; i < evaluation.length ; i++){
+<br>
+    
+<br>
+    enenmyAttackPotential.forEach(attack => { //dont move into attack
+<br>
+        if (attack === evaluation[i][0]){
+<br>
+            evaluation[i][2] -= 60
+<br>
+        }
+<br>
+    })
+<br>
+    enenmyAttackPotential.forEach(attack => { // move out of attack
+<br>
+        if (attack === evaluation[i][1].cord){
+<br>
+            evaluation[i][2] += 110
+<br>
+        }
+<br>
+    })
+<br>
+    teamAttackPotential.forEach(attack => { // move into defened squares
+<br>
+        if (attack === evaluation[i][0]){
+<br>
+            evaluation[i][2] += 20
+<br>
+        }
+<br>
+    })
+<br>
+    squares.forEach(square => {// capture enenmies for good exchanges
+<br>
+        if (square.cord === evaluation[i][0] && square.occupied === enenmy){
+<br>
+            evaluation[i][2] += 120 
+<br>
+    
+<br>
+                if(square.value > evaluation[i][1].value){
+<br>
+                    evaluation[i][2] += (60 + (square.value * 20))
+<br>
+                }
+<br>
+                else if(square.value === evaluation[i][1].value){
+<br>
+                    evaluation[i][2] += 80
+<br>
+                }
+<br>
+                else if(square.value < evaluation[i][1].value){
+<br>
+                    evaluation[i][2] -= (square.value * 10)
+<br>
+                }
+<br>
+        }
+<br>
+    
+<br>
+    })
+<br>
+    
+<br>
+    if ((evaluation[i][0] === "C5" || evaluation[i][0] === "D5" || evaluation[i][0] === "E5" || evaluation[i][0] === "F5" ||
+<br>
+        evaluation[i][0] === "C4" || evaluation[i][0] === "D4" || evaluation[i][0] === "E4" || evaluation[i][0] === "F4") 
+<br>
+        && turnCount > 25){
+<br>
+            evaluation[i][2] +=60
+<br>
+        } //take center
+<br>
+    
+<br>
+        openFiles.forEach(file => { // rooks in open files
+<br>
+            if (evaluation[i][0][0] === file && evaluation[i][1].class === "rook" && evaluation[i][1].cord[0] !== file){
+<br>
+                evaluation[i][2] += 150
+<br>
+            }
+<br>
+        })
+<br>
+    
+<br>
+        if(evaluation[i][0][1] >= 6 && evaluation[i][1].class === "pawn" && evaluation[i][1].team === "white"){evaluation[i][2] += 40}
+<br>
+        if(evaluation[i][0][1] <= 3 && evaluation[i][1].class === "pawn" && evaluation[i][1].team === "black"){evaluation[i][2] += 40}
+<br>
+        // push pawns
+<br>
+    
+<br>
+    realm.forEach(square => { // attack king realm
+<br>
+        if(square === evaluation[i][0]){
+<br>
+            evaluation[i][2] +=60
+<br>
+        }
+<br>
+    })
+<br>
+    
+<br>
+    
+<br>
+    zone.forEach(square => { // attack king zone
+<br>
+        if(square === evaluation[i][0]){
+<br>
+            evaluation[i][2] +=80
+<br>
+        }
+<br>
+    })
+<br>
+    
+<br>
+    
+<br>
+    if (turnCount < 20 && (evaluation[i][1].class === "rook" || evaluation[i][1].class === "king" )) {evaluation[i][2] -=150}
+<br>
+    if ((evaluation[i][1].turnCount - turnCount) < 3){evaluation[i][2] -=100} //dont move twice
+<br>
+    
+<br>
+    }
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+    //    [0 possibleCord, 1 piece , 2 moveValue]
+<br>
+    
+<br>
+    
+<br>
+        /////////////////////////////////////////////////////////////////////////////////////////////////// find bext value moves
+<br>
+    
+<br>
+    
+<br>
+        evaluation.forEach(value => { // find max value
+<br>
+            if( value[2] > maxValue ){
+<br>
+                maxValue = value[2]
+<br>
+            }
+<br>
+        })
+<br>
+    
+<br>
+        evaluation.forEach(value => {
+<br>
+    
+<br>
+            if (value[2] === maxValue){  // push high value move onto array
+<br>
+                bestMoves.push([value[0],value[1]])}
+<br>
+        })
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+    bestMovesIndex = Math.floor((Math.random() * bestMoves.length)) //select a high value move
+<br>
+    
+<br>
+    
+<br>
+        /////////////////////////////////////////////////////////////////////////////////////////////////// castle
+<br>
+    
+<br>
+    engineCastle()
+<br>
+    
+<br>
+        //////////////////////////////////////////////////////////////////////////////////// random move incase no best moves
+<br>
+    
+<br>
+    
+<br>
+    if (bestMoves.length === 0 ){ // random move incase no best moves
+<br>
+    
+<br>
+        do {
+<br>
+            pieceIndex = Math.floor((Math.random() * pieces.length))
+<br>
+        
+<br>
+            autoMove(pieces[pieceIndex])
+<br>
+        
+<br>
+        } while (legalSquares.length === 0)
+<br>
+        
+<br>
+        legalMoveIndex = Math.floor((Math.random() * legalSquares.length))
+<br>
+    
+<br>
+        bestMovesIndex = 0
+<br>
+        bestMoves.push([legalSquares[legalMoveIndex],pieces[pieceIndex]])
+<br>
+    
+<br>
+    } 
+<br>
+    
+<br>
+        /////////////////////////////////////////////////////////////////////////////////////////////////// set selected piece to current team piece
+<br>
+    
+<br>
+    
+<br>
+            currentPiece = bestMoves[bestMovesIndex][1]
+<br>
+            if(playerTurn === "white"){currentPieceWhite = currentPiece}
+<br>
+            else {currentPieceBlack = currentPiece}
+<br>
+    
+<br>
+    
+<br>
+     
+<br>
+    
+<br>
+    // console.log("futureWhiteAttack:",futureWhiteAttackPotential,"futureBlackAttack:",futureBlackAttackPotential,)
+<br>
+    // console.log("legalSquares:",legalSquares,"potentialMoves:",potentialMoves,"evaluation:",evaluation,"bestMoves:",bestMoves,"maxvalue",maxValue)
+<br>
+    // console.log("currentPiece",currentPiece,"bestCord:",bestMoves[bestMovesIndex][0],"turnCount",turnCount)
+<br>
+    
+<br>
+        /////////////////////////////////////////////////////////////////////////////////////////////////// move select to high value sqaure
+<br>
+    
+<br>
+    if (castle === false){
+<br>
+    
+<br>
+            squares.forEach(square => {
+<br>
+        if (square.cord === bestMoves[bestMovesIndex][0]){
+<br>
+            square.engineMove(currentPiece)
+<br>
+        }})
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+    }
+<br>
+    
+<br>
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+<br>
+    
+<br>
+    turnCount++
+<br>
+    
+<br>
+    } 
+<br>
+    function makeIntelligentMoves(){
+<br>
+    
+<br>
+        // console.log("////////////////////ENGINE/////////////////")
+<br>
+    
+<br>
+            ////////////////////////////////////////////////////////////////////////////////////////////// variables
+<br>
+    
+<br>
+    pieces = playerTurn === "white" ? whitePieces : blackPieces
+<br>
+    enenmy = playerTurn === "white" ? "black" : "white"
+<br>
+    king = playerTurn === "white" ? whiteKing : blackKing
+<br>
+    realm = playerTurn === "white" ? blackKingRealm : whiteKingRealm
+<br>
+    zone = playerTurn === "white" ? blackKingZone : whiteKingZone
+<br>
+    
+<br>
+    teamAttackPotential = playerTurn === "white" ? 
+<br>
+        currentWhiteAttackPotential : currentBlackAttackPotential
+<br>
+    enenmyAttackPotential = playerTurn === "white" ? 
+<br>
+        currentBlackAttackPotential : currentWhiteAttackPotential
+<br>
+    
+<br>
+    castle = false
+<br>
+    opening = false
+<br>
+    potentialEngineMoves = []
+<br>
+    evaluation = []
+<br>
+    maxValue = 0
+<br>
+    bestMoves = []
+<br>
+    currentPiece = undefined
+<br>
+    
+<br>
+        /////////////////////////////////////////////////////////////////////////////////////////////////// find piece / potential
+<br>
+    
+<br>
+            enginePotential()
+<br>
+    
+<br>
+            potentialEngineMoves.forEach(move => { // all pieces
+<br>
+        
+<br>
+                evaluation.push(move)
+<br>
+            })
+<br>
+        
+<br>
+        /////////////////////////////////////////////////////////////////////////////////////////////////// evaluate
+<br>
+    
+<br>
+    
+<br>
+    for( i = 0 ; i < evaluation.length ; i++){
+<br>
+    
+<br>
+    enenmyAttackPotential.forEach(attack => { //dont move into attack
+<br>
+        if (attack === evaluation[i][0]){
+<br>
+            evaluation[i][2] -= 100
+<br>
+        }
+<br>
+    })
+<br>
+    enenmyAttackPotential.forEach(attack => { // move out of attack
+<br>
+        if (attack === evaluation[i][1].cord){
+<br>
+            evaluation[i][2] += 110
+<br>
+        }
+<br>
+    })
+<br>
+    teamAttackPotential.forEach(attack => { // move into defened squares
+<br>
+        if (attack === evaluation[i][0]){
+<br>
+            evaluation[i][2] += 20
+<br>
+        }
+<br>
+    })
+<br>
+    squares.forEach(square => {// capture enenmies for good exchanges
+<br>
+        if (square.cord === evaluation[i][0] && square.occupied === enenmy){
+<br>
+            evaluation[i][2] += 120 
+<br>
+    
+<br>
+                if(square.value > evaluation[i][1].value){
+<br>
+                    evaluation[i][2] += (60 + (square.value * 20))
+<br>
+                }
+<br>
+                else if(square.value === evaluation[i][1].value){
+<br>
+                    evaluation[i][2] += 80
+<br>
+                }
+<br>
+                else if(square.value < evaluation[i][1].value){
+<br>
+                    evaluation[i][2] -= (square.value * 10)
+<br>
+                }
+<br>
+        }
+<br>
+    
+<br>
+    })
+<br>
+    
+<br>
+    if ((evaluation[i][0] === "D5" || evaluation[i][0] === "E5" ||
+<br>
+        evaluation[i][0] === "D4" || evaluation[i][0] === "E4") 
+<br>
+        && turnCount < 10){
+<br>
+            evaluation[i][2] += 30
+<br>
+        } //take center opening
+<br>
+    
+<br>
+    
+<br>
+    if ((evaluation[i][0] === "C5" || evaluation[i][0] === "D5" || evaluation[i][0] === "E5" || evaluation[i][0] === "F5" ||
+<br>
+        evaluation[i][0] === "C4" || evaluation[i][0] === "D4" || evaluation[i][0] === "E4" || evaluation[i][0] === "F4") 
+<br>
+        && turnCount < 30){
+<br>
+            evaluation[i][2] +=30
+<br>
+        } //control center mid game
+<br>
+    
+<br>
+    if ((evaluation[i][0] === "C5" || evaluation[i][0] === "D5" || evaluation[i][0] === "E5" || evaluation[i][0] === "F5" ||
+<br>
+        evaluation[i][0] === "C4" || evaluation[i][0] === "D4" || evaluation[i][0] === "E4" || evaluation[i][0] === "F4") 
+<br>
+        && turnCount < 40){
+<br>
+            evaluation[i][2] +=30
+<br>
+        } //take center mid game
+<br>
+    
+<br>
+        openFiles.forEach(file => { // rooks in open files
+<br>
+            if (evaluation[i][0][0] === file && evaluation[i][1].class === "rook" && evaluation[i][1].cord[0] !== file){
+<br>
+                evaluation[i][2] += 100
+<br>
+            }
+<br>
+        })
+<br>
+    
+<br>
+        if(evaluation[i][0][1] >= 6 && evaluation[i][1].class === "pawn" && evaluation[i][1].team === "white"){evaluation[i][2] += 100}
+<br>
+        if(evaluation[i][0][1] <= 3 && evaluation[i][1].class === "pawn" && evaluation[i][1].team === "black"){evaluation[i][2] += 100}
+<br>
+        // push pawns
+<br>
+    
+<br>
+    realm.forEach(square => { // attack king realm
+<br>
+        if(square === evaluation[i][0]){
+<br>
+            evaluation[i][2] +=90
+<br>
+        }
+<br>
+    })
+<br>
+    
+<br>
+    
+<br>
+    zone.forEach(square => { // attack king zone
+<br>
+        if(square === evaluation[i][0]){
+<br>
+            evaluation[i][2] +=120
+<br>
+        }
+<br>
+    
+<br>
+        teamAttackPotential.forEach(attack => { // move into defened squares for check mate potential
+<br>
+            if (attack === square){
+<br>
+                evaluation[i][2] += 500
+<br>
+            }})
+<br>
+    })
+<br>
+    
+<br>
+    
+<br>
+    if (turnCount < 20 && (evaluation[i][1].class === "rook" || evaluation[i][1].class === "king" )) {evaluation[i][2] -=150}
+<br>
+    if (turnCount < 40 && evaluation[i][1].class === "king" ) {evaluation[i][2] -=150}
+<br>
+    if ((evaluation[i][1].turnCount - turnCount) < 3){evaluation[i][2] -=100} //dont move twice
+<br>
+    
+<br>
+    }
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+    //    [0 possibleCord, 1 piece , 2 moveValue]
+<br>
+    
+<br>
+    
+<br>
+        /////////////////////////////////////////////////////////////////////////////////////////////////// find bext value moves
+<br>
+    
+<br>
+    
+<br>
+        evaluation.forEach(value => { // find max value
+<br>
+            if( value[2] > maxValue ){
+<br>
+                maxValue = value[2]
+<br>
+            }
+<br>
+        })
+<br>
+    
+<br>
+        evaluation.forEach(value => {
+<br>
+    
+<br>
+            if (value[2] === maxValue){  // push high value move onto array
+<br>
+                bestMoves.push([value[0],value[1]])}
+<br>
+        })
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+    bestMovesIndex = Math.floor((Math.random() * bestMoves.length)) //select a high value move
+<br>
+    
+<br>
+    
+<br>
+        /////////////////////////////////////////////////////////////////////////////////////////////////// castle
+<br>
+    if (maxValue < 100){
+<br>
+    
+<br>
+    engineCastle()
+<br>
+    
+<br>
+    }
+<br>
+    
+<br>
+    
+<br>
+        //////////////////////////////////////////////////////////////////////////////////// random move incase no best moves
+<br>
+    
+<br>
+    
+<br>
+    if (bestMoves.length === 0 ){ // random move incase no best moves
+<br>
+    
+<br>
+        do {
+<br>
+            pieceIndex = Math.floor((Math.random() * pieces.length))
+<br>
+        
+<br>
+            autoMove(pieces[pieceIndex])
+<br>
+        
+<br>
+        } while (legalSquares.length === 0)
+<br>
+        
+<br>
+        legalMoveIndex = Math.floor((Math.random() * legalSquares.length))
+<br>
+    
+<br>
+        bestMovesIndex = 0
+<br>
+        bestMoves.push([legalSquares[legalMoveIndex],pieces[pieceIndex]])
+<br>
+    
+<br>
+    } 
+<br>
+    
+<br>
+        /////////////////////////////////////////////////////////////////////////////////////////////////// set selected piece to current team piece
+<br>
+    
+<br>
+    
+<br>
+            currentPiece = bestMoves[bestMovesIndex][1]
+<br>
+            if(playerTurn === "white"){currentPieceWhite = currentPiece}
+<br>
+            else {currentPieceBlack = currentPiece}
+<br>
+    
+<br>
+    
+<br>
+     
+<br>
+    
+<br>
+    // console.log("futureWhiteAttack:",futureWhiteAttackPotential,"futureBlackAttack:",futureBlackAttackPotential,)
+<br>
+    // console.log("legalSquares:",legalSquares,"potentialMoves:",potentialMoves,"evaluation:",evaluation,"bestMoves:",bestMoves,"maxvalue",maxValue)
+<br>
+    // console.log("currentPiece",currentPiece,"bestCord:",bestMoves[bestMovesIndex][0],"turnCount",turnCount)
+<br>
+    
+<br>
+        /////////////////////////////////////////////////////////////////////////////////////////////////// move select to high value sqaure
+<br>
+    
+<br>
+    if (castle === false){
+<br>
+    
+<br>
+            squares.forEach(square => {
+<br>
+        if (square.cord === bestMoves[bestMovesIndex][0]){
+<br>
+            square.engineMove(currentPiece)
+<br>
+        }})
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+    }
+<br>
+    
+<br>
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+<br>
+    
+<br>
+    turnCount++
+<br>
+    
+<br>
+    console.log("turnCount",turnCount,"maxValue",maxValue)
+<br>
+    
+<br>
+    } 
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+    
+<br>
+        
+<br>
+        
+<br>
+    
+</div>
+</body>
+</html>
