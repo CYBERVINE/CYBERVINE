@@ -8,13 +8,15 @@ body {
 }
 
 .siteView{
+    
+    padding-left: 10px;
     display: flex;
     justify-content: center;
 }
 
 #board{
 
-    margin-left: 0px;
+
     position: relative;
     display: grid;
     grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px; 
