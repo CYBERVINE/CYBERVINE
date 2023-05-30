@@ -50,7 +50,7 @@ blackCapInc = 350
 // WHITE PIECES HTML //
 
 WLK = document.createElement("img");
-WLK.src = "chessPieces/whiteKnight.png";
+WLK.src = "whiteKnight.png";
 board.appendChild(WLK)
 WLK.id = "whiteLeftKnight"
 
