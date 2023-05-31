@@ -959,6 +959,7 @@ watchRandom.addEventListener('click', () =>{
     
     if(turnCount === 0){
     gameMode = "watchRandom"
+    turnCount = 0.1
     setTimeout(() => {makeRandomMoves()}, 400)
     }
 })
@@ -967,6 +968,7 @@ watchEngine.addEventListener('click', () =>{
 
     if(turnCount === 0){
     gameMode = "watchEngine"
+    turnCount = 0.1
     setTimeout(() => {makeIntelligentMoves()}, 400)
     }
 
