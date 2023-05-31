@@ -6,6 +6,7 @@ const C8 = document.getElementById('C8')
 const G8 = document.getElementById('G8')
 const C1 = document.getElementById('C1')
 const G1 = document.getElementById('G1')
+const watchRandom = document.getElementById('watchRandom')
 const watchEngine = document.getElementById('watchEngine')
 const playEngine = document.getElementById('playEngine')
 const playHuman = document.getElementById('playHuman')
@@ -953,6 +954,13 @@ changeTurnButton.addEventListener('click', () =>{
     clearCurrentPiece()
 }
 )
+
+watchRandom.addEventListener('click', () =>{
+    gameMode = "watchRandom"
+    setTimeout(() => {makeRandomMoves()}, 400)
+
+})
+
 watchEngine.addEventListener('click', () =>{
 
     gameMode = "watchEngine"
@@ -3590,6 +3598,8 @@ function changeTurn() {
 
     if (gameMode === "watchEngine"){
     {setTimeout(() => {makeIntelligentMoves()}, waitTime)}
+    } else if (gameMode === "watchRandom"){
+        {setTimeout(() => {makeRandomMoves()}, waitTime)}
     } else if (gameMode === "playEngine"){
         if (playerTurn === "black")
         {setTimeout(() => {makeIntelligentMoves()}, waitTime)}
