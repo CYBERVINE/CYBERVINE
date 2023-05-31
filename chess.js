@@ -959,8 +959,8 @@ watchRandom.addEventListener('click', () =>{
     
     if(turnCount === 0){
     gameMode = "watchRandom"
-    turnCount = 0.1
-    setTimeout(() => {makeRandomMoves()}, 400)
+    turnCount = turnCount + 0.1
+    setTimeout(() => {makeRandomMoves()})
     }
 })
 
@@ -968,8 +968,8 @@ watchEngine.addEventListener('click', () =>{
 
     if(turnCount === 0){
     gameMode = "watchEngine"
-    turnCount = 0.1
-    setTimeout(() => {makeIntelligentMoves()}, 400)
+    turnCount = turnCount + 0.1
+    setTimeout(() => {makeIntelligentMoves()})
     }
 
 })
@@ -3563,8 +3563,16 @@ findCurrentBlackAttackPotential()
 findCurrentWhiteAttackPotential()
 
 
+function makeSound (){
+
+    var audio = new Audio('sound.mp3');
+    audio.play();
+
+}
+
 function changeTurn() {
 
+    makeSound ()
     humanDelay = "inProcess"
 
     playerTurn = playerTurn === "white" ? "black" : "white"
