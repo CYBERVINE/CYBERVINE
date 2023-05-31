@@ -9,7 +9,7 @@ body {
 
 .siteView{
     
-    margin-left: 25px;
+    margin: 0 25 0 25;
     display: flex;
     justify-content: center;
 }
@@ -26,6 +26,14 @@ body {
     background-color: black;
     color: azure;
 }
+
+#watchRandom {
+
+    background-color: black;
+    color: azure;
+    padding-left: 2px;
+}
+
 #watchEngine {
 
     background-color: black;
@@ -48,6 +56,7 @@ body {
 
     background-color: black;
     color: azure;
+    padding-left: 2px;
 
 }
 #turnBox{
@@ -59,7 +68,7 @@ body {
     background-color: rgb(250, 221, 54);
     color: red;
     font-style: bold;
-    font-size: larger;
+    font-size: 14px;
 
 }
 .square{
