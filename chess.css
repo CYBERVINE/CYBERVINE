@@ -9,7 +9,7 @@ body {
 
 .siteView{
     
-    margin: 0 25 0 25;
+    margin-left: 25px;
     display: flex;
     justify-content: center;
 }
