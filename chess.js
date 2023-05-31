@@ -4171,6 +4171,10 @@ squares.forEach(square => {
     if (square.cord === legalSquares[legalMoveIndex]){
         square.engineMove(pieces[pieceIndex])
     }})
+    
+    turnCount++
+    
+    console.log("turnCount",turnCount,"maxValue",maxValue)
 }
 function openingsIncluded(){
 
