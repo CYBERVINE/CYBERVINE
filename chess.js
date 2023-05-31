@@ -956,15 +956,19 @@ changeTurnButton.addEventListener('click', () =>{
 )
 
 watchRandom.addEventListener('click', () =>{
+    
+    if(turnCount === 0){
     gameMode = "watchRandom"
     setTimeout(() => {makeRandomMoves()}, 400)
-
+    }
 })
 
 watchEngine.addEventListener('click', () =>{
 
+    if(turnCount === 0){
     gameMode = "watchEngine"
     setTimeout(() => {makeIntelligentMoves()}, 400)
+    }
 
 })
 playEngine.addEventListener('click', () =>{
