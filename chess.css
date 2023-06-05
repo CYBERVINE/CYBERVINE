@@ -8,15 +8,13 @@ body {
 }
 
 .siteView{
-    
-    margin-left: 25px;
     display: flex;
     justify-content: center;
 }
 
 #board{
 
-
+    margin-left: -10px;
     position: relative;
     display: grid;
     grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px; 
@@ -25,20 +23,19 @@ body {
 
     background-color: black;
     color: azure;
+    opacity: 0;
 }
-
-#watchRandom {
-
-    background-color: black;
-    color: azure;
-    padding-left: 2px;
-}
-
 #watchEngine {
 
     background-color: black;
     color: azure;
     padding-left: 3px;
+}
+#watchRandom {
+
+    background-color: black;
+    color: azure;
+    padding-left: 2px;
 }
 #playEngine {
 
@@ -68,7 +65,7 @@ body {
     background-color: rgb(250, 221, 54);
     color: red;
     font-style: bold;
-    font-size: 14px;
+    font-size: 26px;
 
 }
 .square{

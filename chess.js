@@ -51,164 +51,164 @@ blackCapInc = 350
 // WHITE PIECES HTML //
 
 WLK = document.createElement("img");
-WLK.src = "whiteKnight.png";
+WLK.src = "chessPieces/whiteKnight.png";
 board.appendChild(WLK)
 WLK.id = "whiteLeftKnight"
 
 WRK = document.createElement("img");
-WRK.src = "whiteKnight.png";
+WRK.src = "chessPieces/whiteKnight.png";
 board.appendChild(WRK)
 WRK.id = "whiteRightKnight"
 
 WLR = document.createElement("img");
-WLR.src = "whiteRook.png";
+WLR.src = "chessPieces/whiteRook.png";
 board.appendChild(WLR)
 WLR.id = "whiteLeftRook"
 
 WRR = document.createElement("img");
-WRR.src = "whiteRook.png";
+WRR.src = "chessPieces/whiteRook.png";
 board.appendChild(WRR)
 WRR.id = "whiteRightRook"
 
 WLB = document.createElement("img");
-WLB.src = "whiteBishop.png";
+WLB.src = "chessPieces/whiteBishop.png";
 board.appendChild(WLB)
 WLB.id = "whiteLeftBishop"
 
 WRB = document.createElement("img");
-WRB.src = "whiteBishop.png";
+WRB.src = "chessPieces/whiteBishop.png";
 board.appendChild(WRB)
 WRB.id = "whiteRightBishop"
 
 WQ = document.createElement("img");
-WQ.src = "whiteQueen.png";
+WQ.src = "chessPieces/whiteQueen.png";
 board.appendChild(WQ)
 WQ.id = "whiteQueen"
 
 WK = document.createElement("img");
-WK.src = "whiteKing.png";
+WK.src = "chessPieces/whiteKing.png";
 board.appendChild(WK)
 WK.id = "whiteKing"
 
 WP1 = document.createElement("img");
-WP1.src = "whitePawn.png";
+WP1.src = "chessPieces/whitePawn.png";
 board.appendChild(WP1)
 WP1.id = "whitePawn1"
 
 WP2 = document.createElement("img");
-WP2.src = "whitePawn.png";
+WP2.src = "chessPieces/whitePawn.png";
 board.appendChild(WP2)
 WP2.id = "whitePawn2"
 
 WP3 = document.createElement("img");
-WP3.src = "whitePawn.png";
+WP3.src = "chessPieces/whitePawn.png";
 board.appendChild(WP3)
 WP3.id = "whitePawn3"
 
 WP4 = document.createElement("img");
-WP4.src = "whitePawn.png";
+WP4.src = "chessPieces/whitePawn.png";
 board.appendChild(WP4)
 WP4.id = "whitePawn4"
 
 WP5 = document.createElement("img");
-WP5.src = "whitePawn.png";
+WP5.src = "chessPieces/whitePawn.png";
 board.appendChild(WP5)
 WP5.id = "whitePawn5"
 
 WP6 = document.createElement("img");
-WP6.src = "whitePawn.png";
+WP6.src = "chessPieces/whitePawn.png";
 board.appendChild(WP6)
 WP6.id = "whitePawn6"
 
 WP7 = document.createElement("img");
-WP7.src = "whitePawn.png";
+WP7.src = "chessPieces/whitePawn.png";
 board.appendChild(WP7)
 WP7.id = "whitePawn7"
 
 WP8 = document.createElement("img");
-WP8.src = "whitePawn.png";
+WP8.src = "chessPieces/whitePawn.png";
 board.appendChild(WP8)
 WP8.id = "whitePawn8"
 
 // BLACK PIECES HTML //
 
 BLB = document.createElement("img");
-BLB.src = "blackBishop.png";
+BLB.src = "chessPieces/blackBishop.png";
 board.appendChild(BLB)
 BLB.id = "blackLeftBishop"
 
 BRB = document.createElement("img");
-BRB.src = "blackBishop.png";
+BRB.src = "chessPieces/blackBishop.png";
 board.appendChild(BRB)
 BRB.id = "blackRightBishop"
 
 BLR = document.createElement("img");
-BLR.src = "blackRook.png";
+BLR.src = "chessPieces/blackRook.png";
 board.appendChild(BLR)
 BLR.id = "blackLeftRook"
 
 BRR = document.createElement("img");
-BRR.src = "blackRook.png";
+BRR.src = "chessPieces/blackRook.png";
 board.appendChild(BRR)
 BRR.id = "blackRightRook"
 
 BLK = document.createElement("img");
-BLK.src = "blackKnight.png";
+BLK.src = "chessPieces/blackKnight.png";
 board.appendChild(BLK)
 BLK.id = "blackLeftKnight"
 
 BRK = document.createElement("img");
-BRK.src = "blackKnight.png";
+BRK.src = "chessPieces/blackKnight.png";
 board.appendChild(BRK)
 BRK.id = "blackRightKnight"
 
 BQ = document.createElement("img");
-BQ.src = "blackQueen.png";
+BQ.src = "chessPieces/blackQueen.png";
 board.appendChild(BQ)
 BQ.id = "blackQueen"
 
 BK = document.createElement("img");
-BK.src = "blackKing.png";
+BK.src = "chessPieces/blackKing.png";
 board.appendChild(BK)
 BK.id = "blackKing"
 
 BP1 = document.createElement("img");
-BP1.src = "blackPawn.png";
+BP1.src = "chessPieces/blackPawn.png";
 board.appendChild(BP1)
 BP1.id = "blackPawn1"
 
 BP2 = document.createElement("img");
-BP2.src = "blackPawn.png";
+BP2.src = "chessPieces/blackPawn.png";
 board.appendChild(BP2)
 BP2.id = "blackPawn2"
 
 BP3 = document.createElement("img");
-BP3.src = "blackPawn.png";
+BP3.src = "chessPieces/blackPawn.png";
 board.appendChild(BP3)
 BP3.id = "blackPawn3"
 
 BP4 = document.createElement("img");
-BP4.src = "blackPawn.png";
+BP4.src = "chessPieces/blackPawn.png";
 board.appendChild(BP4)
 BP4.id = "blackPawn4"
 
 BP5 = document.createElement("img");
-BP5.src = "blackPawn.png";
+BP5.src = "chessPieces/blackPawn.png";
 board.appendChild(BP5)
 BP5.id = "blackPawn5"
 
 BP6 = document.createElement("img");
-BP6.src = "blackPawn.png";
+BP6.src = "chessPieces/blackPawn.png";
 board.appendChild(BP6)
 BP6.id = "blackPawn6"
 
 BP7 = document.createElement("img");
-BP7.src = "blackPawn.png";
+BP7.src = "chessPieces/blackPawn.png";
 board.appendChild(BP7)
 BP7.id = "blackPawn7"
 
 BP8 = document.createElement("img");
-BP8.src = "blackPawn.png";
+BP8.src = "chessPieces/blackPawn.png";
 board.appendChild(BP8)
 BP8.id = "blackPawn8"
 
@@ -906,72 +906,67 @@ function occupiedCheck(){
 let moveHistory = []
 let captureHistory = []
 
-takeBackMove.addEventListener("click", () => {
+// takeBackMove.addEventListener("click", () => {
 
-    previousPiece.element.style.left = previousPosition.x
-    previousPiece.element.style.top = previousPosition.y
-    previousPiece.x = previousPosition.x
-    previousPiece.y = previousPosition.y
-    previousPiece.letter = previousPosition.letter
-    previousPiece.number = previousPosition.number
-    previousPiece.cord = previousPosition.cord
-    previousPiece.moved = previousPosition.moved
-    passantPiece = previousPassantPiece
-    passantCord = previousPassantCord
-
-
-    if (castledRook !== undefined) {returnCastledRook()}
-
-    if(capturedPiece !== undefined) {
-    capturedPiece.element.style.left = capturedPieceCord.x
-    capturedPiece.element.style.top = capturedPieceCord.y
-    capturedPiece.x = capturedPieceCord.x
-    capturedPiece.y = capturedPieceCord.y
-    capturedPiece.letter = capturedPieceCord.letter
-    capturedPiece.number = capturedPieceCord.number
-    capturedPiece.cord = capturedPieceCord.cord
-    capturedPiece.moved = capturedPieceCord.moved
+//     previousPiece.element.style.left = previousPosition.x
+//     previousPiece.element.style.top = previousPosition.y
+//     previousPiece.x = previousPosition.x
+//     previousPiece.y = previousPosition.y
+//     previousPiece.letter = previousPosition.letter
+//     previousPiece.number = previousPosition.number
+//     previousPiece.cord = previousPosition.cord
+//     previousPiece.moved = previousPosition.moved
+//     passantPiece = previousPassantPiece
+//     passantCord = previousPassantCord
 
 
+//     if (castledRook !== undefined) {returnCastledRook()}
 
-    clearCapturedPiece()
-    }
+//     if(capturedPiece !== undefined) {
+//     capturedPiece.element.style.left = capturedPieceCord.x
+//     capturedPiece.element.style.top = capturedPieceCord.y
+//     capturedPiece.x = capturedPieceCord.x
+//     capturedPiece.y = capturedPieceCord.y
+//     capturedPiece.letter = capturedPieceCord.letter
+//     capturedPiece.number = capturedPieceCord.number
+//     capturedPiece.cord = capturedPieceCord.cord
+//     capturedPiece.moved = capturedPieceCord.moved
 
-    if ((playerTurn === "black" && currentPieceBlack === undefined) ||
-    (playerTurn === "white" && currentPieceWhite === undefined) || castledRook !== undefined)
 
-    {
-    changeTurn()}
 
-    clearPreviousPosition()
-    clearLegalSquares()
-    setSelectedToFalse()
-}
-)
+//     clearCapturedPiece()
+//     }
+
+//     if ((playerTurn === "black" && currentPieceBlack === undefined) ||
+//     (playerTurn === "white" && currentPieceWhite === undefined) || castledRook !== undefined){
+//     changeTurn()}
+
+//     clearPreviousPosition()
+//     clearLegalSquares()
+//     setSelectedToFalse()
+// }
+// )
 changeTurnButton.addEventListener('click', () =>{
 
     changeTurn()
     clearCurrentPiece()
 }
 )
-
 watchRandom.addEventListener('click', () =>{
-    
-    if(turnCount === 0){
-    gameMode = "watchRandom"
-    turnCount = turnCount + 0.1
-    setTimeout(() => {makeRandomMoves()})
-    }
-})
 
+    if(turnCount === 0){
+        gameMode = "watchRandom"
+        turnCount = turnCount + 0.1
+        setTimeout(() => {makeRandomMoves()})
+        }
+})
 watchEngine.addEventListener('click', () =>{
 
     if(turnCount === 0){
-    gameMode = "watchEngine"
-    turnCount = turnCount + 0.1
-    setTimeout(() => {makeIntelligentMoves()})
-    }
-
+        gameMode = "watchEngine"
+        turnCount = turnCount + 0.1
+        setTimeout(() => {makeIntelligentMoves()})
+        }
 })
 playEngine.addEventListener('click', () =>{
 
@@ -2586,10 +2581,10 @@ function queeningPawn (){
 
             switch (piece.class){
 
-            case "queen" : piece.element.src = "whiteQueen.png", piece.value = 9; break
-            case "rook" : piece.element.src = "whiteRook.png", piece.value = 5; break
-            case "knight" : piece.element.src = "whiteKnight.png", piece.value = 3; break
-            case "bishop" : piece.element.src = "whiteBishop.png", piece.value = 3; break
+            case "queen" : piece.element.src = "chessPieces/whiteQueen.png", piece.value = 9; break
+            case "rook" : piece.element.src = "chessPieces/whiteRook.png", piece.value = 5; break
+            case "knight" : piece.element.src = "chessPieces/whiteKnight.png", piece.value = 3; break
+            case "bishop" : piece.element.src = "chessPieces/whiteBishop.png", piece.value = 3; break
 
             }}})
     blackPieces.forEach(piece =>{
@@ -2601,10 +2596,10 @@ function queeningPawn (){
 
             switch (piece.class){
 
-            case "queen" : piece.element.src = "blackQueen.png", piece.value = 9; break
-            case "rook" : piece.element.src = "blackRook.png", piece.value = 5; break
-            case "knight" : piece.element.src = "blackKnight.png", piece.value = 3; break
-            case "bishop" : piece.element.src = "blackBishop.png", piece.value = 3; break
+            case "queen" : piece.element.src = "chessPieces/blackQueen.png", piece.value = 9; break
+            case "rook" : piece.element.src = "chessPieces/blackRook.png", piece.value = 5; break
+            case "knight" : piece.element.src = "chessPieces/blackKnight.png", piece.value = 3; break
+            case "bishop" : piece.element.src = "chessPieces/blackBishop.png", piece.value = 3; break
 
             }}})
 }
@@ -2830,6 +2825,7 @@ class Square {
                     previousPosition.letter = pieceArray[i].letter
                     previousPosition.number = pieceArray[i].number
                     previousPosition.moved = pieceArray[i].moved
+
                     
         
                     enginePiece.cord = this.cord
@@ -2868,6 +2864,7 @@ class Square {
                     if (playerTurn === "black"){whitePieces.forEach(piece => {checkCaptureWhitePiece(piece)})}
                     else if (playerTurn === "white"){blackPieces.forEach(piece => {checkCaptureBlackPiece(piece)})}
         
+                    previousPiece = enginePiece
                     enginePiece = undefined
         
                     if (playerTurn === "white") {currentPieceWhite = undefined}
@@ -3562,13 +3559,13 @@ occupiedCheck()
 findCurrentBlackAttackPotential()
 findCurrentWhiteAttackPotential()
 
-
 function makeSound (){
 
     var audio = new Audio('sound.mp3');
     audio.play();
 
 }
+
 
 function changeTurn() {
 
@@ -4181,10 +4178,6 @@ squares.forEach(square => {
     if (square.cord === legalSquares[legalMoveIndex]){
         square.engineMove(pieces[pieceIndex])
     }})
-    
-    turnCount++
-    
-    console.log("turnCount",turnCount,"maxValue",maxValue)
 }
 function openingsIncluded(){
 

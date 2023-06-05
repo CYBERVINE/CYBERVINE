@@ -12,16 +12,18 @@
 <body>
 
 <div class="siteView"><p><b>Welcome to my self playing chess app with an intelligent engine!</b> </p></div>
-<p style="margin-left: 12px;"> My name is Kevin and I'm a self taught coder. What you see below is the very first personal project I ever attempted!
-    It is written with 4000 line of vanilla javascript, minimal html and css.
-
-The point of creating this chess app was not to create yet another chess app, the point was to learn how to code. 
-Now that I have proven my aptitude, I am ready to solve relevant problems with the suitable languages. And now you can either watch the engine play itself, or play against it. It's your move!
-</p>
+<p style="margin-left: 10px"> 
+    My name is Kevin and I'm a self taught coder. 
+    What you see below is the very first personal project I ever attempted! 
+    It is written with 4000 line of vanilla javascript, minimal html and css. 
+    The point of creating this chess app was not to create yet another chess app, 
+    the point was to learn how to code. Now that I have proven my aptitude, 
+    I am ready to solve relevant problems with the suitable languages. 
+    And now you can either watch the engine play itself, or play against it. 
+    It's your move!
 
 <div class="siteView">
 <div id="board">
-    
         <div class="square"id="A8">8</div>
         <div class="square"id="B8">b</div>
         <div class="square"id="C8">c</div>
@@ -86,27 +88,29 @@ Now that I have proven my aptitude, I am ready to solve relevant problems with t
         <div class="square"id="F1"></div>
         <div class="square"id="G1"></div>
         <div class="square"id="H1"></div>
-    
-        <button id="takeBack">Take Back Move</button>
-        <div id="turnBox">It's white's turn!</div>
+
         <button id="changeTurn" style="font-size: 12px;">Change Turn</button>
-        <div id="checkBox"></div>
+
+        <div id="turnBox">It's white's turn!</div>
         <button id="watchRandom" style="font-size: 12px;">Watch Random</button>
+        <div id="checkBox"></div>
+        <button id="takeBack"></button>
         <button id="watchEngine">Watch Engine</button>
         <button id="playEngine">Play Engine</button>
         <button id="playHuman">Play Human</button>
+   
 
 
 
     </div>
 
     </div>
-    <div style="padding-top: 10px">    <a href="chessCode.html" style="margin-left: 42vw; font-size: 19px;">sourceCode</a></div>
 
+    
 
     <div id="runDown">
         <div>
-            <p>Things I am proud of:</p>
+            <p>Things I am proud of: <a href="chessCode.html" style="margin-left: 8px; font-size: 19px;">sourceCode</a></p>
             <li>The are no hard coded moves, all the moves are made based on evaluations on the current position.</li>
             <li>The engine is intelligent, but not super intelligent, so you can beat it and it's fun to play!</li>
             <li>The engine uses the same data that the game play uses to determine which moves are legal.</li>
@@ -118,7 +122,7 @@ Now that I have proven my aptitude, I am ready to solve relevant problems with t
             <p>Things I learned:</p>
             <li>It is better to have all the required data update at the turn change rather than to have portions of the data update when trigger by client events.</li>
             <li>It is better to separate larger functions into different, slightly tweeked functions, rather than try to active certain portions of the function and ignore others.</li>
-            <li>Reusing a function that has loops while the function is still runnning can cause mistakes in the interation count</li>
+            <li>Reusing a function that has loops while the functions is still runnning can cause mistakes in the interation count</li>
             <li><b>In the source code you can see how I improved as a programmer over the course of this project. I made the board and pieces first, then I moved onto the unrestricted moved of the pieces. Then I added constraints around legality of moves. Then I added special moves life EnPassent and castling. </b><i>EnPassent has a LOT of parameters. The pawns themselves have the most interacte rules for such plain pieces.</i> 
                 <b>Then I started to work on rules around checking the king, which required updated assessment potential board configurations. Then, with that information I was able to use it and evaluate potential moves. Thus giving the board a brain.</b> </li>
         </div>
@@ -132,7 +136,7 @@ Now that I have proven my aptitude, I am ready to solve relevant problems with t
         </div>
     </div>
 
-    <a href="chessCode.html" style="margin-left: 42vw;">sourceCode</a>
+    <a href="https://cybervine.github.io/chess.js" style="margin-left: 42vw;">sourceCode</a>
 
 </body>
 </html>
