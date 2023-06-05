@@ -51,164 +51,164 @@ blackCapInc = 350
 // WHITE PIECES HTML //
 
 WLK = document.createElement("img");
-WLK.src = "chessPieces/whiteKnight.png";
+WLK.src = "whiteKnight.png";
 board.appendChild(WLK)
 WLK.id = "whiteLeftKnight"
 
 WRK = document.createElement("img");
-WRK.src = "chessPieces/whiteKnight.png";
+WRK.src = "whiteKnight.png";
 board.appendChild(WRK)
 WRK.id = "whiteRightKnight"
 
 WLR = document.createElement("img");
-WLR.src = "chessPieces/whiteRook.png";
+WLR.src = "whiteRook.png";
 board.appendChild(WLR)
 WLR.id = "whiteLeftRook"
 
 WRR = document.createElement("img");
-WRR.src = "chessPieces/whiteRook.png";
+WRR.src = "whiteRook.png";
 board.appendChild(WRR)
 WRR.id = "whiteRightRook"
 
 WLB = document.createElement("img");
-WLB.src = "chessPieces/whiteBishop.png";
+WLB.src = "whiteBishop.png";
 board.appendChild(WLB)
 WLB.id = "whiteLeftBishop"
 
 WRB = document.createElement("img");
-WRB.src = "chessPieces/whiteBishop.png";
+WRB.src = "whiteBishop.png";
 board.appendChild(WRB)
 WRB.id = "whiteRightBishop"
 
 WQ = document.createElement("img");
-WQ.src = "chessPieces/whiteQueen.png";
+WQ.src = "whiteQueen.png";
 board.appendChild(WQ)
 WQ.id = "whiteQueen"
 
 WK = document.createElement("img");
-WK.src = "chessPieces/whiteKing.png";
+WK.src = "whiteKing.png";
 board.appendChild(WK)
 WK.id = "whiteKing"
 
 WP1 = document.createElement("img");
-WP1.src = "chessPieces/whitePawn.png";
+WP1.src = "whitePawn.png";
 board.appendChild(WP1)
 WP1.id = "whitePawn1"
 
 WP2 = document.createElement("img");
-WP2.src = "chessPieces/whitePawn.png";
+WP2.src = "whitePawn.png";
 board.appendChild(WP2)
 WP2.id = "whitePawn2"
 
 WP3 = document.createElement("img");
-WP3.src = "chessPieces/whitePawn.png";
+WP3.src = "whitePawn.png";
 board.appendChild(WP3)
 WP3.id = "whitePawn3"
 
 WP4 = document.createElement("img");
-WP4.src = "chessPieces/whitePawn.png";
+WP4.src = "whitePawn.png";
 board.appendChild(WP4)
 WP4.id = "whitePawn4"
 
 WP5 = document.createElement("img");
-WP5.src = "chessPieces/whitePawn.png";
+WP5.src = "whitePawn.png";
 board.appendChild(WP5)
 WP5.id = "whitePawn5"
 
 WP6 = document.createElement("img");
-WP6.src = "chessPieces/whitePawn.png";
+WP6.src = "whitePawn.png";
 board.appendChild(WP6)
 WP6.id = "whitePawn6"
 
 WP7 = document.createElement("img");
-WP7.src = "chessPieces/whitePawn.png";
+WP7.src = "whitePawn.png";
 board.appendChild(WP7)
 WP7.id = "whitePawn7"
 
 WP8 = document.createElement("img");
-WP8.src = "chessPieces/whitePawn.png";
+WP8.src = "whitePawn.png";
 board.appendChild(WP8)
 WP8.id = "whitePawn8"
 
 // BLACK PIECES HTML //
 
 BLB = document.createElement("img");
-BLB.src = "chessPieces/blackBishop.png";
+BLB.src = "blackBishop.png";
 board.appendChild(BLB)
 BLB.id = "blackLeftBishop"
 
 BRB = document.createElement("img");
-BRB.src = "chessPieces/blackBishop.png";
+BRB.src = "blackBishop.png";
 board.appendChild(BRB)
 BRB.id = "blackRightBishop"
 
 BLR = document.createElement("img");
-BLR.src = "chessPieces/blackRook.png";
+BLR.src = "blackRook.png";
 board.appendChild(BLR)
 BLR.id = "blackLeftRook"
 
 BRR = document.createElement("img");
-BRR.src = "chessPieces/blackRook.png";
+BRR.src = "blackRook.png";
 board.appendChild(BRR)
 BRR.id = "blackRightRook"
 
 BLK = document.createElement("img");
-BLK.src = "chessPieces/blackKnight.png";
+BLK.src = "blackKnight.png";
 board.appendChild(BLK)
 BLK.id = "blackLeftKnight"
 
 BRK = document.createElement("img");
-BRK.src = "chessPieces/blackKnight.png";
+BRK.src = "blackKnight.png";
 board.appendChild(BRK)
 BRK.id = "blackRightKnight"
 
 BQ = document.createElement("img");
-BQ.src = "chessPieces/blackQueen.png";
+BQ.src = "blackQueen.png";
 board.appendChild(BQ)
 BQ.id = "blackQueen"
 
 BK = document.createElement("img");
-BK.src = "chessPieces/blackKing.png";
+BK.src = "blackKing.png";
 board.appendChild(BK)
 BK.id = "blackKing"
 
 BP1 = document.createElement("img");
-BP1.src = "chessPieces/blackPawn.png";
+BP1.src = "blackPawn.png";
 board.appendChild(BP1)
 BP1.id = "blackPawn1"
 
 BP2 = document.createElement("img");
-BP2.src = "chessPieces/blackPawn.png";
+BP2.src = "blackPawn.png";
 board.appendChild(BP2)
 BP2.id = "blackPawn2"
 
 BP3 = document.createElement("img");
-BP3.src = "chessPieces/blackPawn.png";
+BP3.src = "blackPawn.png";
 board.appendChild(BP3)
 BP3.id = "blackPawn3"
 
 BP4 = document.createElement("img");
-BP4.src = "chessPieces/blackPawn.png";
+BP4.src = "blackPawn.png";
 board.appendChild(BP4)
 BP4.id = "blackPawn4"
 
 BP5 = document.createElement("img");
-BP5.src = "chessPieces/blackPawn.png";
+BP5.src = "blackPawn.png";
 board.appendChild(BP5)
 BP5.id = "blackPawn5"
 
 BP6 = document.createElement("img");
-BP6.src = "chessPieces/blackPawn.png";
+BP6.src = "blackPawn.png";
 board.appendChild(BP6)
 BP6.id = "blackPawn6"
 
 BP7 = document.createElement("img");
-BP7.src = "chessPieces/blackPawn.png";
+BP7.src = "blackPawn.png";
 board.appendChild(BP7)
 BP7.id = "blackPawn7"
 
 BP8 = document.createElement("img");
-BP8.src = "chessPieces/blackPawn.png";
+BP8.src = "blackPawn.png";
 board.appendChild(BP8)
 BP8.id = "blackPawn8"
 
@@ -2581,10 +2581,10 @@ function queeningPawn (){
 
             switch (piece.class){
 
-            case "queen" : piece.element.src = "chessPieces/whiteQueen.png", piece.value = 9; break
-            case "rook" : piece.element.src = "chessPieces/whiteRook.png", piece.value = 5; break
-            case "knight" : piece.element.src = "chessPieces/whiteKnight.png", piece.value = 3; break
-            case "bishop" : piece.element.src = "chessPieces/whiteBishop.png", piece.value = 3; break
+            case "queen" : piece.element.src = "whiteQueen.png", piece.value = 9; break
+            case "rook" : piece.element.src = "whiteRook.png", piece.value = 5; break
+            case "knight" : piece.element.src = "whiteKnight.png", piece.value = 3; break
+            case "bishop" : piece.element.src = "whiteBishop.png", piece.value = 3; break
 
             }}})
     blackPieces.forEach(piece =>{
@@ -2596,10 +2596,10 @@ function queeningPawn (){
 
             switch (piece.class){
 
-            case "queen" : piece.element.src = "chessPieces/blackQueen.png", piece.value = 9; break
-            case "rook" : piece.element.src = "chessPieces/blackRook.png", piece.value = 5; break
-            case "knight" : piece.element.src = "chessPieces/blackKnight.png", piece.value = 3; break
-            case "bishop" : piece.element.src = "chessPieces/blackBishop.png", piece.value = 3; break
+            case "queen" : piece.element.src = "blackQueen.png", piece.value = 9; break
+            case "rook" : piece.element.src = "blackRook.png", piece.value = 5; break
+            case "knight" : piece.element.src = "blackKnight.png", piece.value = 3; break
+            case "bishop" : piece.element.src = "blackBishop.png", piece.value = 3; break
 
             }}})
 }
