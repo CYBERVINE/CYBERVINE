@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
+<!-- saved from url=(0039)https://cybervine.github.io/resume.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <title>Professional Landing Page</title>
     <style>
         body {
@@ -23,64 +23,33 @@
   
         
         .animation {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             width: 1px;
             height: 1px;
             background-color: rgb(251, 251, 251);
             border-radius: 0%;
             animation: resize 7s linear ;
         }
-        .blackDot {
-            width: 29px;
-            height: 74vh;
-            background-color: rgb(0, 0, 0);
-            border-radius: 35%;
-            opacity: 0;
-            animation: dot 7s linear ;
-        }
-        .blackSpot {
-            width: 30vh;
-            height: 10vh;
-            background-color: rgb(0, 0, 0);
-            border-radius: 35%;
-            opacity: 0;
-            animation: spot 7s linear ;
-        }
-
-        @keyframes dot {
-            0%{opacity: .6;}
-            39%{width: 1px;}
-            40%{opacity: 0; width:20px}
-            41%{width:10vh; height: 30vh;}
-            42%{height: 3px;}
-            82% {opacity: 0;width:80vw; height: 2px;}
-            83% {opacity: .3;}
-            100%{width:100vw; height: 1px;}
-        }
-        @keyframes spot {
-
-            80% {opacity: 0;height: 10vh;}
-            83% {opacity: .95}
-            90% {height: 1vh}
-
-        }
    
       
-        @keyframes body-color {        
+        @keyframes body-color {
+            0% {
+                background-color: #a68181;
+                
+            }
+            20% {
+                background-color: #f2f2f2;
+            }
+            40% {
+                background-color: #9acbd8;
+            }
             50% {
                 background-color: #f2f2f2;
             }
             60% {
-                background-color: rgb(60, 34, 233);
-            }
-            65% {
-                background-color: rgba(167, 156, 221, 0.509);
+                background-color: rgb(227, 224, 237);
             }
             80% {  
-                background-color: rgb(173, 236, 154);
+                background-color: rgb(220, 199, 199);
             }
             100%{
                 background-color: rgb(251, 251, 251)
@@ -94,14 +63,14 @@
         @keyframes rise {
 
             0%{
-                padding-top: 90vh;
+                padding-top: 80vh;
+            }
+
+            25%{
+                padding-top: 20vh;
             }
 
             30%{
-                padding-top: 10vh;
-            }
-
-            32%{
                 padding-top: 0;
 
             }
@@ -109,79 +78,74 @@
                 justify-content: center;
             }
 
-            70% {
+            80% {
                 padding-top: 0;
             }
-
-            80% {
-                padding-top: 180px;
+  
+            81% {
+                padding-top: 70px;
             }
 
             85%{
                 justify-content: flex-start;
-                padding-top: 220px;
+                padding-top: 140px;
             }
             100%{
                 justify-content: flex-start;
-                padding-top: 250px;
+                padding-top: 190px;
             }
         }
        @keyframes resize {
-            1%{opacity:1;
-            background-color: black;}
-           25% {
-            opacity: 1;
-            height: 5px;
-            width: 4px;
 
-            }
+        20%{
+                            
+            
+            background-color: rgb(49, 46, 46);
+            opacity: .5;
+        }
+
            29% {
-                opacity: 0.3;
-                height: 15vh;
-                width: 10vh;
+
+            height: 6px;
+            width: 2px;
+
+            }
+           31% {
+                opacity: .8;
+                height: 90vh;
+                width: 3px;
 
             }
 
 
-           30% {
+           32% {
 
-                width: 90vh;
+                width: 90vw;
                 height: 100vh;
                 border-radius: 100%;
-                background-color: rgb(226, 197, 230);
+                background-color: rgb(86, 1, 97);
             }
-            35% {width: 100vw;
-                height: 80vh;}
            40% {
 
                 width: 100vw;
-                background-color: rgba(193, 74, 88, 0.652);
-                opacity: 0.3;
-            }
-            43%{
-                width: 1px;
-                height: 1px;
-                background-color: rgb(164, 164, 222);
-                opacity: 0;
+                background-color: rgb(86, 1, 97);
+                opacity: 0.6;
             }
 
             50%{
-                width: 1px;
-                height: 1px;
-                background-color: rgb(164, 164, 222);
+                background-color: rgb(138, 35, 151);
                 opacity: 0.7;
             }
 
-            51%{
-                height: 40vh;
+            54%{
+                height: 70vh;
                 border-radius: 100%;
-                opacity: .3;
 
             }
 
-            53%{
-                height: 70vh;
-                width: 980vw;
+            59%{
+                height: 90vh;
+                width: 70vw;
                 border-radius: 0%;
             }
 
@@ -201,8 +165,6 @@
 
             }
 
-            64%{height: 0px;}
-
             66% {
                 
                 height: 100vh;
@@ -211,7 +173,6 @@
                 opacity: 1;
             }
             82%{
-                width: 100vw;
                 background-color: rgb(255, 255, 255);
                 opacity: 1;
             }
@@ -223,7 +184,7 @@
                 border-radius: 0%;
             }
 
-            84%{
+            85%{
 
                 background-color: black;
                 width: 100px;
@@ -274,7 +235,7 @@
     window.onload = function() {
         setTimeout(function() {
             window.location.href = "resume.doc.html";
-        }, 7950);
+        }, 7200);
         
     };
 
@@ -283,14 +244,10 @@
 </head>
 <body>
     <div class="container">
-        <div class="animation">
-            <div class="blackDot">
-
-            </div>                <div class="blackSpot">
-                </div>
-        </div>
+        <div class="animation"></div>
     </div>
 
 
-</body>
-</html>
+
+
+</body></html>
