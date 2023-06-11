@@ -7,9 +7,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: rgb(251, 251, 251);
             margin: 0;
-            animation: body-color 4s;
+            animation: body-color 4000ms;
         }
         
         .container {
@@ -18,41 +17,36 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            animation: rise 4s linear ;
+            animation: rise 4000ms linear ;
         }
   
         
         .animation {
             width: 1px;
             height: 1px;
-            background-color: rgb(251, 251, 251);
-            border-radius: 0%;
-            animation: resize 4s linear ;
+            background-color: black;
+            border-radius: 100%;
+            animation: resize 4000ms linear ;
         }
    
       
         @keyframes body-color {
-            0% {
-                background-color: #faf7f7;
-            }
 
-            15% {
-                background-color: #f2f2f2;
-            }
             35% {
-                background-color: #9acbd8d8;
-            }
-            40% {
-                background-color: #f2f2f2;
+                background-color: rgb(220, 199, 199);
             }
             60% {
-                background-color: rgb(227, 224, 237);
+                background-color: rgba(255, 166, 0, 0.5)
+            }
+            70% {  
+                background-color: rgba(0, 128, 0, 0.6)
+
             }
             80% {  
                 background-color: rgb(220, 199, 199);
             }
             100%{
-                background-color: rgb(251, 251, 251)
+                background-color: rgb(0, 0, 0)
             }
 
         }
@@ -85,36 +79,37 @@
             }
         }
        @keyframes resize {
-            0%{
-                opacity: 0.1;
-            }
 
-        15%{
-            background-color: rgb(49, 46, 46);
-            height: 1px;
-            width: 1px;
-            opacity: 0.5;
-        }
-           18% {
+           0% {
                 height: 90vh;
                 width: 2px;
-
+                opacity: 0;
             }
 
-           25% {
-            opacity: 0.1;
+            20%{
+
+            background-color: rgb(86, 1, 97);
+            height: 1px;
+            width: 1px;
+
+        }
+
+
+           22% {
+                opacity: 0.1;
+                width: 85vw;
+                height: 95vh;
+                border-radius: 50%;
+                background-color: rgb(86, 1, 97);
+            }
+           24% {
+ 
                 width: 90vw;
                 height: 100vh;
                 border-radius: 100%;
                 background-color: rgb(86, 1, 97);
             }
-           26% {
-            opacity: 0.1;
-                width: 90vw;
-                height: 100vh;
-                border-radius: 100%;
-                background-color: rgb(86, 1, 97);
-            }
+            31%{opacity: 0;}
            33% {
                 width: 99vw;
                 height: 10vh;
@@ -124,7 +119,7 @@
 
 
 
-            38%{
+            34%{
                 opacity: 0.1;
                 height: 2vh;
                 width: 100vw;
@@ -227,7 +222,7 @@
     window.onload = function() {
         setTimeout(function() {
             window.location.href = "resume.doc.html";
-        }, 4000);
+        }, 3900);
         
     };
 
