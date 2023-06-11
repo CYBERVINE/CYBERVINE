@@ -6,9 +6,9 @@
     <title>Professional Landing Page</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            animation: body-color 4000ms;
+            background-color: black;
+            animation: body-color 3000ms;
         }
         
         .container {
@@ -17,7 +17,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            animation: rise 4000ms linear ;
+            animation: rise 3000ms linear ;
         }
   
         
@@ -26,7 +26,7 @@
             height: 1px;
             background-color: black;
             border-radius: 100%;
-            animation: resize 4000ms linear ;
+            animation: resize 3000ms linear ;
         }
    
       
@@ -37,10 +37,6 @@
             }
             60% {
                 background-color: rgba(255, 166, 0, 0.5)
-            }
-            70% {  
-                background-color: rgba(0, 128, 0, 0.6)
-
             }
             80% {  
                 background-color: rgb(220, 199, 199);
@@ -56,117 +52,56 @@
 
         @keyframes rise {
 
-            69%{
-                justify-content: center;
+            50%{
+                justify-content: flex-start;
+                padding-top: 25vh;
             }
-
-            60% {
-                padding-top: 0;
-            }
-
-
             80%{
                 justify-content: flex-start;
-                padding-top: 250px;
-            }
-            86%{
-                justify-content: flex-start;
-                padding-top: 600px;
+                padding-top: 60vh;
             }
             100%{
                 justify-content: flex-start;
-                padding-top: 30px;
+                padding-top: 0;
             }
         }
        @keyframes resize {
 
            0% {
-                height: 90vh;
-                width: 2px;
-                opacity: 0;
-            }
-
-            20%{
-
-            background-color: rgb(86, 1, 97);
-            height: 1px;
-            width: 1px;
-
-        }
-
-
-           22% {
-                opacity: 0.1;
-                width: 85vw;
-                height: 95vh;
-                border-radius: 50%;
-                background-color: rgb(86, 1, 97);
-            }
-           24% {
- 
-                width: 90vw;
-                height: 100vh;
-                border-radius: 100%;
-                background-color: rgb(86, 1, 97);
-            }
-            31%{opacity: 0;}
-           33% {
-                width: 99vw;
-                height: 10vh;
-                background-color: rgb(86, 1, 97);
-                opacity: 0;
-            }
-
-
-
-            34%{
-                opacity: 0.1;
-                height: 2vh;
-                width: 100vw;
-                border-radius: 0%;
-            }
-
-
-           45% {
-                width: 100vw;
-                height: 1px;
-            }
-
-           53% {
 
                 width: 100vw;
                 height: 1px;
                 background-color: rgb(97, 13, 13);
                 opacity: 0;
-                border-radius: 100%;
-
+                border-radius: 70%;
             }
 
-            54%{
+            10%{
                 height: 1px;
                 opacity: 0;
-            }
-            56%{opacity: 0;}
 
-            58%{
-                height: 1px;
             }
-            66% {
-
+            20% {
                 height: 100vh;
             }
-            78%{
+            30%{
                 opacity: 1;
-                width: 100vw;
             }
-            82%{
+            40%{
                 background-color: rgba(255, 166, 0, 0.6);
                 opacity: 1;
             }
-            83%{
+            50%{
                 background-color: rgb(220, 199, 199);
                 width: 100vw;
                 height: 100vh;
+                opacity: 0.1;
+                border-radius: 0%;
+            }
+            80%{
+                background-color: rgb(220, 199, 199);
+                width: 100vw;
+                height: 40vh;
                 opacity: 0.1;
                 border-radius: 0%;
             }
@@ -222,7 +157,7 @@
     window.onload = function() {
         setTimeout(function() {
             window.location.href = "resume.doc.html";
-        }, 3900);
+        }, 3000);
         
     };
 
