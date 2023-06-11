@@ -4,7 +4,7 @@ body {
     padding: 0;
     background: linear-gradient(to bottom, rgb(0, 0, 0) , rgb(18, 15, 15) );
 
-    animation: opacity 800ms ease-in;
+    animation: opacity 400ms ease-in;
   }
 
   a {
@@ -33,6 +33,12 @@ p {
     background: linear-gradient(to right, black, rgba(0, 128, 0, 0.9), black);
     padding: 30px 20px 20px 20px;
     text-align: center;
+  }
+
+  .headShot{
+    height: 200px;
+    width: 160px;
+    border-radius: 50%;
   }
   
   header h1 {
