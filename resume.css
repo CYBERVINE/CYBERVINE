@@ -4,7 +4,7 @@ body {
     padding: 0;
     background: linear-gradient(to bottom, rgb(0, 0, 0) , rgb(18, 15, 15) );
 
-    animation: opacity 450ms ease-in;
+    animation: opacity 800ms ease-in;
   }
 
   a {
@@ -13,6 +13,7 @@ body {
 
 p {
     color: green;
+    margin-top: 28px;
   }
   @keyframes opacity {
     0% {
@@ -29,7 +30,7 @@ p {
     justify-content: center;
   }
   header {
-    background: linear-gradient(to right, black, green, black);
+    background: linear-gradient(to right, black, rgba(0, 128, 0, 0.9), black);
     padding: 30px 20px 20px 20px;
     text-align: center;
   }
