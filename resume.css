@@ -3,8 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background: linear-gradient(to bottom, rgb(0, 0, 0) , rgb(18, 15, 15) );
-
-    animation: opacity 400ms ease-in;
+    animation: opacity 300ms ease-in;
   }
 
   a {
@@ -24,13 +23,12 @@ p {
     }
   }
 
-
   .flexDiv{
     display: flex;
     justify-content: center;
   }
   header {
-    background: linear-gradient(to right, black, rgba(0, 128, 0, 0.9), black);
+    background: linear-gradient(to bottom, black, rgba(0, 128, 0, 0.8), black);
     padding: 30px 20px 20px 20px;
     text-align: center;
   }
@@ -74,7 +72,7 @@ p {
   
   ul {
     list-style: none;
-    padding: 0;
+    padding: 0
   }
   
   ul li {
