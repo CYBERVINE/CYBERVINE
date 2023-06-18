@@ -1,9 +1,8 @@
 
 fetch('https://api.ipify.org?format=json')
-    console.log(response)
   .then(response => response.json())
-    console.log(data)
   .then(data => {
+          console.log(data, data.ip)
     const ipAddress = data.ip;
     console.log(`IP Address: ${ipAddress}`);
   })
