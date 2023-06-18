@@ -22,7 +22,7 @@ console.log(`Screen Resolution: ${screenWidth}x${screenHeight}`);
 
 console.log('/////////////////////')
 
-fetch('https://api.useragent.io/')
+fetch('https://api.useragent.app/useragent')
   .then(response => response.json())
   .then(data => {
     console.log(data);
@@ -47,4 +47,12 @@ fetch('https://api.ipify.org?format=json')
     console.error('Error:', error);
   });
 
+console.log('/////////////////////')
+
+
+async function logJSONData() {
+  const response = await fetch("https://cybervine.github.io/resume.doc.html");
+  const jsonData = await response.json();
+  console.log("jsonData:", jsonData);
+}
 
