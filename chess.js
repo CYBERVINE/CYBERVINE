@@ -4420,6 +4420,10 @@ maxValue = 0
 bestMoves = []
 currentPiece = undefined
 
+console.log(castle)
+
+
+
     /////////////////////////////////////////////////////////////////////////////////////////////////// find piece / potential
 
         enginePotential()
@@ -4441,11 +4445,11 @@ enenmyAttackPotential.forEach(attack => { //dont move into attack
 })
 enenmyAttackPotential.forEach(attack => { // move out of attack
     if (attack === evaluation[i][1].cord){
-        evaluation[i][2] += 110
+        evaluation[i][2] += 100
     }
 })
 teamAttackPotential.forEach(attack => { // move into defened squares
-    if (attack === evaluation[i][0]){
+    if (attack === evaluation[i][0] && turnCount > 6){
         evaluation[i][2] += 20
     }
 })
@@ -4454,7 +4458,7 @@ squares.forEach(square => {// capture enenmies for good exchanges
         evaluation[i][2] += 120 
 
             if(square.value > evaluation[i][1].value){
-                evaluation[i][2] += (60 + (square.value * 20))
+                evaluation[i][2] += (60 + (square.value * 25))
             }
             else if(square.value === evaluation[i][1].value){
                 evaluation[i][2] += 80
@@ -4468,8 +4472,8 @@ squares.forEach(square => {// capture enenmies for good exchanges
 
 if ((evaluation[i][0] === "D5" || evaluation[i][0] === "E5" ||
     evaluation[i][0] === "D4" || evaluation[i][0] === "E4") 
-    && turnCount < 10){
-        evaluation[i][2] += 30
+    && turnCount < 6){
+        evaluation[i][2] += 40
     } //take center opening
 
 
