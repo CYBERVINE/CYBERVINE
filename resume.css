@@ -133,23 +133,6 @@ a {
     top: 65vh;
 }
 
-.golden-arch {
-  width: 200px;
-  height: 200px;
-  background: gold;
-  border-radius: 50%;
-  position: relative;
-  animation: rotate-arch 4s infinite linear;
-}
-
-@keyframes rotate-arch {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 
 
