@@ -1,101 +1,182 @@
-body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+body{
+    background-color: blanchedalmond;
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom,  rgb(0, 0, 0), rgb(22, 21, 21) );
     animation: opacity 300ms ease-in;
-  }
+}
 
-  a {
-    color: rgba(255, 255, 255, 0.35);
-  }
+a {
+  text-decoration: none;
+  color: black;
+}
 
-p {
-    color: green;
-    margin-top: 28px;
+@keyframes opacity {
+  0% {
+    opacity: 0;
   }
-  @keyframes opacity {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+  100% {
+    opacity: 1;
   }
-  .flexDiv{
+}
+
+#nav{
+    border: black solid 2px;
+    background-color: green;
+    opacity: .8;
+    min-height: 60px;
+    height: 10vh;
+    width: 100vw;
     display: flex;
+    justify-content: space-around;
+}
+.flex-div{
+  display: flex;
+  justify-content: center;
+}
+
+.nav-button{
+    border: black solid 2px;
+    background-color: gold;
+    margin: 8px 5px 5px 5px;
+    padding: 10px 5px 0px 5px;
+    border-radius: 5px;
+    height: 40px;
+    width: 80px;
     justify-content: center;
-  }
-  header {
-    background: linear-gradient(to bottom,  rgba(0, 128, 0, 0.6), 60%, black);
-    padding: 30px 20px 20px 20px;
-    height: 20px;
     text-align: center;
+    align-items: center;
+}
 
-  }
+#main-about{
+    border: solid black 2px;
+    height: 89vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+}
 
-  
-  header h1 {
-    margin: 0;
-    font-size: 60px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: orange;
-    
-  }
-  
-  header h2 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: normal;
-    color: orange;
-    opacity: 0.8;
-  }
-  
-  section {
-    padding: 10px 40px 0 40px;
-  }
-  
-  h3 {
-    margin: 14px 0 0 0 ;
-    font-size: 24px;
-    color:   rgba(153, 205, 50, 0.7);
-    border-bottom: 2px solid rgb(71, 68, 68);
-    padding-bottom: 10px;
-    text-transform: uppercase;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0
-  }
-  
-  ul li {
-    margin-bottom: 20px;
-    color: green;
-
-  }
-  
-  h4 {
-    margin: 10 0 0 0;
-    font-size: 19px;
-    color: rgba(238, 130, 238, 0.5);
-    text-decoration: underline;
-  }
-  
-  footer {
-    background-color: rgb(17, 25, 121, .8);
-    margin-top: 30px;
+#about-blurb{
+    position: absolute;
+    border: black solid 2px;
+    border-radius: 4px;
+    background-color: aqua;
     padding: 10px;
-    text-align: center;
-    color: #fff;
+    opacity: .9;
+    width: 60vw;
+    top: 6vh;
+    left: 6vw;
+    z-index: 2;
+    overflow: scroll;
+
+    animation: move-blurb 1.9s;
+}
+
+@keyframes move-blurb {
+  0% { transform: translate(-20vh, -5vw); }
+}
+
+#project-rundown{
+  border: black solid 2px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: aqua;
+}
+
+#work-life-blurb{
+  border: black solid 2px;
+  max-width: 800px;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: aqua;
+}
+
+#about-image{
+    position: absolute;
+    border: black solid 2px;
+    border-radius: 100px;
+    background-color: aqua;
+    opacity: .8;
+    width: 38vw;
+    height: 20vh;
+    top: 60vh;
+    left: 60vw;
+    z-index: 1;
+    animation: move-image 2s;
+}
+
+@keyframes move-image {
+  0% { transform: translate(30vh, 20vh); }
+}
+#about-icon1{
+    position: absolute;
+    width: 78vw;
+    height: 20vh;
+    background-color: green;
+    border-radius: 25px;
+    top: 10vh;
+    left: 40vh;
+    animation: move-icon1 1.2s;
+}
+
+@keyframes move-icon1 {
+  0% { transform: translate(-20vw, -20vh); }
+}
+
+#about-icon2{
+    position: absolute;
+    width: 70vw;
+    height: 12vh;
+    background-color: green;
+    border-radius: 0 25px 25px 0;
+    top: 65vh;
+}
+
+.golden-arch {
+  width: 200px;
+  height: 200px;
+  background: gold;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate-arch 4s infinite linear;
+}
+
+@keyframes rotate-arch {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  footer p {
-    margin: 0;
-    font-size: 14px;
-    font-weight: 600;
-    color: gold;
+  100% {
+    transform: rotate(360deg);
   }
-  
+}
+
+
+
+#cert-grid{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-gap: 10px;
+}
+
+.cert{
+
+  border: black solid 2px;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: aqua;
+
+}
+
+@media (max-width: 700px) {
+  #cert-grid {
+    grid-template-columns: repeat(1, 8fr);
+  }
+}
+
+footer{
+  bottom: 0;
+  background-color: green;
+  display: flex;
+  justify-content: space-around;
+}
