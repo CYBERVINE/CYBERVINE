@@ -1,8 +1,14 @@
+*{
+  box-sizing: border-box;
+}
+
 body{
     background-color: blanchedalmond;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    height: 100vh;
+    width: 100vw;
     animation: opacity 300ms ease-in;
 }
 
@@ -42,7 +48,7 @@ a {
     padding: 1vh;
     display: flex;
     justify-content: space-around;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .nav-button{
@@ -52,6 +58,7 @@ a {
   padding: 10px 5px 0px 5px;
   border-radius: 5px;
   height: 40px;
+  width: 80px;
   justify-content: center;
   text-align: center;
   align-items: center;
