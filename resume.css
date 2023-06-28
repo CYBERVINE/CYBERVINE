@@ -103,7 +103,7 @@ a {
     top: 60vh;
     left: 60vw;
     z-index: 1;
-    animation: move-image 2s;
+    animation: move-image 1s;
 }
 
 @keyframes move-image {
@@ -134,6 +134,21 @@ a {
 }
 
 
+#about-icon3{
+    position: absolute;
+    width: 10vw;
+    height: 60vh;
+    background-color: gold;
+    border-radius: 100px 0 0 0;
+    top: 30vh;
+    left: 20vw;
+    animation: move-icon3 3s;
+    z-index: -1;
+}
+
+@keyframes move-icon3 {
+  0% { transform: translate(0, 200vh); }
+}
 
 
 #cert-grid{
