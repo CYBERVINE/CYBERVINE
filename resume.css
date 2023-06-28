@@ -43,8 +43,20 @@ a {
     display: flex;
     justify-content: space-around;
     overflow-x: scroll;
-    white-space: nowrap;
 }
+
+.nav-button{
+  border: black solid 2px;
+  background-color: gold;
+  margin: 8px 0px 5px 0px;
+  padding: 10px 5px 0px 5px;
+  border-radius: 5px;
+  height: 40px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
 .flex-div{
   display: flex;
   justify-content: center;
@@ -72,21 +84,9 @@ a {
   background-color: #3e8e41;
 }
 
-.nav-button{
-    border: black solid 2px;
-    background-color: gold;
-    margin: 8px 5px 5px 5px;
-    padding: 10px 5px 0px 5px;
-    border-radius: 5px;
-    height: 40px;
-    width: 80px;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-}
+
 
 #main-about{
-    border: solid black 2px;
     height: 89vh;
     width: 100vw;
     position: relative;
@@ -106,7 +106,7 @@ a {
     z-index: 2;
     overflow: scroll;
 
-    animation: move-blurb 1.9s;
+    animation: move-blurb 1.5s;
 }
 
 @keyframes move-blurb {
@@ -154,7 +154,7 @@ a {
     border-radius: 25px;
     top: 10vh;
     left: 40vh;
-    animation: move-icon1 1.2s;
+    animation: move-icon1 .8s;
 }
 
 @keyframes move-icon1 {
