@@ -9,30 +9,43 @@
       ball.style.top = posY + "px";
 
       // Set the speed and direction of the ball
-      var speedX = Math.random() *1.5;
-      var speedY = Math.random() *1.5;
+// Set the speed and direction of the ball
+var speedX, speedY;
+
+if (Math.random() < 0.5) {
+  speedX = Math.random() * -2; // negative speed
+} else {
+  speedX = Math.random() * 2; // positive speed
+}
+
+if (Math.random() < 0.5) {
+  speedY = Math.random() * -2; // negative speed
+} else {
+  speedY = Math.random() * 2; // positive speed
+}
+
 
       // Update the ball's position at regular intervals
       setInterval(updateBallPosition, 10);
 
 
-      function createTrail() {
-        // Create a new trail element
-        var trailElement = document.createElement("div");
-        trailElement.className = "trail";
-        trailElement.style.left = posX + "px";
-        trailElement.style.top = posY + "px";
-        document.body.appendChild(trailElement);
+      // function createTrail() {
+      //   // Create a new trail element
+      //   var trailElement = document.createElement("div");
+      //   trailElement.className = "trail";
+      //   trailElement.style.left = posX + "px";
+      //   trailElement.style.top = posY + "px";
+      //   document.body.appendChild(trailElement);
 
-        // Add the trail element to the trail array
-        trail.push(trailElement);
+      //   // Add the trail element to the trail array
+      //   trail.push(trailElement);
 
-        // Remove the oldest trail element if the trail length exceeds a certain number
-        if (trail.length > 10) {
-          var oldestTrail = trail.shift();
-          oldestTrail.parentNode.removeChild(oldestTrail);
-        }
-      }
+      //   // Remove the oldest trail element if the trail length exceeds a certain number
+      //   if (trail.length > 10) {
+      //     var oldestTrail = trail.shift();
+      //     oldestTrail.parentNode.removeChild(oldestTrail);
+      //   }
+      // }
 
       function updateBallPosition() {
         // Update the position of the ball based on the speed
