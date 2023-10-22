@@ -4420,10 +4420,6 @@ maxValue = 0
 bestMoves = []
 currentPiece = undefined
 
-console.log(castle)
-
-
-
     /////////////////////////////////////////////////////////////////////////////////////////////////// find piece / potential
 
         enginePotential()
@@ -4445,11 +4441,11 @@ enenmyAttackPotential.forEach(attack => { //dont move into attack
 })
 enenmyAttackPotential.forEach(attack => { // move out of attack
     if (attack === evaluation[i][1].cord){
-        evaluation[i][2] += 100
+        evaluation[i][2] += 110
     }
 })
 teamAttackPotential.forEach(attack => { // move into defened squares
-    if (attack === evaluation[i][0] && turnCount > 6){
+    if (attack === evaluation[i][0]){
         evaluation[i][2] += 20
     }
 })
@@ -4458,7 +4454,7 @@ squares.forEach(square => {// capture enenmies for good exchanges
         evaluation[i][2] += 120 
 
             if(square.value > evaluation[i][1].value){
-                evaluation[i][2] += (60 + (square.value * 25))
+                evaluation[i][2] += (60 + (square.value * 20))
             }
             else if(square.value === evaluation[i][1].value){
                 evaluation[i][2] += 80
@@ -4472,8 +4468,8 @@ squares.forEach(square => {// capture enenmies for good exchanges
 
 if ((evaluation[i][0] === "D5" || evaluation[i][0] === "E5" ||
     evaluation[i][0] === "D4" || evaluation[i][0] === "E4") 
-    && turnCount < 6){
-        evaluation[i][2] += 40
+    && turnCount < 10){
+        evaluation[i][2] += 30
     } //take center opening
 
 
@@ -4587,9 +4583,9 @@ if (bestMoves.length === 0 ){ // random move incase no best moves
 
  
 
-//  console.log("futureWhiteAttack:",futureWhiteAttackPotential,"futureBlackAttack:",futureBlackAttackPotential,)
-//  console.log("legalSquares:",legalSquares,"potentialMoves:",potentialMoves,"evaluation:",evaluation,"bestMoves:",bestMoves,"maxvalue",maxValue)
-//  console.log("currentPiece",currentPiece,"bestCord:",bestMoves[bestMovesIndex][0],"turnCount",turnCount)
+// console.log("futureWhiteAttack:",futureWhiteAttackPotential,"futureBlackAttack:",futureBlackAttackPotential,)
+// console.log("legalSquares:",legalSquares,"potentialMoves:",potentialMoves,"evaluation:",evaluation,"bestMoves:",bestMoves,"maxvalue",maxValue)
+// console.log("currentPiece",currentPiece,"bestCord:",bestMoves[bestMovesIndex][0],"turnCount",turnCount)
 
     /////////////////////////////////////////////////////////////////////////////////////////////////// move select to high value sqaure
 
