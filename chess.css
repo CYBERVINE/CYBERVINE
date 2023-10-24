@@ -4,8 +4,20 @@
 }
 body {
 
-    background-color: rgb(250, 221, 54);
+    background-color: gold;
+    animation: opacity 1200ms ease-in;
 }
+
+/* @keyframes opacity {
+    0% {
+        background-color: rgb(220, 199, 199);
+        opacity: 0;
+    }
+    100% {
+        background-color: gold;
+        opacity: 1;
+    }
+} */
 
 .siteView{
     display: flex;
@@ -62,7 +74,6 @@ body {
 
 }
 #checkBox{
-    background-color: rgb(250, 221, 54);
     color: red;
     font-style: bold;
     font-size: 26px;
