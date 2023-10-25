@@ -2581,10 +2581,10 @@ function queeningPawn (){
 
             switch (piece.class){
 
-            case "queen" : piece.element.src = "whiteQueen.png", piece.value = 9; break
-            case "rook" : piece.element.src = "whiteRook.png", piece.value = 5; break
-            case "knight" : piece.element.src = "whiteKnight.png", piece.value = 3; break
-            case "bishop" : piece.element.src = "whiteBishop.png", piece.value = 3; break
+            case "queen" : piece.element.src = "pieces/whiteQueen.png", piece.value = 9; break
+            case "rook" : piece.element.src = "pieces/whiteRook.png", piece.value = 5; break
+            case "knight" : piece.element.src = "pieces/whiteKnight.png", piece.value = 3; break
+            case "bishop" : piece.element.src = "pieces/whiteBishop.png", piece.value = 3; break
 
             }}})
     blackPieces.forEach(piece =>{
@@ -2596,10 +2596,10 @@ function queeningPawn (){
 
             switch (piece.class){
 
-            case "queen" : piece.element.src = "blackQueen.png", piece.value = 9; break
-            case "rook" : piece.element.src = "blackRook.png", piece.value = 5; break
-            case "knight" : piece.element.src = "blackKnight.png", piece.value = 3; break
-            case "bishop" : piece.element.src = "blackBishop.png", piece.value = 3; break
+            case "queen" : piece.element.src = "pieces/blackQueen.png", piece.value = 9; break
+            case "rook" : piece.element.src = "pieces/blackRook.png", piece.value = 5; break
+            case "knight" : piece.element.src = "pieces/blackKnight.png", piece.value = 3; break
+            case "bishop" : piece.element.src = "pieces/blackBishop.png", piece.value = 3; break
 
             }}})
 }
