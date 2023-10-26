@@ -61,7 +61,7 @@ p{
     
     @media(max-width: 414px) {
         
-        transform: scale(.95);
+        transform: scale(.5);
     } 
 
     @media(min-width: 900px){
