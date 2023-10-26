@@ -59,9 +59,9 @@ p{
     display: grid;
     grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px;
     
-    @media(max-width: 414px) {
+    @media(max-width: 420px) {
         
-        transform: scale(.5);
+        transform: scale(.2);
     } 
 
     @media(min-width: 900px){
