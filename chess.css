@@ -30,7 +30,15 @@ p{
 }
 
 .intro{
+    display: flex;
+    justify-content: space-around;
     padding: 0 10vw;
+}
+
+.intro__content{
+    @media(max-width: 795px) {
+        width: 50vw;
+    }
 }
 
 .board-wraper{
@@ -51,9 +59,19 @@ p{
 }
 
 
+@keyframes board-load {
+    from{transform: scale(.7);
+         margin-top: -8vh;}
+    70%{margin-top: .5vh;}
+}
+
+@keyframes board-shrink {
+    from{transform: scale(1.2)}
+    to{transform: scale(1)}
+}
 
 #board{
-
+    animation: board-load 1s;
     margin-left: 0 auto;
     position: relative;
     display: grid;
@@ -61,12 +79,18 @@ p{
     
     @media(max-width: 420px) {
         
-        transform: scale(.2);
-    } 
+        transform: scale(.8);
+    }
 
-    @media(min-width: 900px){
+    @media (min-width: 1399px){
+        transition: 1s;
+        transform: scale(1);
+        margin: 0;
+    }
+    @media(min-width: 1400px){
+        transition: 1s;
         transform: scale(1.2);
-        margin: 10vh;
+        margin: 7vh 0 7vh 0;
     }
 }
 #takeBack {
