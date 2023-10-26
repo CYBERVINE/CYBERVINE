@@ -33,11 +33,12 @@ p{
     display: flex;
     justify-content: space-around;
     padding: 0 10vw;
+    margin-bottom: 2.5rem;
 }
 
 .intro__content{
     @media(max-width: 795px) {
-        width: 50vw;
+        width: 30rem;
     }
 }
 
@@ -61,13 +62,8 @@ p{
 
 @keyframes board-load {
     from{transform: scale(.7);
-         margin-top: -8vh;}
+         margin-top: -30vh;}
     70%{margin-top: .5vh;}
-}
-
-@keyframes board-shrink {
-    from{transform: scale(1.2)}
-    to{transform: scale(1)}
 }
 
 #board{
@@ -78,19 +74,18 @@ p{
     grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px;
     
     @media(max-width: 420px) {
-        
         transform: scale(.8);
     }
 
-    @media (min-width: 1399px){
+    @media(max-width: 1399px){
         transition: 1s;
         transform: scale(1);
-        margin: 0;
     }
+
     @media(min-width: 1400px){
-        transition: 1s;
+        transition: 1s ease-in-out;
         transform: scale(1.2);
-        margin: 7vh 0 7vh 0;
+        margin: 2vh 0 7vh;
     }
 }
 #takeBack {
