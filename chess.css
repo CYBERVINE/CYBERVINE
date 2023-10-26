@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-
+    font-family: monospace;
 }
 body {
 
@@ -19,14 +19,40 @@ body {
     }
 } */
 
-.siteView{
+h1{
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+p{
+    font-size: 1.5rem;
+}
+
+
+.intro{
+    padding: 0 10vw;
+}
+
+.board-wraper{
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+}
+
+
+.debrief{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.debrief__list{
+    width: 30vw;
 }
 
 #board{
 
-    margin-left: -10px;
+    margin-left: 0 auto;
     position: relative;
     display: grid;
     grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px; 
