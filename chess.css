@@ -29,6 +29,9 @@ p{
     font-size: 1.5rem;
 }
 
+ul{
+    padding: 0;
+}
 
 .intro{
     padding: 0 10vw;
@@ -44,10 +47,11 @@ p{
 .debrief{
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .debrief__list{
-    width: 30vw;
+    width: 30rem;
 }
 
 #board{
