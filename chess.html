@@ -111,24 +111,24 @@
             <li>I enjoyed making progress</li>
         </section>
         <section class="debrief__list">
-            <ul>
+      
                 <h2>Things I learned:</h2>
                 <li>It is better to have all the required data update at the turn change rather than to have portions of the data update when trigger by client events.</li>
                 <li>It is better to separate larger functions into different, slightly tweeked functions, rather than try to active certain portions of the function and ignore others.</li>
                 <li>Reusing a function that has loops while the functions is still runnning can cause mistakes in the interation count</li>
                 <li><b>In the source code you can see how I improved as a programmer over the course of this project. I made the board and pieces first, then I moved onto the unrestricted moved of the pieces. Then I added constraints around legality of moves. Then I added special moves life EnPassent and castling. </b><i>EnPassent has a LOT of parameters. The pawns themselves have the most interacte rules for such plain pieces.</i> 
                 <b>Then I started to work on rules around checking the king, which required updated assessment potential board configurations. Then, with that information I was able to use it and evaluate potential moves. Thus giving the board a brain.</b> </li>
-            </ul>
+     
         </section>
         <section class="debrief__list">
-            <ul>
+ 
                 <h2>Things I would improve:</h2>
                 <li>Use the future position evaluation currently used to check if a move block an attack on the king to evaluate if a future poistion results in check mate, to give the engine a hunting instinct.</li>
                 <li>Use future position evaluation to plan combination moves.</li>
                 <li>Create a memory for played games that can be used as reference for formations that usually lead victory.</li>
                 <li>The are some bugs about pieces sometimes not being able to move to legal squares even though they are highlighted as legal</li>
                 <li>The game logic probably still produces more information that is required for the engine and for the legality data, pruning it further would make things run faster and smoother with fewer bugs I am sure.</li>
-            </ul>
+
         </section>
     </footer>
 </body>
