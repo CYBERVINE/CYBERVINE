@@ -50,12 +50,24 @@ p{
     width: 30rem;
 }
 
+
+
 #board{
 
     margin-left: 0 auto;
     position: relative;
     display: grid;
-    grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px; 
+    grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px;
+    
+    @media(max-width: 414px) {
+        
+        transform: scale(.95);
+    } 
+
+    @media(min-width: 900px){
+        transform: scale(1.2);
+        margin: 10vh;
+    }
 }
 #takeBack {
 
