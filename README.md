@@ -3,3 +3,4 @@ It works the way I like it, now that I learned the industry standards thought
 I'd clean up the code to make it more readable and manageable.
 If I ever crack the files open again!
 
+You can actually play it here ==> https://cybervine.github.io/chess.html
