@@ -70,6 +70,12 @@ p{
     width: 30rem;
 }
 
+.dev-pic{
+    width: 90%;
+    border: 3px solid black;
+    margin: 3vw;
+}
+
 
 @keyframes board-load {
     from{transform: scale(.7);
