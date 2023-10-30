@@ -10,94 +10,96 @@
 </head>
 <body>
 <h1>Welcome to my self playing chess app with an intelligent engine! </h1>
-<header class="intro">
-    <p class="intro__content"> 
-        My name is Kevin and I'm a self taught coder. 
-        What you see below is the very first personal project I ever attempted! 
-        The point of creating this chess app was not to create yet another chess app, 
-        the point was to learn how to code. Now that I have proven my aptitude, 
-        I am ready to solve more relevant problems with suitable languages. 
-        You can watch the engine play itself, or play against it. 
-        It's your move! 
-    </p>
-</header>
-
-<main class="board-wraper">
-    <div id="board">
-        <div class="square"id="A8">8</div>
-        <div class="square"id="B8">b</div>
-        <div class="square"id="C8">c</div>
-        <div class="square"id="D8">d</div>
-        <div class="square"id="E8">e</div>
-        <div class="square"id="F8">f</div>
-        <div class="square"id="G8">g</div>
-        <div class="square"id="H8">h</div>
-        <div class="square"id="A7">7</div>
-        <div class="square"id="B7"></div>
-        <div class="square"id="C7"></div>
-        <div class="square"id="D7"></div>
-        <div class="square"id="E7"></div>
-        <div class="square"id="F7"></div>
-        <div class="square"id="G7"></div>
-        <div class="square"id="H7"></div>
-        <div class="square"id="A6">6</div>
-        <div class="square"id="B6"></div>
-        <div class="square"id="C6"></div>
-        <div class="square"id="D6"></div>
-        <div class="square"id="E6"></div>
-        <div class="square"id="F6"></div>
-        <div class="square"id="G6"></div>
-        <div class="square"id="H6"></div>
-        <div class="square"id="A5">5</div>
-        <div class="square"id="B5"></div>
-        <div class="square"id="C5"></div>
-        <div class="square"id="D5"></div>
-        <div class="square"id="E5"></div>
-        <div class="square"id="F5"></div>
-        <div class="square"id="G5"></div>
-        <div class="square"id="H5"></div>
-        <div class="square"id="A4">4</div>
-        <div class="square"id="B4"></div>
-        <div class="square"id="C4"></div>
-        <div class="square"id="D4"></div>
-        <div class="square"id="E4"></div>
-        <div class="square"id="F4"></div>
-        <div class="square"id="G4"></div>
-        <div class="square"id="H4"></div>
-        <div class="square"id="A3">3</div>
-        <div class="square"id="B3"></div>
-        <div class="square"id="C3"></div>
-        <div class="square"id="D3"></div>
-        <div class="square"id="E3"></div>
-        <div class="square"id="F3"></div>
-        <div class="square"id="G3"></div>
-        <div class="square"id="H3"></div>
-        <div class="square"id="A2">2</div>
-        <div class="square"id="B2"></div>
-        <div class="square"id="C2"></div>
-        <div class="square"id="D2"></div>
-        <div class="square"id="E2"></div>
-        <div class="square"id="F2"></div>
-        <div class="square"id="G2"></div>
-        <div class="square"id="H2"></div>
-        <div class="square"id="A1">1</div>
-        <div class="square"id="B1"></div>
-        <div class="square"id="C1"></div>
-        <div class="square"id="D1"></div>
-        <div class="square"id="E1"></div>
-        <div class="square"id="F1"></div>
-        <div class="square"id="G1"></div>
-        <div class="square"id="H1"></div>
-        <button id="changeTurn" style="font-size: 12px;">Change Turn</button>
-        <div id="turnBox">It's white's turn!</div>
-        <button id="watchRandom" style="font-size: 12px;">Watch Random</button>
-        <div id="checkBox"></div>
-        <button id="takeBack"></button>
-        <button id="watchEngine">Watch Engine</button>
-        <button id="playEngine">Play Engine</button>
-        <button id="playHuman">Play Human</button>
-        </div>
-    </main>
+<div class="mobile-response">
+    <header class="intro">
+        <p class="intro__content"> 
+            My name is Kevin and I'm a self taught coder. 
+            What you see here is the very first personal project I ever attempted! 
+            The point of creating this chess app was not to create yet another chess app, 
+            the point was to learn how to code. Now that I have proven my aptitude, 
+            I am ready to solve more relevant problems with suitable languages. 
+            You can watch the engine play itself, or play against it. 
+            It's your move! 
+        </p>
+    </header>
+    
+    <main class="board-wraper">
+        <div id="board">
+            <div class="square"id="A8">8</div>
+            <div class="square"id="B8">b</div>
+            <div class="square"id="C8">c</div>
+            <div class="square"id="D8">d</div>
+            <div class="square"id="E8">e</div>
+            <div class="square"id="F8">f</div>
+            <div class="square"id="G8">g</div>
+            <div class="square"id="H8">h</div>
+            <div class="square"id="A7">7</div>
+            <div class="square"id="B7"></div>
+            <div class="square"id="C7"></div>
+            <div class="square"id="D7"></div>
+            <div class="square"id="E7"></div>
+            <div class="square"id="F7"></div>
+            <div class="square"id="G7"></div>
+            <div class="square"id="H7"></div>
+            <div class="square"id="A6">6</div>
+            <div class="square"id="B6"></div>
+            <div class="square"id="C6"></div>
+            <div class="square"id="D6"></div>
+            <div class="square"id="E6"></div>
+            <div class="square"id="F6"></div>
+            <div class="square"id="G6"></div>
+            <div class="square"id="H6"></div>
+            <div class="square"id="A5">5</div>
+            <div class="square"id="B5"></div>
+            <div class="square"id="C5"></div>
+            <div class="square"id="D5"></div>
+            <div class="square"id="E5"></div>
+            <div class="square"id="F5"></div>
+            <div class="square"id="G5"></div>
+            <div class="square"id="H5"></div>
+            <div class="square"id="A4">4</div>
+            <div class="square"id="B4"></div>
+            <div class="square"id="C4"></div>
+            <div class="square"id="D4"></div>
+            <div class="square"id="E4"></div>
+            <div class="square"id="F4"></div>
+            <div class="square"id="G4"></div>
+            <div class="square"id="H4"></div>
+            <div class="square"id="A3">3</div>
+            <div class="square"id="B3"></div>
+            <div class="square"id="C3"></div>
+            <div class="square"id="D3"></div>
+            <div class="square"id="E3"></div>
+            <div class="square"id="F3"></div>
+            <div class="square"id="G3"></div>
+            <div class="square"id="H3"></div>
+            <div class="square"id="A2">2</div>
+            <div class="square"id="B2"></div>
+            <div class="square"id="C2"></div>
+            <div class="square"id="D2"></div>
+            <div class="square"id="E2"></div>
+            <div class="square"id="F2"></div>
+            <div class="square"id="G2"></div>
+            <div class="square"id="H2"></div>
+            <div class="square"id="A1">1</div>
+            <div class="square"id="B1"></div>
+            <div class="square"id="C1"></div>
+            <div class="square"id="D1"></div>
+            <div class="square"id="E1"></div>
+            <div class="square"id="F1"></div>
+            <div class="square"id="G1"></div>
+            <div class="square"id="H1"></div>
+            <button id="changeTurn" style="font-size: 12px;">Change Turn</button>
+            <div id="turnBox">It's white's turn!</div>
+            <button id="watchRandom" style="font-size: 12px;">Watch Random</button>
+            <div id="checkBox"></div>
+            <button id="takeBack"></button>
+            <button id="watchEngine">Watch Engine</button>
+            <button id="playEngine">Play Engine</button>
+            <button id="playHuman">Play Human</button>
+            </div>
+        </main>
+</div>
 <footer class="debrief">
     <section class="debrief__list">
         <h2>Things I am proud of: <a href="chessCode.html">sourceCode</a></h2>
