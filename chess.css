@@ -87,9 +87,10 @@ p{
         transform: scale(0.8);
     }
 
-    @media (min-width:651px) and (max-width: 1399px){
+    @media (min-width:551px) and (max-width: 1399px){
         transition: 1s;
         transform: scale(1.1);
+        margin-bottom: 2vh;
     }
 
     @media(min-width: 1400px){
