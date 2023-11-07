@@ -1140,7 +1140,7 @@ function enenmyCollisionCheck ()  {
 }
 function pawnAttackCheck(){  
 
-    squares.forEach(square =>{
+squares.forEach(square =>{
             if ((possibleCord === square.cord && square.occupied !== oppositeTeam)){
                 skip = true
             }})
