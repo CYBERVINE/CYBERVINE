@@ -470,4 +470,5 @@ p{
 
 ::-webkit-scrollbar{
     background-color: gold;
+    width: 0;
 }
